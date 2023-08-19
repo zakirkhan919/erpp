@@ -52,8 +52,8 @@ $checkAdmin = Auth::guard("web")->user()->type == "admin" || Auth::guard("web")-
                             class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Sell</span></a>
                 </li>
                 <li class="slide">
-                    <a class="side-menu__item @if(Request::is('/')) active @endif" data-bs-toggle="slide" href="{{ route('sell') }}"><i
-                            class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Sell</span></a>
+                    <a class="side-menu__item @if(Request::is('/holiday')) active @endif" data-bs-toggle="slide" href="{{ route('holiday') }}"><i
+                            class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Holiday</span></a>
                 </li>
                 <li class="slide @if(array_search("user/view_users",$access) > -1 ||
                     array_search("user/add_user",$access) > -1 ||
