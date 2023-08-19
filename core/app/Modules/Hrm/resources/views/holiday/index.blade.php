@@ -28,27 +28,89 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header justify-content-end">
-                                <a href="{{ route('product-add') }}">
+                                <a href="{{ route('add_holiday') }}">
                                     <button class="btn btn-primary text-right"><i class="fe fe-plus me-2"></i>Add
                                         Holiday</button>
                                 </a>
                             </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table id="list"
-                                        class="table table-bordered text-nowrap key-buttons border-bottom">
-                                        <thead>
-                                            <tr>
-                                                <th class="border-bottom-0">Name</th>
-                                                <th class="border-bottom-0">Price</th>
-                                                <th class="border-bottom-0">Category</th>
-                                                <th class="border-bottom-0">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-                                        </tbody>
-                                    </table>
+                            <div class="row">
+                                <div class="col-xl-3">
+                                    <div class="card">
+                                        <div class="list-group list-group-transparent mb-0 mail-inbox pb-3">
+                                            
+                                            <a href="email-inbox.html" class="list-group-item d-flex align-items-center active mx-4">
+                                                 January
+                                            </a>
+                                            <a href="email-inbox.html" class="list-group-item d-flex align-items-center active mx-4">
+                                                February
+                                            </a>
+                                            <a href="email-inbox.html" class="list-group-item d-flex align-items-center active mx-4">
+                                                March
+                                            </a>
+                                            <a href="email-inbox.html" class="list-group-item d-flex align-items-center active mx-4">
+                                                April
+                                            </a>
+                                            <a href="email-inbox.html" class="list-group-item d-flex align-items-center active mx-4">
+                                                May
+                                            </a>
+                                            <a href="email-inbox.html" class="list-group-item d-flex align-items-center active mx-4">
+                                                June
+                                            </a>
+                                            <a href="email-inbox.html" class="list-group-item d-flex align-items-center active mx-4">
+                                                July
+                                            </a>
+                                            <a href="email-inbox.html" class="list-group-item d-flex align-items-center active mx-4">
+                                                August
+                                            </a>
+                                            <a href="email-inbox.html" class="list-group-item d-flex align-items-center active mx-4">
+                                                September
+                                            </a>
+                                            <a href="email-inbox.html" class="list-group-item d-flex align-items-center active mx-4">
+                                                October
+                                            </a>
+                                            <a href="email-inbox.html" class="list-group-item d-flex align-items-center active mx-4">
+                                                November
+                                            </a>
+                                            <a href="email-inbox.html" class="list-group-item d-flex align-items-center active mx-4">
+                                                December
+                                            </a>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-9">
+                                    <div class="card">
+                                        <div class="card-body p-6">
+                                            <div class="inbox-body">
+                                                <div class="table-responsive">
+                                                    <h4>Weekend Holiday: <span class="text-danger">Thursday</span> </h4>
+                                                    <p>(If you want to update weekend holiday, please add new weekend holiday, previous weekend holiday will be changed)</p> 
+                                                    <table class="table table-inbox table-hover text-nowrap mb-0">
+                                                        <thead>
+                                                            <tr class="">
+                                                                <td class="inbox-small-cells">Sl</td>
+                                                                <td class="inbox-small-cells">Day</td>
+                                                                <td class="view-message dont-show fw-semibold clickable-row">Occasion</td>
+                                                                <td class="view-message clickable-row">Description</td>
+                                                                <td class="view-message text-end fw-semibold clickable-row">Action</td>
+                                                            </tr>
+                                                            
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

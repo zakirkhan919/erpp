@@ -11,4 +11,9 @@ class HolidayController extends Controller
     {
         return view('Hrm::holiday.index');
     }
+
+    public function addHoliday()
+    {
+        return view('Hrm::holiday.add_holiday');
+    }
 }
