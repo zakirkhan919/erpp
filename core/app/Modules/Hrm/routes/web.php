@@ -9,4 +9,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('submit-fixed-holiday', 'HolidayController@SubmitFixedHoliday')->name('submit-fixed-holiday');
     Route::post('submit-occasion-holiday', 'HolidayController@SubmitOccasionHoliday')->name('submit-occasion-holiday');
     Route::get('get-holiday', 'HolidayController@getHoliday')->name('get-holiday');
+
+    //Employee
+
 });
