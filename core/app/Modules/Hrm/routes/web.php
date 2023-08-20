@@ -8,5 +8,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('add-holiday', 'HolidayController@addHoliday')->name('add_holiday');
     Route::post('submit-fixed-holiday', 'HolidayController@SubmitFixedHoliday')->name('submit-fixed-holiday');
     Route::post('submit-occasion-holiday', 'HolidayController@SubmitOccasionHoliday')->name('submit-occasion-holiday');
-    Route::get('get-holiday', 'HolidayController@getHoliday')->name('get-holiday');
+    Route::post('get-holiday', 'HolidayController@getHoliday')->name('get-holiday');
 });
