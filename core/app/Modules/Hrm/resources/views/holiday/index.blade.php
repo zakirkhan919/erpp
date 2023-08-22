@@ -103,7 +103,6 @@
                                                     <p>(If you want to update weekend holiday, please add new weekend
                                                         holiday, previous weekend holiday will be changed)</p>
                                                         <div id="maintable">
-
                                                             <table class="table table-inbox table-hover text-nowrap mb-0">
                                                                 <thead>
                                                                     <tr class="">
@@ -127,7 +126,7 @@
                                                                             <td>{{ $item->occasion }}</td>
                                                                             <td>{{ $item->description }}</td>
                                                                             <td><button
-                                                                                    class="btn btn-info">Edit</button>&nbsp;&nbsp;<button
+                                                                                    class="btn btn-info" onclick="occasionEdit($item->id)">Edit</button>&nbsp;&nbsp;<button
                                                                                     class="btn btn-danger">Delete</button></td>
                                                                         </tr>
                                                                     @endforeach
@@ -145,6 +144,27 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal  fade" id="OccasionModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Occasion Holiday</h5>
+                        <button class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" data-bs-dismiss="modal">Cencel</button>
+                        {{-- <button class="btn btn-primary">লগ আউট</button> --}}
+        
+                        
                     </div>
                 </div>
             </div>
