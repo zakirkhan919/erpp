@@ -31,7 +31,7 @@
                             <div class="card-header">
                                 <h3 class="card-title">Designation information Add</h3>
                             </div>
-                            <form action="{{ route('submit-product') }}" method="post" id="seller-add"
+                            <form action="{{ route('designations.store') }}" method="post" id="seller-add"
                                 name="seller-add">
                                 @csrf
                                 <div class="card-body">

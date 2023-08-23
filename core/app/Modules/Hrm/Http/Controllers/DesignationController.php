@@ -37,7 +37,14 @@ class DesignationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|max:255',
+        ]);
+
+        Designation::Designationadd($request);
+
+        return redirect()->route('designations.index')->with('Successfully added');
     }
 
     /**

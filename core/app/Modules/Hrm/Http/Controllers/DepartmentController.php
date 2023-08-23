@@ -37,7 +37,14 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|max:255',
+        ]);
+
+        Department::Departmentadd($request);
+
+        return redirect()->route('departments.index')->with('Successfully added');
     }
 
     /**
