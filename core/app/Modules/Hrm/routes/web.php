@@ -1,4 +1,7 @@
 <?php
+use App\Modules\Hrm\Http\Controllers\DepartmentController;
+use App\Modules\Hrm\Http\Controllers\DesignationController;
+use App\Modules\Hrm\Http\Controllers\EmployeeController;
 
 // Admin Route
 Route::group(['middleware' => 'auth'], function () {
@@ -10,6 +13,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('submit-occasion-holiday', 'HolidayController@SubmitOccasionHoliday')->name('submit-occasion-holiday');
     Route::get('get-holiday', 'HolidayController@getHoliday')->name('get-holiday');
 
+    //Department
+    Route::resource('departments', DepartmentController::class);
+
+    //Designation
+    Route::resource('designations', DesignationController::class);
+
     //Employee
+    Route::resource('employees', EmployeeController::class);
 
 });
