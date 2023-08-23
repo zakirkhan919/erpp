@@ -21,8 +21,8 @@
                 <td>{{ $item->occasion }}</td>
                 <td>{{ $item->description }}</td>
                 <td><button
-                        class="btn btn-info">Edit</button>&nbsp;&nbsp;<button
-                        class="btn btn-danger">Delete</button></td>
+                        class="btn btn-info" type="button" onclick="occasionEdit({{$item->id}})">Edit</button>&nbsp;&nbsp;<button
+                        class="btn btn-danger" type="button" onclick="occasionDelete({{ $item->id }})">Delete</button></td>
             </tr>
         @endforeach
     </tbody>

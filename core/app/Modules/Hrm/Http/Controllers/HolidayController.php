@@ -84,4 +84,39 @@ class HolidayController extends Controller
         return redirect()->back()->with('success1', 'Successfully added');
     
     }
+
+    public function updateOccasionHoliday(Request $request)
+    {
+        $request->validate([
+            'date' => 'required',
+            'occasion' => 'required'
+        ]);
+
+        $data = OccasionHoliday::find($request->id);
+        $data->date = $request->date;
+        $data->occasion = $request->occasion;
+        $data->description = $request->description;
+        $data->save();
+
+        return redirect()->back()->with('success', 'Successfully Updated');
+    }
+
+
+
+    public function getOccasionHoliday(Request $request)
+    {
+        $data = OccasionHoliday::where('id', $request->data)->first();
+        $html_view = view('Hrm::holiday.edit_holiday', compact('data'))->render();
+
+        return response()->json($html_view);
+    }
+
+    public function deleteOccasionHoliday(Request $request)
+    {
+        // dd($request->all());
+        $data = OccasionHoliday::find($request->data);
+        $data->delete();
+
+        return response()->json('success');
+    }
 }

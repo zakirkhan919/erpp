@@ -4,6 +4,7 @@ namespace App\Modules\Inventory\Http\Controllers\product;
 
 use App\Http\Controllers\Controller;
 use App\Libraries\CommonFunction;
+use App\Modules\Hrm\Models\FixedHoliday;
 use App\Modules\Inventory\Models\Product;
 use App\Modules\Inventory\Models\Seller;
 use Illuminate\Http\Request;
@@ -22,13 +23,13 @@ class ProductController extends Controller
 
     public function productAdd()
     {
-        return view('Inventory::products.product.add-product');
+        $data = FixedHoliday::get();
+        return view('Inventory::products.product.add-product', compact('data'));
     }
 
     public function productEdit($id)
     {
         $data = Product::where('id', decrypt($id))->first();
-        info($data);
         return view('Inventory::products.product.edit-product', compact('data'));
     }
 

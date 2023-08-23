@@ -102,41 +102,44 @@
                                                         </span> </h4>
                                                     <p>(If you want to update weekend holiday, please add new weekend
                                                         holiday, previous weekend holiday will be changed)</p>
-                                                        <div id="maintable">
-                                                            <table class="table table-inbox table-hover text-nowrap mb-0">
-                                                                <thead>
-                                                                    <tr class="">
-                                                                        <td class="inbox-small-cells">Sl</td>
-                                                                        <td class="inbox-small-cells">Day</td>
-                                                                        <td
-                                                                            class="view-message dont-show fw-semibold clickable-row">
-                                                                            Occasion</td>
-                                                                        <td class="view-message clickable-row">Description</td>
-                                                                        <td class="view-message text-end fw-semibold clickable-row">
-                                                                            Action</td>
-                                                                    </tr>
-        
-                                                                </thead>
-                                                                <tbody>
-                                                                    @foreach ($occasionHoliday as $key => $item)
-                                                                        <tr>
-                                                                            <td>{{ $key + 1 }}</td>
-                                                                            <td>{{ \Carbon\Carbon::parse($item->date)->format('d/m/Y') }}({{ \Carbon\Carbon::parse($item->date)->format('l') }})
-                                                                            </td>
-                                                                            <td>{{ $item->occasion }}</td>
-                                                                            <td>{{ $item->description }}</td>
-                                                                            <td><button
-                                                                                    class="btn btn-info" onclick="occasionEdit($item->id)">Edit</button>&nbsp;&nbsp;<button
-                                                                                    class="btn btn-danger">Delete</button></td>
-                                                                        </tr>
-                                                                    @endforeach
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                        <div id="ajaxtable">
+                                                    <div id="maintable">
+                                                        <table class="table table-inbox table-hover text-nowrap mb-0">
+                                                            <thead>
+                                                                <tr class="">
+                                                                    <td class="inbox-small-cells">Sl</td>
+                                                                    <td class="inbox-small-cells">Day</td>
+                                                                    <td
+                                                                        class="view-message dont-show fw-semibold clickable-row">
+                                                                        Occasion</td>
+                                                                    <td class="view-message clickable-row">Description</td>
+                                                                    <td
+                                                                        class="view-message text-center fw-semibold clickable-row">
+                                                                        Action</td>
+                                                                </tr>
 
-                                                        </div>
-                                                        
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach ($occasionHoliday as $key => $item)
+                                                                    <tr>
+                                                                        <td>{{ $key + 1 }}</td>
+                                                                        <td>{{ \Carbon\Carbon::parse($item->date)->format('d/m/Y') }}({{ \Carbon\Carbon::parse($item->date)->format('l') }})
+                                                                        </td>
+                                                                        <td>{{ $item->occasion }}</td>
+                                                                        <td>{{ $item->description }}</td>
+                                                                        <td>
+                                                                            <button class="btn btn-info" type="button"
+                                                                                onclick="occasionEdit({{$item->id}})">Edit</button>
+                                                                                <button class="btn btn-danger" type="button" onclick="occasionDelete({{ $item->id }})">Delete</button>
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div id="ajaxtable">
+
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -148,8 +151,8 @@
                 </div>
             </div>
         </div>
-        <div class="modal  fade" id="OccasionModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-sm" role="document">
+        <div class="modal fade" id="OccasionModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Edit Occasion Holiday</h5>
@@ -158,13 +161,10 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        
+                        <div id="editForm"></div>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-danger" data-bs-dismiss="modal">Cencel</button>
-                        {{-- <button class="btn btn-primary">লগ আউট</button> --}}
-        
-                        
                     </div>
                 </div>
             </div>
@@ -187,6 +187,41 @@
                     success: function(data) {
                         $('#maintable').hide();
                         $('#ajaxtable').html(data);
+                    }
+                })
+            }
+
+            function occasionEdit(data) {
+                $('#OccasionModal').modal('show');
+                $.ajax({
+                    url: "/get-occasion-data",
+                    method: 'POST',
+                    data: {
+                        data: data,
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        // $('#maintable').hide();
+                        
+                        $('#editForm').html(data);
+                    }
+                })
+            }
+
+            function occasionDelete(data)
+            {
+                $.ajax({
+                    url: "/delete-occasion-data",
+                    method: 'POST',
+                    data: {
+                        data: data,
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        // $('#maintable').hide();
+                        location.reload();
                     }
                 })
             }

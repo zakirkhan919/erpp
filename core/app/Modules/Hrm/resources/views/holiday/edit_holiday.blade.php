@@ -14,10 +14,11 @@
                     <input type="text" class="form-control" placeholder="Write Occasion" name="occasion" value="{{ $data->occasion}}">
                 </div>
             </div>
+            <input type="hidden" value="{{ $data->id }}" name="id">
             <div class="col-sm-12 col-md-12">
                 <div class="form-group">
                     <label for="">Description</label>
-                    <textarea name="description" class="form-control" id="" cols="30" rows="10" placeholder="Write Description(optional)"></textarea>
+                    <textarea name="description" class="form-control" id="" cols="30" rows="10" placeholder="Write Description(optional)">{{ $data->description }}</textarea>
                 </div>
             </div>
         </div>
