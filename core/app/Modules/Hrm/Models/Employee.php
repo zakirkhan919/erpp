@@ -37,14 +37,11 @@ class Employee extends Model
     }
 
 
-    public static function Employeeupdated($request)
+    public static function Employeeupdated($id, $data)
     {
-        $data = Employee::find($request->id);
-
-        $data->name = $request->name;
-        $data->price = $request->price;
-        $data->category = $request->category;
-        $data->save();
+        $employee = Employee::find($id);
+        $employee->fill($data);
+        $employee->save();
     }
 
     public static function deleteEmployee($request)

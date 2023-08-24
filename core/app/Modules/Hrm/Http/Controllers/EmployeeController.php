@@ -74,23 +74,23 @@ class EmployeeController extends Controller
 
         $employeeData = $request->except('photo');
 
-    if ($request->has('photo') && $request->photo != '') {
-        $path = 'assets/uploads/employees/' . date("Y") . "/" . date("m") . "/";
-        if (!file_exists($path)) {
-            mkdir($path, 0777, true);
-            $new_file = fopen($path . '/index.html', 'w') or die('Cannot create file: [UC-1001]');
-            fclose($new_file);
+        if ($request->has('photo') && $request->photo != '') {
+            $path = 'assets/uploads/employees/' . date("Y") . "/" . date("m") . "/";
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+                $new_file = fopen($path . '/index.html', 'w') or die('Cannot create file: [UC-1001]');
+                fclose($new_file);
+            }
+            $root_path = CommonFunction::getProjectRootDirectory(); // Replace with the actual way you get the root path
+            $photo = $request->photo;
+            $photoName = time() . '.' . $photo->extension();
+            $photo->move($root_path . '/' . $path, $photoName);
+            $employeeData['photo'] = $path . $photoName;
         }
-        $root_path = CommonFunction::getProjectRootDirectory(); // Replace with the actual way you get the root path
-        $photo = $request->photo;
-        $photoName = time() . '.' . $photo->extension();
-        $photo->move($root_path . '/' . $path, $photoName);
-        $employeeData['photo'] = $path . $photoName;
-    }
 
-    Employee::Employeeadd($employeeData);
+        Employee::Employeeadd($employeeData);
 
-    return redirect()->route('employees.index')->with('success', 'Employee added successfully.');
+        return redirect()->route('employees.index')->with('success', 'Employee added successfully.');
     }
 
 
@@ -176,19 +176,53 @@ class EmployeeController extends Controller
      */
     public function updateEmployee(Request $request)
     {
-        $request->validate(
-            [
-                'name' => 'required',
-                'email' => 'required',
-                'phone' => 'required',
-                'address' => 'required',
-            ]
-        );
-        Employee::Employeeupdated($request);
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'fathers_name' => 'required|string|max:255',
+            'mothers_name' => 'required|string|max:255',
+            'date_of_birth' => 'required|date',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'gender' => 'required|in:male,female,other',
+            'phone' => 'nullable|string|max:255',
+            'email' => 'nullable|email|max:255',
+            'department_id' => 'required|exists:departments,id',
+            'designation_id' => 'required|exists:designations,id',
+            'joining_date' => 'required|date',
+            'joining_salary' => 'required|numeric',
+            'medical_allowance' => 'nullable|numeric',
+            'provident_fund' => 'nullable|numeric',
+            'house_rent' => 'nullable|numeric',
+            'incentive' => 'nullable|numeric',
+            'insurance' => 'nullable|numeric',
+            'tax' => 'nullable|numeric',
+        ]);
 
-        return redirect()->route('seller')->with('Successfully Updated');
+        $path = null;
+        if ($request->hasFile('photo')) {
+            $path = $this->processPhoto($request->photo);
+            $validatedData['photo'] = $path;
+        }
+        Employee::Employeeupdated($request->id, $validatedData);
+
+        return redirect()->route('employee')->with('Successfully Updated');
     }
 
+
+    private function processPhoto($photo)
+{
+    $path = 'assets/uploads/employees/' . date("Y") . "/" . date("m") . "/";
+    if (!file_exists($path)) {
+        mkdir($path, 0777, true);
+        $new_file = fopen($path . '/index.html', 'w') or die('Cannot create file: [UC-1001]');
+        fclose($new_file);
+    }
+
+    $root_path = CommonFunction::getProjectRootDirectory(); // Replace with the actual way you get the root path
+    $photoName = time() . '.' . $photo->extension();
+    $photo->move($root_path . '/' . $path, $photoName);
+
+    return $path . $photoName;
+}
 
     public function deleteEmployee(Request $request)
     {

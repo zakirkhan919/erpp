@@ -37,7 +37,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('submit-employee', 'EmployeeController@submitEmployee')->name('submit-employee');
     Route::post('get-employee', 'EmployeeController@getEmployee')->name('get-employee');
     Route::get('update-employee/{id}', 'EmployeeController@employeeEdit')->name('employee-edit');
-    Route::post('update-employee','EmployeeController@employeeUpdate')->name('update-employee');
+    Route::post('update-employee','EmployeeController@updateEmployee')->name('update-employee');
     Route::post('employee-delete', 'EmployeeController@employeeDelete')->name('employee-delete'); // ajax request
 
 });
