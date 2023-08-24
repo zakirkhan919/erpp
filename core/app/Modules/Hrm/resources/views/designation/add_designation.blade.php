@@ -16,7 +16,7 @@
                     <div>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard </a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('designations.index') }}">Designation </a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('designation') }}">Designation </a></li>
                             <li class="breadcrumb-item active" aria-current="page">Designation add </li>
                         </ol>
                     </div>
@@ -31,7 +31,7 @@
                             <div class="card-header">
                                 <h3 class="card-title">Designation information Add</h3>
                             </div>
-                            <form action="{{ route('designations.store') }}" method="post" id="seller-add"
+                            <form action="{{ route('submit-designation') }}" method="post" id="seller-add"
                                 name="seller-add">
                                 @csrf
                                 <div class="card-body">

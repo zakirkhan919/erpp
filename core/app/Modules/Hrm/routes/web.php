@@ -22,7 +22,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('department-delete', 'DepartmentController@departmentDelete')->name('department-delete'); // ajax request
 
     //Designation
-    Route::resource('designations', DesignationController::class);
+    Route::get('designation', 'DesignationController@designation')->name('designation');
+    Route::get('add-designation', 'DesignationController@addDesignation')->name('add_designation');
+    Route::post('submit-designation', 'DesignationController@submitDesignation')->name('submit-designation');
+    Route::post('get-designation', 'DesignationController@getDesignation')->name('get-designation');
+    Route::post('designation-edit','DesignationController@designationEdit')->name('designation-edit');
+    Route::post('designation-delete', 'DesignationController@designationDelete')->name('designation-delete'); // ajax request
 
     //Employee
     Route::resource('employees', EmployeeController::class);
