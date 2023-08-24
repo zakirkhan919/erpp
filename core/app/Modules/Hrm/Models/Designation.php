@@ -24,8 +24,7 @@ class Designation extends Model
         $data = Designation::find($request->id);
 
         $data->name = $request->name;
-        $data->price = $request->price;
-        $data->category = $request->category;
+        $data->description = $request->description;
         $data->save();
     }
 

@@ -117,9 +117,10 @@ class DesignationController extends Controller
      * @param  \App\Modules\Hrm\Models\Designation  $designation
      * @return \Illuminate\Http\Response
      */
-    public function edit(Designation $designation)
+    public function designationEdit($id)
     {
-        //
+        $data = Designation::where('id', decrypt($id))->first();
+        return view('Hrm::designation.edit_designation', compact('data'));
     }
 
     /**
@@ -129,19 +130,23 @@ class DesignationController extends Controller
      * @param  \App\Modules\Hrm\Models\Designation  $designation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Designation $designation)
+    public function designationUpdate(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'name' => 'required',
+                'description' => 'nullable|max:255',
+            ]
+        );
+        Designation::Designationupdated($request);
+
+        return redirect()->route('designation')->with('Successfully Updated');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Modules\Hrm\Models\Designation  $designation
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Designation $designation)
+
+    public function deleteDesignation(Request $request)
     {
-        //
+        Designation::deleteDesignation($request);
+        return back()->with('success', 'Successfully deleted');
     }
 }

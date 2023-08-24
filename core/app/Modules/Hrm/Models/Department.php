@@ -15,7 +15,7 @@ class Department extends Model
         Department::create([
             'name' => $request->name,
             'description' => $request->description,
-           
+
         ]);
     }
 
@@ -24,8 +24,7 @@ class Department extends Model
         $data = Department::find($request->id);
 
         $data->name = $request->name;
-        $data->price = $request->price;
-        $data->category = $request->category;
+        $data->description = $request->description;
         $data->save();
     }
 

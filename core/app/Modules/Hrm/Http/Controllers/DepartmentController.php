@@ -116,9 +116,10 @@ class DepartmentController extends Controller
      * @param  \App\Modules\Hrm\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function edit(Department $department)
+    public function departmentEdit($id)
     {
-        //
+        $data = Department::where('id', decrypt($id))->first();
+        return view('Hrm::department.edit_department', compact('data'));
     }
 
     /**
@@ -128,19 +129,24 @@ class DepartmentController extends Controller
      * @param  \App\Modules\Hrm\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Department $department)
+    public function departmentUpdate(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'name' => 'required',
+                'description' => 'nullable|max:255',
+
+            ]
+        );
+        Department::Departmentupdated($request);
+
+        return redirect()->route('department')->with('Successfully Updated');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Modules\Hrm\Models\Department  $department
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Department $department)
+
+    public function deleteDepartment(Request $request)
     {
-        //
+        Department::deleteDepartment($request);
+        return back()->with('success', 'Successfully deleted');
     }
 }

@@ -18,7 +18,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('add-department', 'DepartmentController@addDepartment')->name('add_department');
     Route::post('submit-department', 'DepartmentController@submitDepartment')->name('submit-department');
     Route::post('get-department', 'DepartmentController@getDepartment')->name('get-department');
-    Route::post('department-edit','DepartmentController@departmentEdit')->name('department-edit');
+    Route::get('update-department/{id}', 'DepartmentController@departmentEdit')->name('department-edit');
+    Route::post('update-department','DepartmentController@departmentUpdate')->name('update-department');
     Route::post('department-delete', 'DepartmentController@departmentDelete')->name('department-delete'); // ajax request
 
     //Designation
@@ -26,7 +27,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('add-designation', 'DesignationController@addDesignation')->name('add_designation');
     Route::post('submit-designation', 'DesignationController@submitDesignation')->name('submit-designation');
     Route::post('get-designation', 'DesignationController@getDesignation')->name('get-designation');
-    Route::post('designation-edit','DesignationController@designationEdit')->name('designation-edit');
+    Route::get('update-designation/{id}', 'DesignationController@designationEdit')->name('designation-edit');
+    Route::post('update-designation','DesignationController@designationUpdate')->name('update-designation');
     Route::post('designation-delete', 'DesignationController@designationDelete')->name('designation-delete'); // ajax request
 
     //Employee
@@ -34,7 +36,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('add-employee', 'EmployeeController@addEmployee')->name('add_employee');
     Route::post('submit-employee', 'EmployeeController@submitEmployee')->name('submit-employee');
     Route::post('get-employee', 'EmployeeController@getEmployee')->name('get-employee');
-    Route::post('employee-edit','EmployeeController@employeeEdit')->name('employee-edit');
+    Route::get('update-employee/{id}', 'EmployeeController@employeeEdit')->name('employee-edit');
+    Route::post('update-employee','EmployeeController@employeeUpdate')->name('update-employee');
     Route::post('employee-delete', 'EmployeeController@employeeDelete')->name('employee-delete'); // ajax request
 
 });

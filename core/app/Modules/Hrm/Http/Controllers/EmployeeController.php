@@ -158,9 +158,13 @@ class EmployeeController extends Controller
      * @param  \App\Modules\Hrm\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employee $employee)
+    public function employeeEdit($id)
     {
-        //
+        $data = Employee::where('id', decrypt($id))->first();
+        $departments = Department::all();
+        $designations = Designation::all();
+
+        return view('Hrm::employee.edit_employee', compact('data', 'departments', 'designations'));
     }
 
     /**
@@ -170,19 +174,25 @@ class EmployeeController extends Controller
      * @param  \App\Modules\Hrm\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employee $employee)
+    public function updateEmployee(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'name' => 'required',
+                'email' => 'required',
+                'phone' => 'required',
+                'address' => 'required',
+            ]
+        );
+        Employee::Employeeupdated($request);
+
+        return redirect()->route('seller')->with('Successfully Updated');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Modules\Hrm\Models\Employee  $employee
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Employee $employee)
+
+    public function deleteEmployee(Request $request)
     {
-        //
+        Employee::deleteEmployee($request);
+        return back()->with('success', 'Successfully deleted');
     }
 }
