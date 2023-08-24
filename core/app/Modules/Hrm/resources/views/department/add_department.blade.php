@@ -16,7 +16,7 @@
                     <div>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard </a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('departments.index') }}">Department </a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('department') }}">Department </a></li>
                             <li class="breadcrumb-item active" aria-current="page">Department add </li>
                         </ol>
                     </div>
@@ -31,7 +31,7 @@
                             <div class="card-header">
                                 <h3 class="card-title">Department information Add</h3>
                             </div>
-                            <form action="{{ route('departments.store') }}" method="post" id="seller-add"
+                            <form action="{{ route('submit-department') }}" method="post" id="seller-add"
                                 name="seller-add">
                                 @csrf
                                 <div class="card-body">
@@ -93,29 +93,21 @@
                             required: true,
                             maxlength: 50
                         },
-                        email: {
-                            required: true,
+                        description: {
+                            required: false,
+                            maxlength: 255
+
                         },
-                        phone: {
-                            required: true,
-                        },
-                        address: {
-                            required: true,
-                        },
+
                     },
                     messages: {
                         name: {
                             required: "Please enter name",
                         },
-                        email: {
-                            required: "Please enter valid email",
+                        description: {
+                            required: "Please enter a shorter description",
                         },
-                        phone: {
-                            required: "Please enter phone number",
-                        },
-                        address: {
-                            required: "Please enter address",
-                        },
+
                     },
                 })
             }

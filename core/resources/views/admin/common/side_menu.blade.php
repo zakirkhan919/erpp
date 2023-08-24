@@ -65,7 +65,7 @@ $checkAdmin = Auth::guard("web")->user()->type == "admin" || Auth::guard("web")-
                     <ul class="slide-menu">
 
                         <li>
-                            <a class="slide-item" href="{{ route('departments.index') }}">Department</a>
+                            <a class="slide-item" href="{{ route('department') }}">Department</a>
                         </li>
                         <li>
                             <a class="slide-item" href="{{ route('designations.index') }}">Designation</a>

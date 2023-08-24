@@ -86,13 +86,13 @@ class PurchaseController extends Controller
                     $checkAdmin = Auth::guard("web")->user()->type == "admin" || Auth::guard("web")->user()->type == "superadmin" ? true : false;
                     $btn = '';
 
-                    $btn .= '<a href="' . route('purchase-edit', ['id' => encrypt($list->id)]) . '"
-                    <button id="bEdit" type="button" class="btn btn-sm btn-primary">
-                    <span class="fe fe-edit"> </span>
-                    </button></a>
-                    <button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deletePurchase(this.id,event)">
-                        <span class="fe fe-trash-2"> </span>
-                    </button>';
+                    // $btn .= '<a href="' . route('purchase-edit', ['id' => encrypt($list->id)]) . '"
+                    // <button id="bEdit" type="button" class="btn btn-sm btn-primary">
+                    // <span class="fe fe-edit"> </span>
+                    // </button></a>
+                    // <button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deletePurchase(this.id,event)">
+                    //     <span class="fe fe-trash-2"> </span>
+                    // </button>';
 
                     if ($checkAdmin) {
                         $btn .= '<a href="' . route('seller-edit', ['id' => encrypt($list->id)]) . '"

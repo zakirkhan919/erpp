@@ -54,13 +54,13 @@ class SellerController extends Controller
                     $checkAdmin = Auth::guard("web")->user()->type == "admin" || Auth::guard("web")->user()->type == "superadmin" ? true : false;
                     $btn = '';
 
-                    $btn .= '<a href="' . route('seller-edit', ['id' => encrypt($list->id)]) . '"
-                    <button id="bEdit" type="button" class="btn btn-sm btn-primary">
-                    <span class="fe fe-edit"> </span>
-                    </button></a>
-                    <button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deleteSeller(this.id,event)">
-                        <span class="fe fe-trash-2"> </span>
-                    </button>';
+                    // $btn .= '<a href="' . route('seller-edit', ['id' => encrypt($list->id)]) . '"
+                    // <button id="bEdit" type="button" class="btn btn-sm btn-primary">
+                    // <span class="fe fe-edit"> </span>
+                    // </button></a>
+                    // <button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deleteSeller(this.id,event)">
+                    //     <span class="fe fe-trash-2"> </span>
+                    // </button>';
 
 
                     if ($checkAdmin) {
@@ -93,6 +93,8 @@ class SellerController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         } catch (\Exception $e) {
+
+            info($e);
             Session::flash('error', CommonFunction::showErrorPublic($e->getMessage()) . '[UC-1001]');
             return Redirect::back();
         }
