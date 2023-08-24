@@ -28,7 +28,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header justify-content-end">
-                                <a href="{{ route('employees.create') }}">
+                                <a href="{{ route('add_employee') }}">
                                     <button class="btn btn-primary text-right"><i class="fe fe-plus me-2"></i>Add
                                         Employee</button>
                                 </a>
@@ -39,10 +39,14 @@
                                         class="table table-bordered text-nowrap key-buttons border-bottom">
                                         <thead>
                                             <tr>
+                                                <th class="border-bottom-0">Photo</th>
                                                 <th class="border-bottom-0">Name</th>
+                                                <th class="border-bottom-0">Fathers Name</th>
+                                                <th class="border-bottom-0">Mothers Name</th>
                                                 <th class="border-bottom-0">Gender</th>
                                                 <th class="border-bottom-0">Phone</th>
                                                 <th class="border-bottom-0">Email</th>
+                                                <th class="border-bottom-0">Date of Birth</th>
                                                 <th class="border-bottom-0">Department</th>
                                                 <th class="border-bottom-0">Designation</th>
                                                 <th class="border-bottom-0">Joining Date</th>
@@ -69,3 +73,151 @@
         </div>
     @endsection
 
+    @section('js')
+        @include('vendor.sweetalert2.sweetalert2_js')
+        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+        <script>
+             var base_url = 'http://localhost';
+            $(function() {
+                $('#list').DataTable({
+                    bAutoWidth: false,
+                    processing: true,
+                    serverSide: true,
+                    iDisplayLength: 10,
+                    ajax: {
+                        url: "/get-employee",
+                        method: 'post',
+                        data: function(d) {
+                            d._token = $('input[name="_token"]').val();
+                        }
+                    },
+                    columns: [{
+                            data: 'photo',
+                            name: 'photo',
+                            
+
+                        },
+                        {
+                            data: 'name',
+                            name: 'name'
+                        },
+                        {
+                            data: 'fathers_name',
+                            name: 'fathers_name'
+                        },
+                        {
+                            data: 'mothers_name',
+                            name: 'mothers_name'
+                        },
+                        {
+                            data: 'gender',
+                            name: 'gender'
+                        },
+                        {
+                            data: 'phone',
+                            name: 'phone'
+                        },
+                        {
+                            data: 'email',
+                            name: 'email'
+                        },
+                        {
+                            data: 'date_of_birth',
+                            name: 'date_of_birth'
+                        },
+                        {
+                            data: 'department_id',
+                            name: 'department_id'
+                        },
+                        {
+                            data: 'designation_id',
+                            name: 'designation_id'
+                        },
+
+
+
+                        {
+                            data: 'joining_date',
+                            name: 'joining_date'
+                        },
+                        {
+                            data: 'joining_salary',
+                            name: 'joining_salary'
+                        },
+                        {
+                            data: 'medical_allowance',
+                            name: 'medical_allowance'
+                        },
+                        {
+                            data: 'provident_fund',
+                            name: 'provident_fund'
+                        },
+                        {
+                            data: 'house_rent',
+                            name: 'house_rent'
+                        },
+                        {
+                            data: 'incentive',
+                            name: 'incentive'
+                        },
+                        {
+                            data: 'insurance',
+                            name: 'insurance'
+                        },
+                        {
+                            data: 'tax',
+                            name: 'tax'
+                        },
+
+                        {
+                            data: 'action',
+                            name: 'action',
+                            orderable: false,
+                            searchable: false
+                        },
+                    ],
+
+                    "aaSorting": []
+                });
+            });
+
+            function deleteProduct(id, e) {
+                e.preventDefault();
+                swal.fire({
+                    title: "Are you sure?",
+                    text: "Are you delete this?!",
+                    icon: "warning",
+                    showCloseButton: true,
+                    // showDenyButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: `Delete `,
+                    cancelButtonText: `Cencel  `,
+                    // dangerMode: true,
+                }).then((result) => {
+                    if (result.value == true) {
+                        swal.fire({
+                            title: 'Deleted!',
+                            text: 'Seccessfully deleted!',
+                            icon: 'success'
+                        }).then(function() {
+                            location.reload();
+                            $.ajax({
+                                url: "/delete-product",
+                                method: 'POST',
+                                data: {
+                                    id: id,
+                                    "_token": "{{ csrf_token() }}"
+                                },
+                                dataType: 'json',
+                                success: function() {
+
+                                }
+                            })
+                        })
+                    } else if (result.value == false) {
+                        swal.fire("cencel", "Not deleted :)", "error");
+                    }
+                })
+            }
+        </script>
+    @endsection

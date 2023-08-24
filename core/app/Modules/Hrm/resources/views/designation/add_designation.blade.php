@@ -82,42 +82,34 @@
         </div>
     @endsection
     @section('js')
-        <script src="{{ asset('assets/admin/validation/jquery.validate.min.js') }}"></script>
-        @include('vendor.sweetalert2.sweetalert2_js')
-        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-        <script>
-            if ($("#seller-add").length > 0) {
-                $("#seller-add").validate({
-                    rules: {
-                        name: {
-                            required: true,
-                            maxlength: 50
-                        },
-                        email: {
-                            required: true,
-                        },
-                        phone: {
-                            required: true,
-                        },
-                        address: {
-                            required: true,
-                        },
+    <script src="{{ asset('assets/admin/validation/jquery.validate.min.js') }}"></script>
+    @include('vendor.sweetalert2.sweetalert2_js')
+    <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+    <script>
+        if ($("#seller-add").length > 0) {
+            $("#seller-add").validate({
+                rules: {
+                    name: {
+                        required: true,
+                        maxlength: 50
                     },
-                    messages: {
-                        name: {
-                            required: "Please enter name",
-                        },
-                        email: {
-                            required: "Please enter valid email",
-                        },
-                        phone: {
-                            required: "Please enter phone number",
-                        },
-                        address: {
-                            required: "Please enter address",
-                        },
+                    description: {
+                        required: false,
+                        maxlength: 255
+
                     },
-                })
-            }
-        </script>
-    @endsection
+
+                },
+                messages: {
+                    name: {
+                        required: "Please enter name",
+                    },
+                    description: {
+                        required: "Please enter a shorter description",
+                    },
+
+                },
+            })
+        }
+    </script>
+@endsection

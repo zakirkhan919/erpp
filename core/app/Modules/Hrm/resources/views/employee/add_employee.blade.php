@@ -14,7 +14,7 @@
                     <div>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('employees.index') }}">Employee</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('employee') }}">Employee</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Employee Add</li>
                         </ol>
                     </div>
@@ -28,7 +28,7 @@
                             <div class="card-header">
                                 <h3 class="card-title">Employee Information Add</h3>
                             </div>
-                            <form action="{{ route('employees.store') }}" method="post" id="employee-add"
+                            <form action="{{ route('submit-employee') }}" method="post" id="employee-add"
                                 enctype="multipart/form-data" name="employee-add">
                                 @csrf
                                 <div class="card-body">

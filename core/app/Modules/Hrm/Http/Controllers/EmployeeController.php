@@ -8,6 +8,11 @@ use App\Modules\Hrm\Models\Department;
 use App\Modules\Hrm\Models\Designation;
 use App\Modules\Hrm\Models\Employee;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
+use Session;
+use Auth;
+use Faker\Calculator\Ean;
+use Illuminate\Support\Facades\Redirect;
 
 class EmployeeController extends Controller
 {
@@ -16,7 +21,7 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function employee()
     {
         return view('Hrm::employee.index');
     }
@@ -26,7 +31,7 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function addEmployee()
     {
         $departments = Department::all();
         $designations = Designation::all();
@@ -44,7 +49,7 @@ class EmployeeController extends Controller
      */
 
 
-    public function store(Request $request)
+    public function submitEmployee(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -95,9 +100,56 @@ class EmployeeController extends Controller
      * @param  \App\Modules\Hrm\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function show(Employee $employee)
+    public function getEmployee(Request $request)
     {
-        //
+        if (!$request->ajax()) {
+            return 'Sorry! this is a request without proper way.';
+        }
+        try {
+
+            $list = Employee::orderBy('id', 'desc')->get();
+
+            return DataTables::of($list)
+                ->addColumn('action', function ($list) {
+                    $access = \App\Modules\User\Models\RolePermission::where("id", \Auth::guard()->user()->role_id)->first();
+                    $access = $access ? json_decode($access->permission) : [];
+                    $checkAdmin = Auth::guard("web")->user()->type == "admin" || Auth::guard("web")->user()->type == "superadmin" ? true : false;
+                    $btn = '';
+
+
+                    if ($checkAdmin) {
+                        $btn .= '<a href="' . route('employee-edit', ['id' => encrypt($list->id)]) . '"
+                        <button id="bEdit" type="button" class="btn btn-sm btn-primary">
+                        <span class="fe fe-edit"> </span>
+                        </button></a>
+                        <button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deleteSeller(this.id,event)">
+                            <span class="fe fe-trash-2"> </span>
+                        </button>';
+                    } else {
+
+                        if (array_search("employee-edit/*", $access) > -1) {
+                            $btn .= '<a href="' . route('employee-edit', ['id' => encrypt($list->id)]) . '"
+                            <button id="bEdit" type="button" class="btn btn-sm btn-primary">
+                            <span class="fe fe-edit"> </span>
+                            </button></a>';
+                        }
+
+                        if (array_search("employee-delete", $access) > -1) {
+                            $btn .= '<button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deleteDepartment(this.id,event)">
+                            <span class="fe fe-trash-2"> </span>
+                            </button>';
+                        }
+                    }
+
+                    return $btn;
+                })
+                ->addIndexColumn()
+                ->rawColumns(['action'])
+                ->make(true);
+        } catch (\Exception $e) {
+            Session::flash('error', CommonFunction::showErrorPublic($e->getMessage()) . '[UC-1001]');
+            return Redirect::back();
+        }
     }
 
     /**

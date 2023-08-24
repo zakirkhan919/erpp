@@ -30,6 +30,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('designation-delete', 'DesignationController@designationDelete')->name('designation-delete'); // ajax request
 
     //Employee
-    Route::resource('employees', EmployeeController::class);
+    Route::get('employee', 'EmployeeController@employee')->name('employee');
+    Route::get('add-employee', 'EmployeeController@addEmployee')->name('add_employee');
+    Route::post('submit-employee', 'EmployeeController@submitEmployee')->name('submit-employee');
+    Route::post('get-employee', 'EmployeeController@getEmployee')->name('get-employee');
+    Route::post('employee-edit','EmployeeController@employeeEdit')->name('employee-edit');
+    Route::post('employee-delete', 'EmployeeController@employeeDelete')->name('employee-delete'); // ajax request
 
 });
