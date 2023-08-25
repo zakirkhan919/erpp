@@ -2,8 +2,9 @@
 
 namespace App\Modules\Hrm\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Department extends Model
 {
@@ -30,7 +31,10 @@ class Department extends Model
 
     public static function deleteDepartment($request)
     {
+
         $id = decrypt($request->id);
+        info( $id);
+
         $data = Department::find($id);
         if ($data) {
             $data->delete();

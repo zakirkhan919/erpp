@@ -11,6 +11,7 @@ use Session;
 use Auth;
 use Faker\Calculator\Ean;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Log;
 class DepartmentController extends Controller
 {
     /**
@@ -49,7 +50,7 @@ class DepartmentController extends Controller
 
         Department::Departmentadd($request);
 
-        return redirect()->route('departments.index')->with('Successfully added');
+        return redirect()->route('department')->with('Successfully added');
     }
 
     /**
@@ -80,7 +81,7 @@ class DepartmentController extends Controller
                         <button id="bEdit" type="button" class="btn btn-sm btn-primary">
                         <span class="fe fe-edit"> </span>
                         </button></a>
-                        <button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deleteSeller(this.id,event)">
+                        <button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deleteDepartment(this.id,event)">
                             <span class="fe fe-trash-2"> </span>
                         </button>';
                     } else {
@@ -93,7 +94,7 @@ class DepartmentController extends Controller
                         }
 
                         if (array_search("department-delete", $access) > -1) {
-                            $btn .= '<button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deleteDepartment(this.id,event)">
+                            $btn .= '<button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deleteCustomer(this.id,event)">
                             <span class="fe fe-trash-2"> </span>
                             </button>';
                         }
@@ -144,8 +145,9 @@ class DepartmentController extends Controller
     }
 
 
-    public function deleteDepartment(Request $request)
+    public function departmentDelete(Request $request)
     {
+       // Log::info('Request data:', $request->all());
         Department::deleteDepartment($request);
         return back()->with('success', 'Successfully deleted');
     }

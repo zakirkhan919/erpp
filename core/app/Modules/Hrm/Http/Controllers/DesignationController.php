@@ -50,7 +50,7 @@ class DesignationController extends Controller
 
         Designation::Designationadd($request);
 
-        return redirect()->route('designations.index')->with('Successfully added');
+        return redirect()->route('designation')->with('Successfully added');
     }
 
     /**
@@ -81,7 +81,7 @@ class DesignationController extends Controller
                         <button id="bEdit" type="button" class="btn btn-sm btn-primary">
                         <span class="fe fe-edit"> </span>
                         </button></a>
-                        <button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deleteSeller(this.id,event)">
+                        <button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deleteDesignation(this.id,event)">
                             <span class="fe fe-trash-2"> </span>
                         </button>';
                     } else {
@@ -94,7 +94,7 @@ class DesignationController extends Controller
                         }
 
                         if (array_search("designation-delete", $access) > -1) {
-                            $btn .= '<button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deleteDepartment(this.id,event)">
+                            $btn .= '<button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deleteDesignation(this.id,event)">
                             <span class="fe fe-trash-2"> </span>
                             </button>';
                         }

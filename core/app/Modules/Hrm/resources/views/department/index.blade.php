@@ -82,7 +82,7 @@
                             data: 'description',
                             name: 'description'
                         },
-                        
+
                         {
                             data: 'action',
                             name: 'action',
@@ -95,7 +95,7 @@
                 });
             });
 
-            function deleteProduct(id, e) {
+            function deleteDepartment(id, e) {
                 e.preventDefault();
                 swal.fire({
                     title: "Are you sure?",
@@ -115,25 +115,42 @@
                             icon: 'success'
                         }).then(function() {
                             location.reload();
-                            $.ajax({
-                                url: "/delete-product",
-                                method: 'POST',
-                                data: {
-                                    id: id,
-                                    "_token": "{{ csrf_token() }}"
-                                },
-                                dataType: 'json',
-                                success: function() {
+                            try {
+                                $.ajax({
+                                    url: "department-delete",
+                                    method: 'POST',
+                                    data: {
+                                        id: id,
+                                        "_token": "{{ csrf_token() }}"
+                                    },
+                                    dataType: 'json',
+                                    success: function(data) {
+                                        console.log("AJAX call successful", data);
+                                    },
+                                    error: function(xhr, status, error) {
+                                        if (xhr.status === 500) {
+                                            console.error("Internal Server Error:", error);
+                                            console.log(xhr.responseText);
+                                        } else if (xhr.status === 404) {
+                                            console.error("Resource Not Found:", error);
+                                            console.log(xhr.responseText);
+                                        } else {
+                                            console.error("AJAX error:", error);
+                                            console.log(xhr.responseText);
+                                        }
+                                    }
+                                });
+                            } catch (exception) {
+                                console.error("Exception:", exception);
+                            }
 
-                                }
-                            })
+
+
                         })
                     } else if (result.value == false) {
                         swal.fire("cencel", "Not deleted :)", "error");
                     }
                 })
             }
-
         </script>
     @endsection
-

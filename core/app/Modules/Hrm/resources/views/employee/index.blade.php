@@ -39,7 +39,7 @@
                                         class="table table-bordered text-nowrap key-buttons border-bottom">
                                         <thead>
                                             <tr>
-                                                <th class="border-bottom-0">Photo</th>
+                                                {{-- <th class="border-bottom-0">Photo</th> --}}
                                                 <th class="border-bottom-0">Name</th>
                                                 <th class="border-bottom-0">Fathers Name</th>
                                                 <th class="border-bottom-0">Mothers Name</th>
@@ -77,7 +77,7 @@
         @include('vendor.sweetalert2.sweetalert2_js')
         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
         <script>
-             var base_url = 'http://localhost';
+            var base_url = 'http://127.0.0.1:8000/';
             $(function() {
                 $('#list').DataTable({
                     bAutoWidth: false,
@@ -91,12 +91,18 @@
                             d._token = $('input[name="_token"]').val();
                         }
                     },
-                    columns: [{
-                            data: 'photo',
-                            name: 'photo',
-                            
+                    columns: [
 
-                        },
+                        // {
+                        //     data: 'photo',
+                        //     name: 'photo',
+                        //     render: function(data, type, row) {
+                        //         return '<img src="' + base_url + data +
+                        //             '" alt="Employee Photo" style="max-width: 100px; max-height: 100px;">';
+                        //     }
+
+
+                        // },
                         {
                             data: 'name',
                             name: 'name'
@@ -181,7 +187,7 @@
                 });
             });
 
-            function deleteProduct(id, e) {
+            function deleteEmployee(id, e) {
                 e.preventDefault();
                 swal.fire({
                     title: "Are you sure?",
@@ -202,7 +208,7 @@
                         }).then(function() {
                             location.reload();
                             $.ajax({
-                                url: "/delete-product",
+                                url: "/employee-delete",
                                 method: 'POST',
                                 data: {
                                     id: id,

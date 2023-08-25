@@ -94,7 +94,7 @@
                 });
             });
 
-            function deleteProduct(id, e) {
+            function deleteDesignation(id, e) {
                 e.preventDefault();
                 swal.fire({
                     title: "Are you sure?",
@@ -115,7 +115,7 @@
                         }).then(function() {
                             location.reload();
                             $.ajax({
-                                url: "/delete-product",
+                                url: "/designation-delete",
                                 method: 'POST',
                                 data: {
                                     id: id,

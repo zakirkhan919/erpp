@@ -90,7 +90,7 @@ class EmployeeController extends Controller
 
         Employee::Employeeadd($employeeData);
 
-        return redirect()->route('employees.index')->with('success', 'Employee added successfully.');
+        return redirect()->route('employee')->with('success', 'Employee added successfully.');
     }
 
 
@@ -122,7 +122,7 @@ class EmployeeController extends Controller
                         <button id="bEdit" type="button" class="btn btn-sm btn-primary">
                         <span class="fe fe-edit"> </span>
                         </button></a>
-                        <button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deleteSeller(this.id,event)">
+                        <button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deleteEmployee(this.id,event)">
                             <span class="fe fe-trash-2"> </span>
                         </button>';
                     } else {
@@ -135,7 +135,7 @@ class EmployeeController extends Controller
                         }
 
                         if (array_search("employee-delete", $access) > -1) {
-                            $btn .= '<button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deleteDepartment(this.id,event)">
+                            $btn .= '<button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deleteEmployee(this.id,event)">
                             <span class="fe fe-trash-2"> </span>
                             </button>';
                         }
