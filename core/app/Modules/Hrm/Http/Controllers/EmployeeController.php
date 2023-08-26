@@ -224,7 +224,7 @@ class EmployeeController extends Controller
     return $path . $photoName;
 }
 
-    public function deleteEmployee(Request $request)
+    public function employeeDelete(Request $request)
     {
         Employee::deleteEmployee($request);
         return back()->with('success', 'Successfully deleted');

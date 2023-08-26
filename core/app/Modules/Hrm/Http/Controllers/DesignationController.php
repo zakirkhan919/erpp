@@ -144,7 +144,7 @@ class DesignationController extends Controller
     }
 
 
-    public function deleteDesignation(Request $request)
+    public function designationDelete(Request $request)
     {
         Designation::deleteDesignation($request);
         return back()->with('success', 'Successfully deleted');
