@@ -11,8 +11,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('add-holiday', 'HolidayController@addHoliday')->name('add_holiday');
     Route::post('submit-fixed-holiday', 'HolidayController@SubmitFixedHoliday')->name('submit-fixed-holiday');
     Route::post('submit-occasion-holiday', 'HolidayController@SubmitOccasionHoliday')->name('submit-occasion-holiday');
-    Route::get('get-holiday', 'HolidayController@getHoliday')->name('get-holiday');
-
+    Route::post('get-holiday', 'HolidayController@getHoliday')->name('get-holiday');
+    Route::post('update-occasion-holiday', 'HolidayController@updateOccasionHoliday')->name('update-occasion-holiday');
     //Department
     Route::get('department', 'DepartmentController@department')->name('department');
     Route::get('add-department', 'DepartmentController@addDepartment')->name('add_department');
@@ -31,8 +31,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('update-designation','DesignationController@designationUpdate')->name('update-designation');
     Route::post('designation-delete', 'DesignationController@designationDelete')->name('designation-delete'); // ajax request
 
-    //Employee
-    Route::get('employee', 'EmployeeController@employee')->name('employee');
+    Route::post('get-occasion-data', 'HolidayController@getOccasionHoliday')->name('get-occasion-data');
+    Route::post('delete-occasion-data', 'HolidayController@deleteOccasionHoliday')->name('delete-occasion-data');    Route::get('employee', 'EmployeeController@employee')->name('employee');
     Route::get('add-employee', 'EmployeeController@addEmployee')->name('add_employee');
     Route::post('submit-employee', 'EmployeeController@submitEmployee')->name('submit-employee');
     Route::post('get-employee', 'EmployeeController@getEmployee')->name('get-employee');
