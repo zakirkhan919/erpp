@@ -59,6 +59,27 @@ $checkAdmin = Auth::guard("web")->user()->type == "admin" || Auth::guard("web")-
                     <a class="side-menu__item @if(Request::is('/holiday')) active @endif" data-bs-toggle="slide" href="{{ route('holiday') }}"><i
                             class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Roaster</span></a>
                 </li>
+
+                <li class="slide">
+                    <a class="side-menu__item @if(Request::is('/')) active @endif" data-bs-toggle="slide" href="#">
+                        <i class="side-menu__icon fe fe-home"></i>
+                        <span class="side-menu__label">Employee</span>
+                        <i class="fe fe-chevron-down dropdown-arrow"></i>
+                    </a>
+                    <ul class="slide-menu">
+
+                        <li>
+                            <a class="slide-item" href="{{ route('department') }}">Department</a>
+                        </li>
+                        <li>
+                            <a class="slide-item" href="{{ route('designation') }}">Designation</a>
+                        </li>
+                        <li>
+                            <a class="slide-item" href="{{ route('employee') }}">Employee</a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="slide @if(array_search("user/view_users",$access) > -1 ||
                     array_search("user/add_user",$access) > -1 ||
                     array_search("user/edit_user/*",$access) > -1 ||
