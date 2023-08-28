@@ -2,6 +2,7 @@
 use App\Modules\Hrm\Http\Controllers\DepartmentController;
 use App\Modules\Hrm\Http\Controllers\DesignationController;
 use App\Modules\Hrm\Http\Controllers\EmployeeController;
+use App\Modules\Hrm\Http\Controllers\RoasterController;
 
 // Admin Route
 Route::group(['middleware' => 'auth'], function () {
@@ -39,5 +40,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('update-employee/{id}', 'EmployeeController@employeeEdit')->name('employee-edit');
     Route::post('update-employee','EmployeeController@updateEmployee')->name('update-employee');
     Route::post('employee-delete', 'EmployeeController@employeeDelete')->name('employee-delete'); // ajax request
+
+
+    // roaster manage
+    Route::get('roaster', 'RoasterController@index')->name('roaster');
+    Route::get('add_roaster', 'RoasterController@addRoaster')->name('add_roaster');
+    Route::post('submit-roaster', 'RoasterController@submitRoaster')->name('submit-roaster');
 
 });
