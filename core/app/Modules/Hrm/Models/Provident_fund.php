@@ -23,4 +23,34 @@ class Provident_fund extends Model
         ]);
 
     }
+
+    public static function Provident_fundUpdated($request){
+
+
+        // Update provident fund record in the database
+        $providentFund = Provident_fund::find($request->id); // Assuming 'id' is the primary key column
+
+        $providentFund->employee_id = $request['employee'];
+        $providentFund->previous_provident_fund = $request['previous_provident_fund'];
+        $providentFund->previous_month = $request['previous_month'];
+        $providentFund->provident_fund = $request['provident_fund'];
+        $providentFund->remarks = $request['remarks'];
+        $providentFund->status = $request['status'];
+        // Set other fields as needed
+
+        $providentFund->save();
+    }
+
+    public static function deleteProvident_fund($request)
+    {
+
+        $id = decrypt($request->id);
+
+        $data = Provident_fund::find($id);
+        info( $data);
+
+        if ($data) {
+            $data->delete();
+        }
+    }
 }

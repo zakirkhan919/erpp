@@ -109,16 +109,29 @@ class MiscellaneousController extends Controller
     {
         $data = Miscellaneouses::where('id', decrypt($id))->first();
         $employees = Employee::all();
-        return view('Hrm::miscellaneous.edit_miscellaneous', compact('data', 'employees'));    
+        return view('Hrm::miscellaneous.edit_miscellaneous', compact('data', 'employees'));
     }
 
     public function miscellaneousUpdate(Request $request)
     {
-        // Your logic for the 'update-miscellaneous' route
+        $request->validate([
+            'employee' => 'required|exists:employees,id',
+            'type' => 'required|in:Addition,Deduction',
+            'month' => 'required|max:255',
+            'year' => 'required|max:255',
+            'amount' => 'required|numeric',
+            'comment' => 'nullable|max:255',
+            'status' => 'required|in:1,2',
+        ]);
+
+        Miscellaneouses::MiscellaneousUpdated($request);
+
+        return redirect()->route('miscellaneous')->with('Successfully Updated');
     }
 
     public function miscellaneousDelete(Request $request)
     {
-        // Your logic for the 'miscellaneous-delete' route
+        Miscellaneouses::deleteMiscellaneous($request);
+        return back()->with('success', 'Successfully deleted');
     }
 }

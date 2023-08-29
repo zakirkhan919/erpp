@@ -26,22 +26,28 @@ class Miscellaneouses extends Model
 
     }
 
-    public static function Departmentupdated($request)
+    public static function MiscellaneousUpdated($request)
     {
-        $data = Department::find($request->id);
-
-        $data->name = $request->name;
-        $data->description = $request->description;
-        $data->save();
+        // Validation passed, update the record
+        $miscellaneous = Miscellaneouses::findOrFail($request->id);
+        $miscellaneous->employee_id = $request['employee'];
+        $miscellaneous->type = $request['type'];
+        $miscellaneous->month = $request['month'];
+        $miscellaneous->year = $request['year'];
+        $miscellaneous->amount = $request['amount'];
+        $miscellaneous->comment = $request['comment'];
+        $miscellaneous->status = $request['status'];
+        // Update other fields if needed
+        $miscellaneous->save();
     }
 
-    public static function deleteDepartment($request)
+    public static function deleteMiscellaneous($request)
     {
 
         $id = decrypt($request->id);
-        info( $id);
+        info($id);
 
-        $data = Department::find($id);
+        $data = Miscellaneouses::find($id);
         if ($data) {
             $data->delete();
         }

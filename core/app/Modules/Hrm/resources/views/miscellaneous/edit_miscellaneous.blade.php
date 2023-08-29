@@ -38,8 +38,8 @@
                                         <input type="hidden" name="id" value="{{ $data->id }}">
                                         <div class="col-sm-6 col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label" for="employee_id">Employee <span class="text-red">*</span></label>
-                                                <select class="form-control @error('employee_id') is-invalid @enderror" id="employee_id" name="employee_id">
+                                                <label class="form-label" for="employee">Employee <span class="text-red">*</span></label>
+                                                <select class="form-control @error('employee') is-invalid @enderror" id="employee" name="employee">
                                                     <option value="">Select an employee</option>
                                                     @foreach ($employees as $employee)
                                                         <option value="{{ $employee->id }}" {{ $data->employee_id == $employee->id ? 'selected' : '' }}>{{ $employee->name }}</option>

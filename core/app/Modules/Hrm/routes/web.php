@@ -53,7 +53,7 @@ Route::group(['middleware' => 'auth'], function () {
      Route::post('get-miscellaneous', 'MiscellaneousController@getMiscellaneous')->name('get-miscellaneous');
      Route::get('update-miscellaneous/{id}', 'MiscellaneousController@miscellaneousEdit')->name('miscellaneous-edit');
      Route::post('update-miscellaneous','MiscellaneousController@miscellaneousUpdate')->name('update-miscellaneous');
-     Route::post('miscellaneous-delete', 'MiscellaneousController@miscellaneousnDelete')->name('miscellaneous-delete'); // ajax request
+     Route::post('miscellaneous-delete', 'MiscellaneousController@miscellaneousDelete')->name('miscellaneous-delete'); // ajax request
 
     //Provident_fund
     Route::get('provident_fund', 'Provident_fundController@provident_fund')->name('provident_fund');

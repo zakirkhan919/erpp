@@ -40,7 +40,7 @@ class Provident_fundController extends Controller
         Provident_fund::Provident_fundAdd($request);
         return redirect()->route('provident_fund')->with('success', 'provident fund added successfully.');
 
-            }
+    }
 
     public function getProvident_fund(Request $request)
     {
@@ -91,26 +91,41 @@ class Provident_fundController extends Controller
         } catch (\Exception $e) {
             Session::flash('error', CommonFunction::showErrorPublic($e->getMessage()) . '[UC-1001]');
             return Redirect::back();
-        }    }
-
-        public function provident_fundEdit($id)
-        {
-            $data = Provident_fund::where('id', decrypt($id))->first();
-            $employees = Employee::all();
-            return view('Hrm::provident_fund.edit_provident_fund', compact('data', 'employees'));
         }
+    }
+
+    public function provident_fundEdit($id)
+    {
+        $data = Provident_fund::where('id', decrypt($id))->first();
+        $employees = Employee::all();
+        return view('Hrm::provident_fund.edit_provident_fund', compact('data', 'employees'));
+    }
 
 
     public function provident_fundUpdate(Request $request)
     {
-        // Your logic for the 'update-provident_fund' route
+        $request->validate([
+            'employee' => 'required',
+            'previous_provident_fund' => 'nullable|numeric',
+            // Add validation rules for other fields
+            'previous_month' => 'nullable',
+            // Add validation rules for other fields
+            'provident_fund' => 'required|numeric',
+            'remarks' => 'nullable',
+            // Add validation rules for other fields
+            'status' => 'required|in:1,2',
+
+        ]);
+
+        Provident_fund::Provident_fundUpdated($request);
+
+        return redirect()->route('provident_fund')->with('Successfully Updated');
+
     }
 
     public function provident_fundDelete(Request $request)
     {
-        // Your logic for the 'provident_fund-delete' route
+        Provident_fund::deleteProvident_fund($request);
+        return back()->with('success', 'Successfully deleted');
     }
 }
-
-
-

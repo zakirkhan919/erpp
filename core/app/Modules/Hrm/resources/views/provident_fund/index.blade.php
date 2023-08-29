@@ -85,7 +85,7 @@
                         data: 'remarks',
                         name: 'remarks'
                     },
-                
+
                     {
                         data: 'status',
                         name: 'status',
@@ -106,7 +106,7 @@
             });
         });
 
-        function deleteMiscellaneous(id, e) {
+        function deleteProvident_fund(id, e) {
             e.preventDefault();
             swal.fire({
                 title: "Are you sure?",
@@ -128,7 +128,7 @@
                         location.reload();
                         try {
                             $.ajax({
-                                url: "miscellaneous-delete",
+                                url: "provident_fund-delete",
                                 method: 'POST',
                                 data: {
                                     id: id,
