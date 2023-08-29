@@ -34,9 +34,9 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header justify-content-end roaster-button">
-                                <a href="{{ route('add_employee') }}">
+                                <a href="{{ route('add_csv') }}">
                                     <button class="btn btn-primary text-right"><i class="fe fe-plus me-2"></i>Import Csv
-                                        Employee</button>
+                                        Roaster</button>
                                 </a>
                                 <a href="{{ route('add_roaster') }}">
                                     <button class="btn btn-primary text-right"><i class="fe fe-plus me-2"></i>Add
@@ -56,7 +56,6 @@
                                         <thead>
                                             <tr>
                                                 {{-- <th class="border-bottom-0">Photo</th> --}}
-                                                <th class="border-bottom-0">Sl</th>
                                                 <th class="border-bottom-0">Employee Id</th>
                                                 <th class="border-bottom-0">Employee Name</th>
                                                 <th class="border-bottom-0">Start Time</th>
@@ -108,76 +107,26 @@
 
 
                         // },
+                        
                         {
-                            data: 'name',
-                            name: 'name'
+                            data: 'employee_id',
+                            name: 'employee_id'
                         },
                         {
-                            data: 'fathers_name',
-                            name: 'fathers_name'
+                            data: 'employee_name',
+                            name: 'employee_name'
                         },
                         {
-                            data: 'mothers_name',
-                            name: 'mothers_name'
+                            data: 'start_time',
+                            name: 'start_time'
                         },
                         {
-                            data: 'gender',
-                            name: 'gender'
+                            data: 'date',
+                            name: 'date'
                         },
                         {
-                            data: 'phone',
-                            name: 'phone'
-                        },
-                        {
-                            data: 'email',
-                            name: 'email'
-                        },
-                        {
-                            data: 'date_of_birth',
-                            name: 'date_of_birth'
-                        },
-                        {
-                            data: 'department_id',
-                            name: 'department_id'
-                        },
-                        {
-                            data: 'designation_id',
-                            name: 'designation_id'
-                        },
-
-
-
-                        {
-                            data: 'joining_date',
-                            name: 'joining_date'
-                        },
-                        {
-                            data: 'joining_salary',
-                            name: 'joining_salary'
-                        },
-                        {
-                            data: 'medical_allowance',
-                            name: 'medical_allowance'
-                        },
-                        {
-                            data: 'provident_fund',
-                            name: 'provident_fund'
-                        },
-                        {
-                            data: 'house_rent',
-                            name: 'house_rent'
-                        },
-                        {
-                            data: 'incentive',
-                            name: 'incentive'
-                        },
-                        {
-                            data: 'insurance',
-                            name: 'insurance'
-                        },
-                        {
-                            data: 'tax',
-                            name: 'tax'
+                            data: 'end_time',
+                            name: 'end_time'
                         },
 
                         {

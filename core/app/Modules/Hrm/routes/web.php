@@ -44,7 +44,11 @@ Route::group(['middleware' => 'auth'], function () {
 
     // roaster manage
     Route::get('roaster', 'RoasterController@index')->name('roaster');
+    Route::post('get-roaster', 'RoasterController@getRoaster')->name('get-roaster'); // ajax request
     Route::get('add_roaster', 'RoasterController@addRoaster')->name('add_roaster');
     Route::post('submit-roaster', 'RoasterController@submitRoaster')->name('submit-roaster');
+
+    Route::get('add_csv', 'RoasterController@addCsv')->name('add_csv');
+    Route::post('submit_csv', 'RoasterController@submitCsv')->name('submit_csv');
 
 });
