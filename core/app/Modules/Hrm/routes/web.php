@@ -2,6 +2,7 @@
 use App\Modules\Hrm\Http\Controllers\DepartmentController;
 use App\Modules\Hrm\Http\Controllers\DesignationController;
 use App\Modules\Hrm\Http\Controllers\EmployeeController;
+use App\Modules\Hrm\Http\Controllers\RoasterController;
 use App\Modules\Hrm\Http\Controllers\MiscellaneousController;
 use App\Modules\Hrm\Http\Controllers\Provident_fundController;
 use App\Modules\Hrm\Http\Controllers\PaymentController;
@@ -45,6 +46,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('update-employee/{id}', 'EmployeeController@employeeEdit')->name('employee-edit');
     Route::post('update-employee','EmployeeController@updateEmployee')->name('update-employee');
     Route::post('employee-delete', 'EmployeeController@employeeDelete')->name('employee-delete'); // ajax request
+
+
+    // roaster manage
+    Route::get('roaster', 'RoasterController@index')->name('roaster');
+    Route::post('get-roaster', 'RoasterController@getRoaster')->name('get-roaster'); // ajax request
+    Route::get('add_roaster', 'RoasterController@addRoaster')->name('add_roaster');
+    Route::post('submit-roaster', 'RoasterController@submitRoaster')->name('submit-roaster');
+
+    Route::get('add_csv', 'RoasterController@addCsv')->name('add_csv');
+    Route::post('submit_csv', 'RoasterController@submitCsv')->name('submit_csv');
 
      //Miscellaneous
      Route::get('miscellaneous', 'MiscellaneousController@miscellaneous')->name('miscellaneous');
