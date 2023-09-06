@@ -90,6 +90,36 @@ $checkAdmin = Auth::guard("web")->user()->type == "admin" || Auth::guard("web")-
                     </ul>
                 </li>
 
+                <li class="slide">
+                    <a class="side-menu__item @if(Request::is('/')) active @endif" data-bs-toggle="slide" href="#">
+                        <i class="side-menu__icon fe fe-home"></i>
+                        <span class="side-menu__label">Salary</span>
+                        <i class="fe fe-chevron-down dropdown-arrow"></i>
+                    </a>
+                    <ul class="slide-menu">
+
+                        <li>
+                            <a class="slide-item" href="{{ route('miscellaneous') }}">Miscellaneous</a>
+                        </li>
+                        <li>
+                            <a class="slide-item" href="{{ route('provident_fund') }}">Provident Fund</a>
+                        </li>
+                        <li>
+                            <a class="slide-item" href="{{ route('add_payment') }}">Payment</a>
+                        </li>
+
+                        <li>
+                            <a class="slide-item" href="">Salary Settings</a>
+                        </li>
+
+                        <li>
+                            <a class="slide-item" href="">Process Salary</a>
+                        </li>
+
+
+                    </ul>
+                </li>
+
                 <li class="slide @if(array_search("user/view_users",$access) > -1 ||
                     array_search("user/add_user",$access) > -1 ||
                     array_search("user/edit_user/*",$access) > -1 ||

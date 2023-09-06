@@ -3,6 +3,12 @@ use App\Modules\Hrm\Http\Controllers\DepartmentController;
 use App\Modules\Hrm\Http\Controllers\DesignationController;
 use App\Modules\Hrm\Http\Controllers\EmployeeController;
 use App\Modules\Hrm\Http\Controllers\RoasterController;
+use App\Modules\Hrm\Http\Controllers\MiscellaneousController;
+use App\Modules\Hrm\Http\Controllers\Provident_fundController;
+use App\Modules\Hrm\Http\Controllers\PaymentController;
+
+
+
 
 // Admin Route
 Route::group(['middleware' => 'auth'], function () {
@@ -50,5 +56,32 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('add_csv', 'RoasterController@addCsv')->name('add_csv');
     Route::post('submit_csv', 'RoasterController@submitCsv')->name('submit_csv');
+
+     //Miscellaneous
+     Route::get('miscellaneous', 'MiscellaneousController@miscellaneous')->name('miscellaneous');
+     Route::get('add-miscellaneous', 'MiscellaneousController@addMiscellaneous')->name('add_miscellaneous');
+     Route::post('submit-miscellaneous', 'MiscellaneousController@submitMiscellaneous')->name('submit-miscellaneous');
+     Route::post('get-miscellaneous', 'MiscellaneousController@getMiscellaneous')->name('get-miscellaneous');
+     Route::get('update-miscellaneous/{id}', 'MiscellaneousController@miscellaneousEdit')->name('miscellaneous-edit');
+     Route::post('update-miscellaneous','MiscellaneousController@miscellaneousUpdate')->name('update-miscellaneous');
+     Route::post('miscellaneous-delete', 'MiscellaneousController@miscellaneousDelete')->name('miscellaneous-delete'); // ajax request
+
+    //Provident_fund
+    Route::get('provident_fund', 'Provident_fundController@provident_fund')->name('provident_fund');
+    Route::get('add-provident_fund', 'Provident_fundController@addProvident_fund')->name('add_provident_fund');
+    Route::post('submit-provident_fund', 'Provident_fundController@submitProvident_fund')->name('submit-provident_fund');
+    Route::post('get-provident_fund', 'Provident_fundController@getProvident_fund')->name('get-provident_fund');
+    Route::get('update-provident_fund/{id}', 'Provident_fundController@provident_fundEdit')->name('provident_fund-edit');
+    Route::post('update-provident_fund','Provident_fundController@provident_fundUpdate')->name('update-provident_fund');
+    Route::post('provident_fund-delete', 'Provident_fundController@provident_fundDelete')->name('provident_fund-delete'); // ajax request
+
+    //Payment
+    Route::get('payment', 'PaymentController@payment')->name('payment');
+    Route::get('add-payment', 'PaymentController@addPayment')->name('add_payment');
+    Route::post('submit-payment', 'PaymentController@submitPayment')->name('submit-payment');
+    Route::post('get-payment', 'PaymentController@getPayment')->name('get-payment');
+    Route::get('update-payment/{id}', 'DPaymentController@paymentEdit')->name('payment-edit');
+    Route::post('update-payment','PaymentController@paymentUpdate')->name('update-payment');
+    Route::post('payment-delete', 'PaymentController@paymentDelete')->name('payment-delete'); // ajax request
 
 });
