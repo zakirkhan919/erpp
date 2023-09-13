@@ -135,4 +135,11 @@ class RoasterController extends Controller
         Excel::import(new ImportRoaster, $request->file('csv_file'));
         return redirect()->route('roaster');
     }
+
+
+    // roaster swap 
+    public function roasterSwap()
+    {
+        return view('Hrm::roaster.roaster_swap');
+    }
 }

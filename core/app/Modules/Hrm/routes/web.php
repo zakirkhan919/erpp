@@ -57,6 +57,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('add_csv', 'RoasterController@addCsv')->name('add_csv');
     Route::post('submit_csv', 'RoasterController@submitCsv')->name('submit_csv');
 
+    Route::get('roaster-swap', 'RoasterController@roasterSwap')->name('roaster_swap');
+
      //Miscellaneous
      Route::get('miscellaneous', 'MiscellaneousController@miscellaneous')->name('miscellaneous');
      Route::get('add-miscellaneous', 'MiscellaneousController@addMiscellaneous')->name('add_miscellaneous');
