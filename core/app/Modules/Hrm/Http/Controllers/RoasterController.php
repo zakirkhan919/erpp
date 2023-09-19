@@ -140,6 +140,7 @@ class RoasterController extends Controller
     // roaster swap 
     public function roasterSwap()
     {
-        return view('Hrm::roaster.roaster_swap');
+        $roasterSwap = Roaster::orderBy('id', 'desc')->with('employee')->get();
+        return view('Hrm::roaster.roaster_swap', compact('roasterSwap'));
     }
 }

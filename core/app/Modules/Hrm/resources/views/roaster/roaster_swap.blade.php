@@ -39,6 +39,7 @@
                                         class="dataTables_wrapper dt-bootstrap5 no-footer">
                                         <div class="row">
                                             <div class="col-sm-12">
+                                                <button type="submit" id="swapButton" style="display: none;" class="btn btn-primary mb-2 f-right">Swap</button>
                                                 <table
                                                     class="table table-bordered text-nowrap border-bottom dataTable no-footer"
                                                     id="responsive-datatable" role="grid"
@@ -49,115 +50,43 @@
                                                                 tabindex="0" aria-controls="responsive-datatable"
                                                                 rowspan="1" colspan="1" aria-sort="ascending"
                                                                 aria-label="First name: activate to sort column descending"
-                                                                style="width: 83.5729px;">First name</th>
+                                                                style="width: 83.5729px;">#</th>
+                                                            <th class="wd-15p border-bottom-0 sorting sorting_asc"
+                                                                tabindex="0" aria-controls="responsive-datatable"
+                                                                rowspan="1" colspan="1" aria-sort="ascending"
+                                                                aria-label="First name: activate to sort column descending"
+                                                                style="width: 83.5729px;">Employee name</th>
                                                             <th class="wd-15p border-bottom-0 sorting" tabindex="0"
                                                                 aria-controls="responsive-datatable" rowspan="1"
                                                                 colspan="1"
                                                                 aria-label="Last name: activate to sort column ascending"
-                                                                style="width: 77.1979px;">Last name</th>
+                                                                style="width: 77.1979px;">Start Time</th>
                                                             <th class="wd-20p border-bottom-0 sorting" tabindex="0"
                                                                 aria-controls="responsive-datatable" rowspan="1"
                                                                 colspan="1"
                                                                 aria-label="Position: activate to sort column ascending"
-                                                                style="width: 159.417px;">Position</th>
+                                                                style="width: 159.417px;">Date</th>
                                                             <th class="wd-15p border-bottom-0 sorting" tabindex="0"
                                                                 aria-controls="responsive-datatable" rowspan="1"
                                                                 colspan="1"
                                                                 aria-label="Start date: activate to sort column ascending"
-                                                                style="width: 80.8438px;">Start date</th>
-                                                            <th class="wd-10p border-bottom-0 sorting" tabindex="0"
-                                                                aria-controls="responsive-datatable" rowspan="1"
-                                                                colspan="1"
-                                                                aria-label="Salary: activate to sort column ascending"
-                                                                style="width: 58.1562px;">Salary</th>
-                                                            <th class="wd-25p border-bottom-0 sorting" tabindex="0"
-                                                                aria-controls="responsive-datatable" rowspan="1"
-                                                                colspan="1"
-                                                                aria-label="E-mail: activate to sort column ascending"
-                                                                style="width: 165.417px;">E-mail</th>
+                                                                style="width: 80.8438px;">End Time</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr class="odd">
-                                                            <td class="sorting_1">Adrian</td>
-                                                            <td>Terry</td>
-                                                            <td>Marketing Officer</td>
-                                                            <td>2013/04/21</td>
-                                                            <td>$543,769</td>
-                                                            <td>a.terry@datatables.net</td>
-                                                        </tr>
-                                                        <tr class="even">
-                                                            <td class="sorting_1">Angelica</td>
-                                                            <td>Ramos</td>
-                                                            <td>Chief Executive Officer</td>
-                                                            <td>20017/10/15</td>
-                                                            <td>$6,234,000</td>
-                                                            <td>a.ramos@datatables.net</td>
-                                                        </tr>
-                                                        <tr class="odd">
-                                                            <td class="sorting_1">Bella</td>
-                                                            <td>Chloe</td>
-                                                            <td>System Developer</td>
-                                                            <td>2018/03/12</td>
-                                                            <td>$654,765</td>
-                                                            <td>b.Chloe@datatables.net</td>
-                                                        </tr>
-                                                        <tr class="even">
-                                                            <td class="sorting_1">Brenden</td>
-                                                            <td>Wagner</td>
-                                                            <td>Software Engineer</td>
-                                                            <td>2013/07/14</td>
-                                                            <td>$206,850</td>
-                                                            <td>b.wagner@datatables.net</td>
-                                                        </tr>
-                                                        <tr class="odd">
-                                                            <td class="sorting_1">Bruno</td>
-                                                            <td>Nash</td>
-                                                            <td>Software Engineer</td>
-                                                            <td>2015/05/03</td>
-                                                            <td>$163,500</td>
-                                                            <td>b.nash@datatables.net</td>
-                                                        </tr>
-                                                        <tr class="even">
-                                                            <td class="sorting_1">Cameron</td>
-                                                            <td>Watson</td>
-                                                            <td>Sales Support</td>
-                                                            <td>2013/9/7</td>
-                                                            <td>$675,876</td>
-                                                            <td>c.watson@datatables.net</td>
-                                                        </tr>
-                                                        <tr class="odd">
-                                                            <td class="sorting_1">Connor</td>
-                                                            <td>Johne</td>
-                                                            <td>Web Developer</td>
-                                                            <td>2011/1/25</td>
-                                                            <td>$92,575</td>
-                                                            <td>C.johne@datatables.net</td>
-                                                        </tr>
-                                                        <tr class="even">
-                                                            <td class="sorting_1">Dominic</td>
-                                                            <td>Hudson</td>
-                                                            <td>Sales Assistant</td>
-                                                            <td>2015/10/16</td>
-                                                            <td>$654,300</td>
-                                                            <td>d.hudson@datatables.net</td>
-                                                        </tr>
-                                                        <tr class="odd">
-                                                            <td class="sorting_1">Donna</td>
-                                                            <td>Bond</td>
-                                                            <td>Account Manager</td>
-                                                            <td>2012/02/21</td>
-                                                            <td>$543,654</td>
-                                                            <td>d.bond@datatables.net</td>
-                                                        </tr>
-                                                        <tr class="even">
-                                                            <td class="sorting_1">Evan</td>
-                                                            <td>Terry</td>
-                                                            <td>Sales Manager</td>
-                                                            <td>2013/10/26</td>
-                                                            <td>$66,340</td>
-                                                            <td>d.terry@datatables.net</td>
-                                                        </tr>
+                                                        @foreach ($roasterSwap as $item)
+                                                            
+                                                            <tr class="odd">
+                                                                <td>
+                                                                    <input type="checkbox" name="sortSelect" id="shotrSelect" value="{{ $item->id }}" onclick="roasterChange({{ $item->id }})">
+                                                                </td>
+                                                                <td class="sorting_1">{{ $item->employee->name }}</td>
+                                                                <td>{{ $item->start_time }}</td>
+                                                                <td>{{ $item->date }}</td>
+                                                                <td>{{ $item->end_time }}</td>
+                                                            </tr>
+                                                        @endforeach
+                                                        
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -167,4 +96,24 @@
                             </div>
                         </div>
                     </div>
+                @endsection
+                @section('js')
+                <script>
+                    let roasterId = []
+                    function roasterChange(data)
+                    {
+                        if(roasterId.length < 2)
+                        {
+                            roasterId.push(data);
+                            if(roasterId.length == 2)
+                            {
+                                $('#swapButton').show();
+                            }
+                        } else {
+                            alert('There is over of two roaster')
+                        }
+                    }
+
+
+                </script>
                 @endsection
