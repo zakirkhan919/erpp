@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
 use Auth;
+use Illuminate\Http\Response;
 
 class RoasterController extends Controller
 {
@@ -142,5 +143,28 @@ class RoasterController extends Controller
     {
         $roasterSwap = Roaster::orderBy('id', 'desc')->with('employee')->get();
         return view('Hrm::roaster.roaster_swap', compact('roasterSwap'));
+    }
+
+    public function SwapSubmt(Request $request)
+    {
+        // try {
+            $first_roaster = $request->d[0];
+            $second_roaster = $request->d[1];
+            $roaster_check = Roaster::find($first_roaster);
+            $roaster_check1 = Roaster::find($second_roaster);
+            if($roaster_check->start_time != $roaster_check1->start_time || $roaster_check->end_time != $roaster_check1->end_time){
+                return $this->errorResponse('Roaster cannot swap to due to invalid shift hour',[], Response::HTTP_OK);
+            }
+            else{
+                $temp = $roaster_check->date;
+                $roaster_check->date = $roaster_check1->date;
+                $roaster_check->save();
+                $roaster_check1->date = $temp;
+                $roaster_check1->save();
+            }
+            return $this->successResponse([], 'Roaster has been swaped', Response::HTTP_CREATED);
+        // } catch (Exception $e) {
+        //     return response()->json(['status' => false, 'message' => $e->getMessage()], 400);
+        // }
     }
 }

@@ -39,7 +39,9 @@
                                         class="dataTables_wrapper dt-bootstrap5 no-footer">
                                         <div class="row">
                                             <div class="col-sm-12">
-                                                <button type="submit" id="swapButton" style="display: none;" class="btn btn-primary mb-2 f-right">Swap</button>
+                                                <button type="submit" id="swapButton" style="display: none;"
+                                                    onclick="swapSubmit()"
+                                                    class="btn btn-primary mb-2 f-right">Swap</button>
                                                 <table
                                                     class="table table-bordered text-nowrap border-bottom dataTable no-footer"
                                                     id="responsive-datatable" role="grid"
@@ -75,10 +77,11 @@
                                                     </thead>
                                                     <tbody>
                                                         @foreach ($roasterSwap as $item)
-                                                            
                                                             <tr class="odd">
                                                                 <td>
-                                                                    <input type="checkbox" name="sortSelect" id="shotrSelect" value="{{ $item->id }}" onclick="roasterChange({{ $item->id }})">
+                                                                    <input type="checkbox" name="sortSelect"
+                                                                        id="shotrSelect" value="{{ $item->id }}"
+                                                                        onclick="roasterChange({{ $item->id }})">
                                                                 </td>
                                                                 <td class="sorting_1">{{ $item->employee->name }}</td>
                                                                 <td>{{ $item->start_time }}</td>
@@ -86,7 +89,7 @@
                                                                 <td>{{ $item->end_time }}</td>
                                                             </tr>
                                                         @endforeach
-                                                        
+
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -98,22 +101,33 @@
                     </div>
                 @endsection
                 @section('js')
-                <script>
-                    let roasterId = []
-                    function roasterChange(data)
-                    {
-                        if(roasterId.length < 2)
-                        {
-                            roasterId.push(data);
-                            if(roasterId.length == 2)
-                            {
-                                $('#swapButton').show();
+                <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                    <script>
+                        let roasterId = []
+
+                        function roasterChange(data) {
+                            if (roasterId.length < 2) {
+                                roasterId.push(data);
+                                if (roasterId.length == 2) {
+                                    $('#swapButton').show();
+                                }
+                            } else {
+                                alert('There is over of two roaster')
                             }
-                        } else {
-                            alert('There is over of two roaster')
                         }
-                    }
 
-
-                </script>
+                        function swapSubmit() {
+                            $.ajax({
+                                type:'post',
+                                url: "{{ route('swap.submit') }}",
+                                headers: {
+                                        'X-CSRF-Token': $('input[name="_token"]').val(),
+                                },
+                                data: {'d': roasterId},
+                                success: function(result) {
+                                    location.reload();
+                                }
+                            });
+                        }
+                    </script>
                 @endsection
