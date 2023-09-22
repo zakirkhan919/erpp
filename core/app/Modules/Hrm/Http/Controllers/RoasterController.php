@@ -14,6 +14,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
 use Auth;
 use Illuminate\Http\Response;
+use Illuminate\Support\Carbon as SupportCarbon;
 
 class RoasterController extends Controller
 {
@@ -147,7 +148,7 @@ class RoasterController extends Controller
 
     public function SwapSubmt(Request $request)
     {
-        // try {
+        try {
             $first_roaster = $request->d[0];
             $second_roaster = $request->d[1];
             $roaster_check = Roaster::find($first_roaster);
@@ -163,8 +164,33 @@ class RoasterController extends Controller
                 $roaster_check1->save();
             }
             return $this->successResponse([], 'Roaster has been swaped', Response::HTTP_CREATED);
-        // } catch (Exception $e) {
-        //     return response()->json(['status' => false, 'message' => $e->getMessage()], 400);
-        // }
+        } catch (Exception $e) {
+            return response()->json(['status' => false, 'message' => $e->getMessage()], 400);
+        }
+    }
+
+    protected $data = '';
+    protected $employes = '';
+
+    
+    public function RoasterReport()
+    {
+        $employes = Employee::select('name', 'id')->get();
+        $data = Roaster::whereDate('date', Carbon::now())->get();
+        return view('Hrm::roaster.roaster_report', ['data' => $data, 'employes' => $employes]);
+    }
+
+    public function RoasterReportSearch(Request $request)
+    {
+        $from_date = $request->from_date;
+        $to_date = $request->to_date;
+        if ($request->employee_id == "all") {
+            $data = Roaster::where('date', '>=', $from_date)->where('date', '<=', $to_date)->orderBy('date', 'desc')->with('employee')->get();
+        } else {
+            $data = Roaster::where('date', '>=', $from_date)->where('date', '<=', $to_date)->where('employee_id', $request->employee_id)->with('employee')->get();
+        }
+        $employes = Employee::select('name', 'id')->get();
+        $table_view = view('Hrm::roaster.report_table', ['data' => $data, 'employes' => $employes])->render();
+        return response()->json($table_view);
     }
 }

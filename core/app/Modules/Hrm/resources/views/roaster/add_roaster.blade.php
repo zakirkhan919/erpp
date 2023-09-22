@@ -57,7 +57,7 @@
                                         <div class="col-sm-6 col-md-6">
                                             <div class="form-group">
                                                 <label for="">From Date <span class="text-danger">*</span></label>
-                                                <input type="date" class="form-control" placeholder="Write Occasion" name="form_date">
+                                                <input type="date" class="form-control" placeholder="Write Occasion" name="from_date">
                                             </div>
                                         </div>
                                         <div class="col-sm-6 col-md-6">

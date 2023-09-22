@@ -59,6 +59,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('roaster-swap', 'RoasterController@roasterSwap')->name('roaster_swap');
     Route::post('swap-submit', 'RoasterController@SwapSubmt')->name('swap.submit');
+    Route::get('roaster-report', 'RoasterController@RoasterReport')->name('roaster_report');
+    Route::post('report-search', 'RoasterController@RoasterReportSearch')->name('report_search');
 
      //Miscellaneous
      Route::get('miscellaneous', 'MiscellaneousController@miscellaneous')->name('miscellaneous');

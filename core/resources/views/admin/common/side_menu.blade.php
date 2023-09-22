@@ -84,11 +84,14 @@ $checkAdmin = Auth::guard("web")->user()->type == "admin" || Auth::guard("web")-
                     </a>
 
                     <ul class="slide-menu">
-                        <li class="slide-item">
-                            <a href="{{ route('roaster') }}" class="side-menu__item @if(Request::is('/roaster')) active @endif">Roaster</a>
+                        <li>
+                            <a href="{{ route('roaster') }}" class="slide-item @if(Request::is('/roaster')) active @endif">Roaster</a>
                         </li>
-                        <li class="slide-item">
-                            <a href="{{ route('roaster_swap') }}" class="side-menu__item @if(Request::is('/roaster-swap')) active @endif">Roaster Swap</a>
+                        <li>
+                            <a href="{{ route('roaster_swap') }}" class="slide-item @if(Request::is('/roaster-swap')) active @endif">Roaster Swap</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('roaster_report') }}" class="slide-item @if(Request::is('/roaster-report')) active @endif">Roaster Report</a>
                         </li>
                     </ul>
                 </li>
