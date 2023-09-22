@@ -6,6 +6,7 @@ use App\Modules\Hrm\Http\Controllers\RoasterController;
 use App\Modules\Hrm\Http\Controllers\MiscellaneousController;
 use App\Modules\Hrm\Http\Controllers\Provident_fundController;
 use App\Modules\Hrm\Http\Controllers\PaymentController;
+use App\Modules\Hrm\Http\Controllers\AttendanceController;
 
 
 
@@ -61,6 +62,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('swap-submit', 'RoasterController@SwapSubmt')->name('swap.submit');
     Route::get('roaster-report', 'RoasterController@RoasterReport')->name('roaster_report');
     Route::post('report-search', 'RoasterController@RoasterReportSearch')->name('report_search');
+
+    // attendance
+    Route::get('attendance', 'AttendanceController@Attendance')->name('attendance');
+    Route::get('view-attendance', 'AttendanceController@ViewAttendance')->name('view_attendance');
 
      //Miscellaneous
      Route::get('miscellaneous', 'MiscellaneousController@miscellaneous')->name('miscellaneous');
