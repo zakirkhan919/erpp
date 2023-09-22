@@ -65,7 +65,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     // attendance
     Route::get('attendance', 'AttendanceController@Attendance')->name('attendance');
+    Route::post('attendance-list', 'AttendanceController@employeeList')->name('employee_list');
     Route::get('view-attendance', 'AttendanceController@ViewAttendance')->name('view_attendance');
+    Route::post('submit-attendance', 'AttendanceController@SubmitAttendance')->name('submit_attendance');
 
      //Miscellaneous
      Route::get('miscellaneous', 'MiscellaneousController@miscellaneous')->name('miscellaneous');

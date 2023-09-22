@@ -99,7 +99,7 @@ $checkAdmin = Auth::guard("web")->user()->type == "admin" || Auth::guard("web")-
                 <li class="slide">
                     <a class="side-menu__item @if(Request::is('/')) active @endif" data-bs-toggle="slide" href="#">
                         <i class="side-menu__icon fe fe-home"></i>
-                        <span class="side-menu__label">Roaster</span>
+                        <span class="side-menu__label">Attendance</span>
                         <i class="fe fe-chevron-down dropdown-arrow"></i>
                     </a>
 
@@ -108,7 +108,7 @@ $checkAdmin = Auth::guard("web")->user()->type == "admin" || Auth::guard("web")-
                             <a href="{{ route('attendance') }}" class="slide-item @if(Request::is('/attendance')) active @endif">Attendance</a>
                         </li>
                         <li>
-                            <a href="{{ route('view_attandance') }}" class="slide-item @if(Request::is('/view-attendance')) active @endif">View Attendance</a>
+                            <a href="{{ route('view_attendance') }}" class="slide-item @if(Request::is('/view-attendance')) active @endif">View Attendance</a>
                         </li>
                     </ul>
                 </li>

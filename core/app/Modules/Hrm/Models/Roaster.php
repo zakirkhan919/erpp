@@ -14,4 +14,8 @@ class Roaster extends Model
         return $this->belongsTo(Employee::class,'emp_id','id');
     }
 
+    public function attendance(){
+        return $this->belongsTo(Attendance::class,'id','roaster_id')->select('id','start_time','end_time','roaster_id');
+    }
+
 }
