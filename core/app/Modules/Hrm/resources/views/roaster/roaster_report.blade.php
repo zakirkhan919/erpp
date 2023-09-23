@@ -75,16 +75,17 @@
                                         </div>
                                     </div>
                                 </form>
-                                <div class="table-responsive">
-                                    <div id="responsive-datatable_wrapper"
-                                        class="dataTables_wrapper dt-bootstrap5 no-footer">
-
-                                        <div class="row">
-
-                                            <div class="col-sm-12">
-                                                <div id="tableSearch">
-
-                                                    @include('Hrm::roaster.report_table')
+                                <div class="row p-3">
+                                    <div class="table-responsive">
+                                        <div id="responsive-datatable_wrapper"
+                                            class="dataTables_wrapper dt-bootstrap5 no-footer">
+    
+                                            <div class="row">
+    
+                                                <div class="col-sm-12">
+                                                    <div id="tableSearch">
+                                                        @include('Hrm::roaster.report_table')
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

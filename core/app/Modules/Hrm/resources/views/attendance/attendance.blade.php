@@ -76,10 +76,10 @@
                                 <div id="responsive-datatable_wrapper"
                                     class="dataTables_wrapper dt-bootstrap5 no-footer">
 
-                                    <div class="row">
+                                    <div class="row p-3">
 
                                         <div class="col-sm-12">
-                                            <div id="tableData">
+                                            <div id="tableData" style="display: none;">
 
                                                 @include('Hrm::attendance.attendence_table')
                                             </div>
@@ -105,6 +105,7 @@
                                 success: function(response) {
                                     console.log(response);
                                     $('#tableData').html(response);
+                                    $('#tableData').show();
                                 },
                                 error: function(response) {
                                     
