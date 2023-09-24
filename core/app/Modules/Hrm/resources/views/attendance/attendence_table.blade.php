@@ -67,12 +67,15 @@
         content: 'Present';
         left: 35%;
     }
-    input:checked+ #present {
+
+    input:checked+#present {
         display: block;
     }
 
     /*--------- END --------*/
 </style>
+<form action="{{ route('submit_attendance') }}" method="POST">
+    @csrf
 <table class="table table-bordered text-nowrap border-bottom dataTable no-footer" id="responsive-datatable" role="grid"
     aria-describedby="responsive-datatable_info">
     <thead>
@@ -95,42 +98,55 @@
 
         </tr>
     </thead>
-    <tbody>
-        @foreach ($data as $item)
-            <tr class="odd">
+        <tbody>
 
-                <td>{{ $item->employee->id }}</td>
-                <td class="sorting_1">{{ $item->employee->name }}</td>
-                <td>{{ $item->start_time }}-{{ $item->end_time }}</td>
-                <td><label class="switch">
-                        <input type="checkbox" id="togBtn">
-                        <div class="slider round"></div>
-                    </label>
-                </td>
-                <td style="width: 400px;">
-                    <div id="leave">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <select name="" id="" class="form-control">
-                                    <option value="">Select Type</option>
-                                    <option value="">Sick</option>
-                                    <option value="">Casual</option>
-                                    <option value="">Mmaternity</option>
-                                    <option value="">Unipaid</option>
-                                    <option value="">Other</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <textarea name="" class="form-control" id="" rows="2" placeholder="Type Reason*"></textarea>
+            @foreach ($data as $item)
+                <tr class="odd">
+                    <input type="text" name="attendance[][roaster_id]" value="{{ $item->id }}">
+                    <input type="text" name="attendance[][date]" value="{{ $item->date }}">
+                    <td>{{ $item->employee->id }}</td>
+                    <td class="sorting_1">{{ $item->employee->name }}</td>
+                    <td>{{ $item->start_time }}-{{ $item->end_time }}</td>
+                    <td><label class="switch">
+                            <input type="checkbox" id="togBtn" name="attendance[][status]" value="" onchange="CheckboxChnage(this)">
+                            <div class="slider round"></div>
+                        </label>
+                    </td>
+                    <td style="width: 400px;">
+                        <div id="leave">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <select name="attendance[][leave_type]" id="" class="form-control">
+                                        <option value="">Select Type</option>
+                                        <option value="Sick">Sick</option>
+                                        <option value="Casual">Casual</option>
+                                        <option value="Maternity">Maternity</option>
+                                        <option value="Unipaid">Unipaid</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <textarea name="attendance[][reason]" class="form-control" id="" rows="2" placeholder="Type Reason*"></textarea>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div id="present" style="display: none;">
-                        jhgjgjhg
-                    </div>
-                </td>
-            </tr>
-        @endforeach
+                        <div id="present" style="display: none;">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="time" name="attendance[][start_time]" id="start_time" class="form-control">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="time" name="attendance[][end_time]" id="end_time" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
 
-    </tbody>
-</table>
+
+        </tbody>
+        
+    </table>
+    <input type="submit" name="attendenceSubmit" value="submit" id="" class="btn btn-primary">
+</form>

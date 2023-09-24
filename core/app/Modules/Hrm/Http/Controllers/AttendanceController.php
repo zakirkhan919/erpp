@@ -5,6 +5,7 @@ namespace App\Modules\Hrm\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Modules\Hrm\Models\Attendance;
 use App\Modules\Hrm\Models\Employee;
+use App\Modules\Hrm\Models\LeaveApplication;
 use App\Modules\Hrm\Models\Roaster;
 use Carbon\Carbon;
 use Exception;
@@ -33,7 +34,45 @@ class AttendanceController extends Controller
 
     public function SubmitAttendance(Request $request)
     {
-        
+        dd($request->all());
+        if ($request->attendance && is_array($request->attendance)) {
+            foreach ($request->attendance as $attendance) {
+                // dd($attendance);
+                $attendance_check = Attendance::where('roaster_id', $attendance['roaster_id'])->first();
+                if ($attendance_check) {
+                    $attendance_check->start_time = $attendance['start_time'];
+                    $attendance_check->end_time = $attendance['end_time'];
+                    $attendance_check->updated_at = Carbon::now();
+                    $attendance_check->save();
+                } else {
+                    $roaster = Roaster::where('id', $attendance['roaster_id'])->first();
+                    if ($roaster && $attendance['status'] == 'P') {
+                        $data = [];
+                        $data['roaster_id'] = $attendance['roaster_id'];
+                        $data['start_time'] = $attendance['start_time'];
+                        $data['end_time'] = $attendance['end_time'];
+                        $data['emp_id'] = $roaster->emp_id;
+                        $data['date'] = $roaster->date;
+                        $data['employee_id'] = $roaster->employee_id;
+                        $data['status'] = 1;
+                        $data['created_at'] = Carbon::now();
+                        Attendance::insert($data);
+                    } else {
+                        if ($attendance['leave_type']) {
+                            $leave = new LeaveApplication();
+                            $leave->employee_id = $roaster->emp_id;
+                            $leave->user_id = auth()->user()->id;
+                            $leave->from_date = $attendance['date'];
+                            $leave->to_date = $attendance['date'];
+                            $leave->leave_type = $attendance['leave_type'];
+                            $leave->reason = $attendance['reason'];
+                            $leave->status = 'Approved';
+                            $leave->save();
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public function ViewAttendance()
