@@ -6,6 +6,8 @@ use App\Modules\Hrm\Http\Controllers\RoasterController;
 use App\Modules\Hrm\Http\Controllers\MiscellaneousController;
 use App\Modules\Hrm\Http\Controllers\Provident_fundController;
 use App\Modules\Hrm\Http\Controllers\PaymentController;
+use App\Modules\Hrm\Http\Controllers\SalaryController;
+
 
 
 
@@ -75,12 +77,18 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('update-provident_fund','Provident_fundController@provident_fundUpdate')->name('update-provident_fund');
     Route::post('provident_fund-delete', 'Provident_fundController@provident_fundDelete')->name('provident_fund-delete'); // ajax request
 
+    //salary
+    Route::get('salary', 'SalaryController@salary')->name('salary');
+    Route::get('add-salary', 'SalaryController@addSalary')->name('add_salary');
+    Route::post('submit-salary', 'SalaryController@submitSalary')->name('submit-salary');
+
+
     //Payment
     Route::get('payment', 'PaymentController@payment')->name('payment');
     Route::get('add-payment', 'PaymentController@addPayment')->name('add_payment');
     Route::post('submit-payment', 'PaymentController@submitPayment')->name('submit-payment');
     Route::post('get-payment', 'PaymentController@getPayment')->name('get-payment');
-    Route::get('update-payment/{id}', 'DPaymentController@paymentEdit')->name('payment-edit');
+    Route::get('update-payment/{id}', 'PaymentController@paymentEdit')->name('payment-edit');
     Route::post('update-payment','PaymentController@paymentUpdate')->name('update-payment');
     Route::post('payment-delete', 'PaymentController@paymentDelete')->name('payment-delete'); // ajax request
 

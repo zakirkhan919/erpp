@@ -94,16 +94,13 @@ $checkAdmin = Auth::guard("web")->user()->type == "admin" || Auth::guard("web")-
                         <li>
                             <a class="slide-item" href="{{ route('provident_fund') }}">Provident Fund</a>
                         </li>
-                        <li>
-                            <a class="slide-item" href="{{ route('add_payment') }}">Payment</a>
-                        </li>
+
 
                         <li>
-                            <a class="slide-item" href="">Salary Settings</a>
+                            <a class="slide-item" href="{{ route('add_salary') }}">Process Salary</a>
                         </li>
-
                         <li>
-                            <a class="slide-item" href="">Process Salary</a>
+                            <a class="slide-item" href="{{ route('add_payment') }}">Make Payment</a>
                         </li>
 
 
