@@ -102,13 +102,14 @@
 
             @foreach ($data as $item)
                 <tr class="odd">
-                    <input type="text" name="attendance[][roaster_id]" value="{{ $item->id }}">
-                    <input type="text" name="attendance[][date]" value="{{ $item->date }}">
+                    <input type="hidden" name="attendance[]" value="">
+                    <input type="hidden" name="roaster_id[]" value="{{ $item->id }}">
+                    <input type="hidden" name="date[]" value="{{ $item->date }}">
                     <td>{{ $item->employee->id }}</td>
                     <td class="sorting_1">{{ $item->employee->name }}</td>
                     <td>{{ $item->start_time }}-{{ $item->end_time }}</td>
                     <td><label class="switch">
-                            <input type="checkbox" id="togBtn" name="attendance[][status]" value="" onchange="CheckboxChnage(this)">
+                            <input type="checkbox" id="togBtn" name="status[]" value="0" onchange="CheckboxChnage(this)">
                             <div class="slider round"></div>
                         </label>
                     </td>
@@ -116,7 +117,7 @@
                         <div id="leave">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <select name="attendance[][leave_type]" id="" class="form-control">
+                                    <select name="leave_type[]" id="" class="form-control">
                                         <option value="">Select Type</option>
                                         <option value="Sick">Sick</option>
                                         <option value="Casual">Casual</option>
@@ -126,17 +127,17 @@
                                     </select>
                                 </div>
                                 <div class="col-md-6">
-                                    <textarea name="attendance[][reason]" class="form-control" id="" rows="2" placeholder="Type Reason*"></textarea>
+                                    <textarea name="reason[]" class="form-control" id="" rows="2" placeholder="Type Reason*"></textarea>
                                 </div>
                             </div>
                         </div>
                         <div id="present" style="display: none;">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="time" name="attendance[][start_time]" id="start_time" class="form-control">
+                                    <input type="time" name="start_time[]" id="start_time" class="form-control">
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="time" name="attendance[][end_time]" id="end_time" class="form-control">
+                                    <input type="time" name="end_time[]" id="end_time" class="form-control">
                                 </div>
                             </div>
                         </div>

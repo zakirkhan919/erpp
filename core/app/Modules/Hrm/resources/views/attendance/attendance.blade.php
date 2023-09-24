@@ -125,6 +125,7 @@
                 {
                     $('#leave').show();
                     $('#present').hide();
+                    $('#togBtn').val('');
                 }
                 
             }

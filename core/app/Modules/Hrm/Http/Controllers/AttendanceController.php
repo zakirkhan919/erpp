@@ -34,45 +34,47 @@ class AttendanceController extends Controller
 
     public function SubmitAttendance(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         if ($request->attendance && is_array($request->attendance)) {
-            foreach ($request->attendance as $attendance) {
-                // dd($attendance);
-                $attendance_check = Attendance::where('roaster_id', $attendance['roaster_id'])->first();
+            foreach ($request->attendance as $i => $attendance) {
+                // dd($i);
+                $attendance_check = Attendance::where('roaster_id', $request->roaster_id[$i])->first();
                 if ($attendance_check) {
-                    $attendance_check->start_time = $attendance['start_time'];
-                    $attendance_check->end_time = $attendance['end_time'];
+                    $attendance_check->start_time = $request->start_time[$i];
+                    $attendance_check->end_time = $request->end_time[$i];
                     $attendance_check->updated_at = Carbon::now();
                     $attendance_check->save();
                 } else {
-                    $roaster = Roaster::where('id', $attendance['roaster_id'])->first();
-                    if ($roaster && $attendance['status'] == 'P') {
-                        $data = [];
-                        $data['roaster_id'] = $attendance['roaster_id'];
-                        $data['start_time'] = $attendance['start_time'];
-                        $data['end_time'] = $attendance['end_time'];
-                        $data['emp_id'] = $roaster->emp_id;
-                        $data['date'] = $roaster->date;
-                        $data['employee_id'] = $roaster->employee_id;
-                        $data['status'] = 1;
-                        $data['created_at'] = Carbon::now();
-                        Attendance::insert($data);
-                    } else {
-                        if ($attendance['leave_type']) {
+                    $roaster = Roaster::where('id', $request->roaster_id[$i])->first();
+                    
+                        if ($request->leave_type[$i]) {
                             $leave = new LeaveApplication();
                             $leave->employee_id = $roaster->emp_id;
                             $leave->user_id = auth()->user()->id;
-                            $leave->from_date = $attendance['date'];
-                            $leave->to_date = $attendance['date'];
-                            $leave->leave_type = $attendance['leave_type'];
-                            $leave->reason = $attendance['reason'];
+                            $leave->from_date = $request->date[$i];
+                            $leave->to_date = $request->date[$i];
+                            $leave->leave_type = $request->leave_type[$i];
+                            $leave->reason = $request->reason[$i];
                             $leave->status = 'Approved';
                             $leave->save();
+                        }else {
+                            $data = [];
+                            $data['roaster_id'] = $request->roaster_id[$i];
+                            $data['start_time'] = $request->start_time[$i];
+                            $data['end_time'] = $request->end_time[$i];
+                            $data['emp_id'] = $roaster->emp_id;
+                            $data['date'] = $roaster->date;
+                            $data['employee_id'] = $roaster->employee_id;
+                            $data['status'] = 1;
+                            $data['created_at'] = Carbon::now();
+                            Attendance::insert($data);
                         }
-                    }
+                    
                 }
             }
         }
+
+        return redirect()->back();
     }
 
     public function ViewAttendance()
