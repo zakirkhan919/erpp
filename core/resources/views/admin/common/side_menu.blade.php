@@ -55,10 +55,7 @@ $checkAdmin = Auth::guard("web")->user()->type == "admin" || Auth::guard("web")-
                     <a class="side-menu__item @if(Request::is('/holiday')) active @endif" data-bs-toggle="slide" href="{{ route('holiday') }}"><i
                             class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Holiday</span></a>
                 </li>
-                <li class="slide">
-                    <a class="side-menu__item @if(Request::is('/roaster')) active @endif" data-bs-toggle="slide" href="{{ route('roaster') }}"><i
-                            class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Roaster</span></a>
-                </li>
+                
 
                 <li class="slide">
                     <a class="side-menu__item @if(Request::is('/')) active @endif" data-bs-toggle="slide" href="#">
@@ -76,6 +73,42 @@ $checkAdmin = Auth::guard("web")->user()->type == "admin" || Auth::guard("web")-
                         </li>
                         <li>
                             <a class="slide-item" href="{{ route('employee') }}">Employee</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="slide">
+                    <a class="side-menu__item @if(Request::is('/')) active @endif" data-bs-toggle="slide" href="#">
+                        <i class="side-menu__icon fe fe-home"></i>
+                        <span class="side-menu__label">Roaster</span>
+                        <i class="fe fe-chevron-down dropdown-arrow"></i>
+                    </a>
+
+                    <ul class="slide-menu">
+                        <li>
+                            <a href="{{ route('roaster') }}" class="slide-item @if(Request::is('/roaster')) active @endif">Roaster</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('roaster_swap') }}" class="slide-item @if(Request::is('/roaster-swap')) active @endif">Roaster Swap</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('roaster_report') }}" class="slide-item @if(Request::is('/roaster-report')) active @endif">Roaster Report</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="slide">
+                    <a class="side-menu__item @if(Request::is('/')) active @endif" data-bs-toggle="slide" href="#">
+                        <i class="side-menu__icon fe fe-home"></i>
+                        <span class="side-menu__label">Attendance</span>
+                        <i class="fe fe-chevron-down dropdown-arrow"></i>
+                    </a>
+
+                    <ul class="slide-menu">
+                        <li>
+                            <a href="{{ route('attendance') }}" class="slide-item @if(Request::is('/attendance')) active @endif">Attendance</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('view_attendance') }}" class="slide-item @if(Request::is('/view-attendance')) active @endif">View Attendance</a>
                         </li>
                     </ul>
                 </li>

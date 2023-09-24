@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
 use Auth;
+use Illuminate\Http\Response;
+use Illuminate\Support\Carbon as SupportCarbon;
 
 class RoasterController extends Controller
 {
@@ -134,5 +136,61 @@ class RoasterController extends Controller
         // dd($request->all());
         Excel::import(new ImportRoaster, $request->file('csv_file'));
         return redirect()->route('roaster');
+    }
+
+
+    // roaster swap 
+    public function roasterSwap()
+    {
+        $roasterSwap = Roaster::orderBy('id', 'desc')->with('employee')->get();
+        return view('Hrm::roaster.roaster_swap', compact('roasterSwap'));
+    }
+
+    public function SwapSubmt(Request $request)
+    {
+        try {
+            $first_roaster = $request->d[0];
+            $second_roaster = $request->d[1];
+            $roaster_check = Roaster::find($first_roaster);
+            $roaster_check1 = Roaster::find($second_roaster);
+            if($roaster_check->start_time != $roaster_check1->start_time || $roaster_check->end_time != $roaster_check1->end_time){
+                return $this->errorResponse('Roaster cannot swap to due to invalid shift hour',[], Response::HTTP_OK);
+            }
+            else{
+                $temp = $roaster_check->date;
+                $roaster_check->date = $roaster_check1->date;
+                $roaster_check->save();
+                $roaster_check1->date = $temp;
+                $roaster_check1->save();
+            }
+            return $this->successResponse([], 'Roaster has been swaped', Response::HTTP_CREATED);
+        } catch (Exception $e) {
+            return response()->json(['status' => false, 'message' => $e->getMessage()], 400);
+        }
+    }
+
+    protected $data = '';
+    protected $employes = '';
+
+    
+    public function RoasterReport()
+    {
+        $employes = Employee::select('name', 'id')->get();
+        $data = Roaster::whereDate('date', Carbon::now())->get();
+        return view('Hrm::roaster.roaster_report', ['data' => $data, 'employes' => $employes]);
+    }
+
+    public function RoasterReportSearch(Request $request)
+    {
+        $from_date = $request->from_date;
+        $to_date = $request->to_date;
+        if ($request->employee_id == "all") {
+            $data = Roaster::where('date', '>=', $from_date)->where('date', '<=', $to_date)->orderBy('date', 'desc')->with('employee')->get();
+        } else {
+            $data = Roaster::where('date', '>=', $from_date)->where('date', '<=', $to_date)->where('employee_id', $request->employee_id)->with('employee')->get();
+        }
+        $employes = Employee::select('name', 'id')->get();
+        $table_view = view('Hrm::roaster.report_table', ['data' => $data, 'employes' => $employes])->render();
+        return response()->json($table_view);
     }
 }

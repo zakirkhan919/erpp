@@ -42,10 +42,10 @@
                                     <button class="btn btn-primary text-right"><i class="fe fe-plus me-2"></i>Add
                                         Roaster</button>
                                 </a>
-                                <a href="{{ route('add_employee') }}">
+                                <a href="{{ asset('assets/admin/images/sample.xlsx') }}" download>
                                     <button class="btn btn-primary text-right"><i class="fe fe-file me-2"></i>Sample Format</button>
                                 </a>
-                                <a href="{{ route('add_employee') }}">
+                                <a href="#">
                                     <button class="btn btn-primary text-right"><i class="fa fa-print me-2"></i>Print</button>
                                 </a>
                             </div>
@@ -96,17 +96,6 @@
                         }
                     },
                     columns: [
-
-                        // {
-                        //     data: 'photo',
-                        //     name: 'photo',
-                        //     render: function(data, type, row) {
-                        //         return '<img src="' + base_url + data +
-                        //             '" alt="Employee Photo" style="max-width: 100px; max-height: 100px;">';
-                        //     }
-
-
-                        // },
                         
                         {
                             data: 'employee_id',
