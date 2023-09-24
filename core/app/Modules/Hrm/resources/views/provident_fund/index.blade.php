@@ -29,8 +29,8 @@
                                         <thead>
                                             <tr>
                                                 <th>Name</th>
-                                                <th>Previous Provident Fund</th>
-                                                <th>Previous Month</th>
+                                                {{-- <th>Previous Provident Fund</th>
+                                                <th>Previous Month</th> --}}
                                                 <th>Provident Fund</th>
                                                 <th>Remarks</th>
                                                 <th>Status</th>
@@ -69,14 +69,14 @@
                         data: 'employee_id',
                         name: 'employee_id'
                     }, // Replace 'employee_name' with the actual column name for employee
-                    {
-                        data: 'previous_provident_fund',
-                        name: 'previous_provident_fund'
-                    },
-                    {
-                        data: 'previous_month',
-                        name: 'previous_month'
-                    },
+                    // {
+                    //     data: 'previous_provident_fund',
+                    //     name: 'previous_provident_fund'
+                    // },
+                    // {
+                    //     data: 'previous_month',
+                    //     name: 'previous_month'
+                    // },
                     {
                         data: 'provident_fund',
                         name: 'provident_fund'

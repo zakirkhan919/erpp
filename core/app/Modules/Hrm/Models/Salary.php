@@ -11,7 +11,7 @@ class Salary extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public static function SalaryAdd($employee, $providentFund, $miscellaneous, /*$roaster*/ $month, $year, $totalSalary)
+    public static function SalaryAdd($employee, $providentFund, $miscellaneous, $totalRoasterHours, $month, $year, $totalSalary)
     {
 
         $dateTime = new DateTime($month);
@@ -41,7 +41,7 @@ class Salary extends Model
             'tax' => $employee->tax,
             //tat
             'total' => $totalSalary,
-            //roaster_hours
+            'roaster_hours' => $totalRoasterHours,
             //working_hours
             //advance
             //fine

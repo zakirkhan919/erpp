@@ -93,11 +93,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('salary', 'SalaryController@salary')->name('salary');
     Route::get('add-salary', 'SalaryController@addSalary')->name('add_salary');
     Route::post('submit-salary', 'SalaryController@submitSalary')->name('submit-salary');
+    Route::post('get-salary', 'SalaryController@getSalary')->name('get-salary');
+    Route::post('salary-delete', 'SalaryController@salaryDelete')->name('salary-delete'); // ajax request
 
 
     //Payment
     Route::get('payment', 'PaymentController@payment')->name('payment');
     Route::get('add-payment', 'PaymentController@addPayment')->name('add_payment');
+    Route::get('make-payment/{id}', 'PaymentController@makePayment')->name('make_payment');
     Route::post('submit-payment', 'PaymentController@submitPayment')->name('submit-payment');
     Route::post('get-payment', 'PaymentController@getPayment')->name('get-payment');
     Route::get('update-payment/{id}', 'PaymentController@paymentEdit')->name('payment-edit');

@@ -50,7 +50,7 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="col-sm-6 col-md-6">
+                                        {{-- <div class="col-sm-6 col-md-6">
                                             <div class="form-group">
                                                 <label class="form-label">Previous Provident Fund</label>
                                                 <input type="text" value="{{ $data->previous_provident_fund }}" class="form-control @error('previous_provident_fund') is-invalid @enderror" id="previous_provident_fund" name="previous_provident_fund" placeholder="Previous Provident Fund">
@@ -58,10 +58,10 @@
                                                     <div class="text-danger mt-1 mb-1">{{ $message }}</div>
                                                 @enderror
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <div class="row">
-                                        <div class="col-sm-6 col-md-6">
+                                        {{-- <div class="col-sm-6 col-md-6">
                                             <div class="form-group">
                                                 <label class="form-label">Previous Month</label>
                                                 <input type="text" value="{{ $data->previous_month }}" class="form-control @error('previous_month') is-invalid @enderror" id="previous_month" name="previous_month" placeholder="Previous Month">
@@ -69,7 +69,7 @@
                                                     <div class="text-danger mt-1 mb-1">{{ $message }}</div>
                                                 @enderror
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div class="col-sm-6 col-md-6">
                                             <div class="form-group">
                                                 <label class="form-label">Provident Fund <span class="text-red">*</span></label>

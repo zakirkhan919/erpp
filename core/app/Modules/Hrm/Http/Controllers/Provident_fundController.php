@@ -30,8 +30,8 @@ class Provident_fundController extends Controller
     {
         $request->validate([
             'employee' => 'required|exists:employees,id',
-            'previous_provident_fund' => 'required|numeric',
-            'previous_month' => 'required|integer',
+            // 'previous_provident_fund' => 'required|numeric',
+            // 'previous_month' => 'required|integer',
             'provident_fund' => 'required|numeric',
             'remarks' => 'nullable|string|max:255',
             'status' => 'required|in:1,2', // Adjust values as needed
@@ -106,9 +106,9 @@ class Provident_fundController extends Controller
     {
         $request->validate([
             'employee' => 'required',
-            'previous_provident_fund' => 'nullable|numeric',
-            // Add validation rules for other fields
-            'previous_month' => 'nullable',
+            // 'previous_provident_fund' => 'nullable|numeric',
+            // // Add validation rules for other fields
+            // 'previous_month' => 'nullable',
             // Add validation rules for other fields
             'provident_fund' => 'required|numeric',
             'remarks' => 'nullable',

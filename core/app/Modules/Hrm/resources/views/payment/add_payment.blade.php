@@ -1,6 +1,6 @@
 @extends('admin.common.master')
 @section('title')
-    <title>Add Payment Fund</title>
+    <title>Add Payment</title>
 @endsection
 
 @section('content')
@@ -21,7 +21,7 @@
                             <div class="card-header">
                                 <h3 class="card-title">Payment Information</h3>
                             </div>
-                            <form action="{{ route('submit-payment') }}" method="post" id="payment-form">
+                            <form action=""  id="payment-form">
                                 @csrf
                                 <div class="card-body">
                                     <div class="row">

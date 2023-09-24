@@ -39,20 +39,20 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        {{-- <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="form-label">Previous Provident Fund</label>
                                                 <input type="text" class="form-control" name="previous_provident_fund">
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        {{-- <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="form-label">Previous Month</label>
                                                 <input type="text" class="form-control" name="previous_month">
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="form-label">Provident Fund</label>
@@ -78,7 +78,7 @@
                                         </div>
                                     </div>
                                 </div>
-<div class="card-footer">
+                                <div class="card-footer">
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </form>

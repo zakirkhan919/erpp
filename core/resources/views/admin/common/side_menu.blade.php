@@ -55,7 +55,7 @@ $checkAdmin = Auth::guard("web")->user()->type == "admin" || Auth::guard("web")-
                     <a class="side-menu__item @if(Request::is('/holiday')) active @endif" data-bs-toggle="slide" href="{{ route('holiday') }}"><i
                             class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Holiday</span></a>
                 </li>
-                
+
 
                 <li class="slide">
                     <a class="side-menu__item @if(Request::is('/')) active @endif" data-bs-toggle="slide" href="#">
@@ -73,6 +73,10 @@ $checkAdmin = Auth::guard("web")->user()->type == "admin" || Auth::guard("web")-
                         </li>
                         <li>
                             <a class="slide-item" href="{{ route('employee') }}">Employee</a>
+                        </li>
+
+                        <li>
+                            <a class="slide-item" href="">Bank Detail</a>
                         </li>
                     </ul>
                 </li>
@@ -132,9 +136,14 @@ $checkAdmin = Auth::guard("web")->user()->type == "admin" || Auth::guard("web")-
                         <li>
                             <a class="slide-item" href="{{ route('add_salary') }}">Process Salary</a>
                         </li>
+
+
                         <li>
-                            <a class="slide-item" href="{{ route('add_payment') }}">Make Payment</a>
+                            <a class="slide-item" href="{{ route('salary') }}">All Salary</a>
                         </li>
+                        {{-- <li>
+                            <a class="slide-item" href="{{ route('add_payment') }}">Add Payment</a>
+                        </li> --}}
 
 
                     </ul>
