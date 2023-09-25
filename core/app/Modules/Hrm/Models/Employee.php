@@ -52,4 +52,22 @@ class Employee extends Model
             $data->delete();
         }
     }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class,'department_id','id');
+    }
+    public function designation()
+    {
+        return $this->belongsTo(Designation::class,'designation_id','id');
+    }
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class, 'emp_id','id');
+    }
+    public function miscellaneous()
+    {
+        return $this->hasMany(Miscellaneous::class, 'employee_id','id');
+    }
+
 }
