@@ -122,7 +122,7 @@
                                         <option value="Sick">Sick</option>
                                         <option value="Casual">Casual</option>
                                         <option value="Maternity">Maternity</option>
-                                        <option value="Unipaid">Unipaid</option>
+                                        <option value="Unpaid">Unpaid</option>
                                         <option value="Other">Other</option>
                                     </select>
                                 </div>
@@ -147,7 +147,7 @@
 
 
         </tbody>
-        
+
     </table>
     <input type="submit" name="attendenceSubmit" value="submit" id="" class="btn btn-primary">
 </form>

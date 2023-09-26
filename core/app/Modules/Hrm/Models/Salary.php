@@ -11,22 +11,19 @@ class Salary extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public static function SalaryAdd($employee, $providentFund, $miscellaneous, $totalRoasterHours, $month, $year, $totalSalary)
+    public static function SalaryAdd($employee, $providentFund, $miscellaneous, $totalRoasterHours, $totalAttendanceHours, $month, $year, $totalSalary,$presentDays, $absentDays, $net_pay )
     {
 
         $dateTime = new DateTime($month);
         $numericMonth = $dateTime->format('m');
-
         $miscellaneousAdditionCost = 0;
         $miscellaneousDeductionCost = 0;
         foreach($miscellaneous as $item) {
-
             $item->type == 'Deduction' ?
             $miscellaneousDeductionCost = $miscellaneousDeductionCost + $item->amount :
             $miscellaneousAdditionCost = $miscellaneousAdditionCost + $item->amount;
 
         }
-
         Salary::create([
             'employee_id' => $employee->id,
             'regular_salary' => $employee->joining_salary,
@@ -39,16 +36,12 @@ class Salary extends Model
             'incentive' => $employee->incentive,
             'insurance' => $employee->insurance,
             'tax' => $employee->tax,
-            //tat
             'total' => $totalSalary,
             'roaster_hours' => $totalRoasterHours,
-            //working_hours
-            //advance
-            //fine
-            //present
-            //absent
-            //late_day
-            //net_pay
+            'working_hours' => $totalAttendanceHours,
+            'present' => $presentDays,
+            'absent' => $absentDays,
+            'net_pay' => $net_pay,
             'miscellaneous_addition' => $miscellaneousAdditionCost,
             'miscellaneous_deduction' => $miscellaneousDeductionCost,
             'payment_status' => 'unpaid'

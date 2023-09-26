@@ -4,8 +4,12 @@ namespace App\Modules\Hrm\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Libraries\CommonFunction;
+use App\Modules\Hrm\Models\Attendance;
 use App\Modules\Hrm\Models\Employee;
+use App\Modules\Hrm\Models\FixedHoliday;
+use App\Modules\Hrm\Models\LeaveApplication;
 use App\Modules\Hrm\Models\Miscellaneouses;
+use App\Modules\Hrm\Models\OccasionHoliday;
 use App\Modules\Hrm\Models\Provident_fund;
 use App\Modules\Hrm\Models\Roaster;
 use App\Modules\Hrm\Models\Salary;
@@ -50,11 +54,15 @@ class SalaryController extends Controller
                 ->whereMonth('date', $numericMonth)
                 ->get();
 
-                $result = $this->calculateSalary($employee, $providentFund, $miscellaneous, $roaster, $request->month, $request->year);
-                $total = $result['total'];
-                $totalRoasterHours = $result['totalRoasterHours'];
+            $result = $this->calculateSalary($employee, $providentFund, $miscellaneous, $roaster, $request->month, $request->year);
+            $total = $result['total'];
+            $totalRoasterHours = $result['totalRoasterHours'];
+            $totalAttendanceHours = $result['totalAttendanceHours'];
+            $presentDays = $result['presentDays'];
+            $absentDays = $result['absentDays'];
+            $net_pay = $result['net_pay'];
 
-             Salary::SalaryAdd($employee, $providentFund, $miscellaneous, $totalRoasterHours, $request->month, $request->year, $total);
+            Salary::SalaryAdd($employee, $providentFund, $miscellaneous, $totalRoasterHours, $totalAttendanceHours, $request->month, $request->year, $total, $presentDays, $absentDays, $net_pay);
 
 
         }
@@ -73,25 +81,100 @@ class SalaryController extends Controller
         $insurance = $employee->insurance;
         $tax = $employee->tax;
 
-        // Calculate provident fund
+// Calculate provident fund
         $providentFundAmount = $providentFund ? $providentFund->provident_fund : 0;
 
-
+// Calculate roaster
         $dateTime = new DateTime($month);
         $numericMonth = $dateTime->format('m');
-
-        // Calculate roaster
-        $totalMinutes = Roaster::where('emp_id', $employee->id)
+        $totalRoasterMinutes = Roaster::where('emp_id', $employee->id)
             ->whereYear('date', $year)
             ->whereMonth('date', $numericMonth)
             ->selectRaw('SUM(60 * SUBSTRING_INDEX(hours, ":", 1) + SUBSTRING_INDEX(hours, ":", -1)) AS total_minutes')
             ->first()
             ->total_minutes;
-        $totalHours = floor($totalMinutes / 60);
-        $remainingMinutes = $totalMinutes % 60;
-        $totalRoasterHours = sprintf('%02d:%02d', $totalHours, $remainingMinutes);
+        $totalRoasterHours = floor($totalRoasterMinutes / 60);
+        $remainingRoasterMinutes = $totalRoasterMinutes % 60;
+        $totalRoasterTime = sprintf('%02d:%02d', $totalRoasterHours, $remainingRoasterMinutes);
 
-        //calculate attandance
+ //calculate attandance
+        $totalAttendanceMinutes = Attendance::where('emp_id', $employee->id)
+            ->whereYear('date', $year)
+            ->whereMonth('date', $numericMonth)
+            ->selectRaw('SUM(60 * SUBSTRING_INDEX(hours, ":", 1) + SUBSTRING_INDEX(hours, ":", -1)) AS total_minutes')
+            ->first()
+            ->total_minutes;
+        $totalAttendanceHours = floor($totalAttendanceMinutes / 60);
+        $remaininAttendanceMinutes = $totalAttendanceMinutes % 60;
+        $totalAttendanceTime = sprintf('%02d:%02d', $totalAttendanceHours, $remaininAttendanceMinutes);
+
+//calculate present and absent days
+        $roasterDayCount = Roaster::where('emp_id', $employee->id)
+            ->whereYear('date', $year)
+            ->whereMonth('date', $numericMonth)
+            ->count();
+
+        // Count the occurrences of weekends in the month
+        $fixedHolidays = FixedHoliday::all();
+        $holidaysArray = [];
+        foreach ($fixedHolidays as $holiday) {
+            $day = $holiday->day;
+            if (!empty($day)) {
+                $holidaysArray[] = $day;
+            }
+        }
+        $startDate = "$year-$numericMonth-01";
+        $endDate = "$year-$numericMonth-" . date('t', strtotime($startDate));
+        //construct an array of days of a particular month
+        $daysInMonth = [];
+        $currentDate = strtotime($startDate);
+        while ($currentDate <= strtotime($endDate)) {
+            $dayName = date('l', $currentDate);
+            $daysInMonth[] = $dayName;
+            $currentDate = strtotime('+1 day', $currentDate);
+        }
+
+        $weekendCount = [];
+        $totalWeekends = 0;
+        foreach ($holidaysArray as $holiday) {
+            $count = array_count_values($daysInMonth)[$holiday] ?? 0;
+            $weekendCount[$holiday] = $count;
+            $totalWeekends += $count;
+        }
+        $occasionalHolidays = OccasionHoliday::whereYear('date', $year)->whereMonth('date', $numericMonth)->count();
+        $totalHolidaysInMonth = $totalWeekends + $occasionalHolidays;
+
+
+        //count number of attendaded days
+        $attendanceDayCount = Attendance::where('emp_id', $employee->id)
+            ->whereYear('date', $year)
+            ->whereMonth('date', $numericMonth)
+            ->count();
+
+        //count number of leaves
+        $leaveApplications = LeaveApplication::where('employee_id', $employee->id)
+            ->whereYear('from_date', $year)
+            ->whereMonth('from_date', $numericMonth)
+            ->get();
+
+        $unpaidLeave = 0;
+        $paidLeave = 0;
+        foreach ($leaveApplications as $application) {
+            if ($application->leave_type == 'Unpaid' || $application->leave_type == 'Other') {
+                $unpaidLeave = $unpaidLeave + 1;
+
+            } else {
+                $paidLeave = $paidLeave + 1;
+            }
+        }
+
+        //count present and absent days
+        $actualworkingDaysOfAMonth = $roasterDayCount - $totalHolidaysInMonth;
+        $presentDays = $attendanceDayCount + $paidLeave;
+        $absentDays = $actualworkingDaysOfAMonth - $presentDays;
+        if($presentDays > $actualworkingDaysOfAMonth){
+            $overtime = $presentDays - $actualworkingDaysOfAMonth;
+        }
 
         // Calculate miscellaneous earnings and deductions
         $miscellaneousEarnings = $miscellaneous->where('type', 'Addition')->sum('amount');
@@ -100,12 +183,19 @@ class SalaryController extends Controller
         // Calculate total
         $total = $baseSalary + $medicalAllowance + $houseRent + $incentive + $insurance - $tax + $miscellaneousEarnings - $miscellaneousDeductions - $providentFundAmount;
         // calculate netPay
+        $numberOfDaysInAMonth = date('t', strtotime("$year-$numericMonth-01"));
+        $perDaySalary = $total/$numberOfDaysInAMonth;
+        $net_pay = $total - ($perDaySalary *$absentDays);
 
         $data = [
             'total' => $total,
-            'totalRoasterHours' => $totalRoasterHours,
+            'totalRoasterHours' => $totalRoasterTime,
+            'totalAttendanceHours' => $totalAttendanceTime,
+            'presentDays' => $presentDays,
+            'absentDays' => $absentDays,
+            'net_pay' => $net_pay
         ];
-         return $data;
+        return $data;
     }
 
 
