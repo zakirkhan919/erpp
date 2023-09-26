@@ -112,5 +112,22 @@
                                 },
                             });
                         });
+
+
+            function CheckboxChnage(data)
+            {
+                if($("#togBtn").is(":checked"))
+                {
+                    $('#present').show();
+                    $('#togBtn').val('p');
+                    $('#leave').hide();
+                }else
+                {
+                    $('#leave').show();
+                    $('#present').hide();
+                    $('#togBtn').val('');
+                }
+                
+            }
         </script>
     @endsection
