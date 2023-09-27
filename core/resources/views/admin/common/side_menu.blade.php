@@ -76,7 +76,7 @@ $checkAdmin = Auth::guard("web")->user()->type == "admin" || Auth::guard("web")-
                         </li>
 
                         <li>
-                            <a class="slide-item" href="">Bank Detail</a>
+                            <a class="slide-item" href="{{ route('bank_detail') }}">Bank Detail</a>
                         </li>
                     </ul>
                 </li>

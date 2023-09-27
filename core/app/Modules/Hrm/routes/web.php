@@ -7,6 +7,8 @@ use App\Modules\Hrm\Http\Controllers\MiscellaneousController;
 use App\Modules\Hrm\Http\Controllers\Provident_fundController;
 use App\Modules\Hrm\Http\Controllers\PaymentController;
 use App\Modules\Hrm\Http\Controllers\SalaryController;
+use App\Modules\Hrm\Http\Controllers\EmployeeBankAccountDetailController;
+
 
 use App\Modules\Hrm\Http\Controllers\AttendanceController;
 
@@ -107,5 +109,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('update-payment/{id}', 'PaymentController@paymentEdit')->name('payment-edit');
     Route::post('update-payment','PaymentController@paymentUpdate')->name('update-payment');
     Route::post('payment-delete', 'PaymentController@paymentDelete')->name('payment-delete'); // ajax request
+
+    //bank
+    Route::get('bank_detail', 'EmployeeBankAccountDetailController@bank_detail')->name('bank_detail');
+    Route::get('add-bank_detail', 'EmployeeBankAccountDetailController@addBank_detail')->name('add_bank_detail');
+    Route::post('submit-bank_detail', 'EmployeeBankAccountDetailController@submitBank_detail')->name('submit-bank_detail');
+    Route::post('get-bank_detail', 'EmployeeBankAccountDetailController@getBank_detail')->name('get-bank_detail');
+    Route::get('edit-bank_detail/{id}', 'EmployeeBankAccountDetailController@bank_detailEdit')->name('bank_detail-edit');
+    Route::post('update-bank_detail','EmployeeBankAccountDetailController@bank_detailUpdate')->name('update-bank_detail');
+    Route::post('bank_detail-delete', 'EmployeeBankAccountDetailController@bank_detailDelete')->name('bank_detail-delete'); // ajax request
 
 });
