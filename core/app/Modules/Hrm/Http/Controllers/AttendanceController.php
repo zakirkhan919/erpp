@@ -121,11 +121,8 @@ class AttendanceController extends Controller
                     if ($checkAdmin) {
                         $btn .= '<a href="' . route('designation-edit', ['id' => encrypt($employees->id)]) . '"
                         <button id="bEdit" type="button" class="btn btn-sm btn-primary">
-                        <span class="fe fe-edit"> </span>
-                        </button></a>
-                        <button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($employees->id) . '" onClick="deleteDesignation(this.id,event)">
-                            <span class="fe fe-trash-2"> </span>
-                        </button>';
+                        <span class="fe fe-view"> </span>View Attendence
+                        </button></a>';
                     } else {
 
                         if (array_search("designation-edit/*", $access) > -1) {
