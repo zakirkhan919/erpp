@@ -33,33 +33,35 @@ $checkAdmin = Auth::guard("web")->user()->type == "admin" || Auth::guard("web")-
                 </li>
                 <li class="slide">
                     <a class="side-menu__item @if(Request::is('/seller')) active @endif" data-bs-toggle="slide" href="{{ route('seller') }}"><i
-                            class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Seller</span></a>
+                            class="side-menu__icon fa fa-tag"></i><span class="side-menu__label">Seller</span></a>
                 </li>
                 <li class="slide">
                     <a class="side-menu__item @if(Request::is('/product')) active @endif" data-bs-toggle="slide" href="{{ route('product') }}"><i
-                            class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Product</span></a>
+                            class="side-menu__icon fa fa-product-hunt"></i><span class="side-menu__label">Product</span></a>
                 </li>
                 <li class="slide">
+                    {{-- <i class="fa-solid fa-cart-shopping"></i> --}}
+                    {{-- <i class="fa-solid fa-shop"></i> --}}
                     <a class="side-menu__item @if(Request::is('/purchase')) active @endif" data-bs-toggle="slide" href="{{ route('purchase') }}"><i
-                            class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Purchase</span></a>
+                            class="side-menu__icon fa fa-check"></i><span class="side-menu__label">Purchase</span></a>
                 </li>
                 <li class="slide">
                     <a class="side-menu__item @if(Request::is('/customer')) active @endif" data-bs-toggle="slide" href="{{ route('customer') }}"><i
-                            class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Customer</span></a>
+                            class="side-menu__icon fa fa-bolt"></i><span class="side-menu__label">Customer</span></a>
                 </li>
                 <li class="slide">
                     <a class="side-menu__item @if(Request::is('/sell')) active @endif" data-bs-toggle="slide" href="{{ route('sell') }}"><i
-                            class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Sell</span></a>
+                            class="side-menu__icon fa fa-sellsy"></i><span class="side-menu__label">Sell</span></a>
                 </li>
                 <li class="slide">
                     <a class="side-menu__item @if(Request::is('/holiday')) active @endif" data-bs-toggle="slide" href="{{ route('holiday') }}"><i
-                            class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Holiday</span></a>
+                            class="side-menu__icon fa fa-plane"></i><span class="side-menu__label">Holiday</span></a>
                 </li>
 
 
                 <li class="slide">
                     <a class="side-menu__item @if(Request::is('/')) active @endif" data-bs-toggle="slide" href="#">
-                        <i class="side-menu__icon fe fe-home"></i>
+                        <i class="side-menu__icon fa fa-users"></i>
                         <span class="side-menu__label">Employee</span>
                         <i class="fe fe-chevron-down dropdown-arrow"></i>
                     </a>
@@ -82,7 +84,7 @@ $checkAdmin = Auth::guard("web")->user()->type == "admin" || Auth::guard("web")-
                 </li>
                 <li class="slide">
                     <a class="side-menu__item @if(Request::is('/')) active @endif" data-bs-toggle="slide" href="#">
-                        <i class="side-menu__icon fe fe-home"></i>
+                        <i class="side-menu__icon fa fa-calendar"></i>
                         <span class="side-menu__label">Roaster</span>
                         <i class="fe fe-chevron-down dropdown-arrow"></i>
                     </a>
@@ -102,7 +104,7 @@ $checkAdmin = Auth::guard("web")->user()->type == "admin" || Auth::guard("web")-
 
                 <li class="slide">
                     <a class="side-menu__item @if(Request::is('/')) active @endif" data-bs-toggle="slide" href="#">
-                        <i class="side-menu__icon fe fe-home"></i>
+                        <i class="side-menu__icon fe fe-slack"></i>
                         <span class="side-menu__label">Attendance</span>
                         <i class="fe fe-chevron-down dropdown-arrow"></i>
                     </a>
@@ -119,7 +121,7 @@ $checkAdmin = Auth::guard("web")->user()->type == "admin" || Auth::guard("web")-
 
                 <li class="slide">
                     <a class="side-menu__item @if(Request::is('/')) active @endif" data-bs-toggle="slide" href="#">
-                        <i class="side-menu__icon fe fe-home"></i>
+                        <i class="side-menu__icon fa fa-paypal"></i>
                         <span class="side-menu__label">Salary</span>
                         <i class="fe fe-chevron-down dropdown-arrow"></i>
                     </a>
