@@ -21,9 +21,14 @@
                             <div class="card-header">
                                 <h3 class="card-title">Payment Information</h3>
                             </div>
-                            <form action="{{ route('submit-payment') }}" method="post" id="payment-form">
+                            <form action="{{ route('submit-payment') }}" method="post" id="make-payment">
                                 @csrf
                                 <div class="card-body">
+                                    <input type="hidden" name="salary_id" value="{{ $salary->id }}">
+                                    <input type="hidden" name="employee_id" value="{{ $employee->id }}">
+                                    <input type="hidden" name="month" value="{{ $salary->month }}">
+                                    <input type="hidden" name="year" value="{{ $salary->year }}">
+
                                     <div class="row ">
                                         <div class="col-md-3">
                                             <div class="form-group" >
@@ -31,14 +36,12 @@
                                               <h4>Department: {{ $employee->department_id }}</h4>
                                               <h4>Designation: {{ $employee->designation_id }}</h4>
                                               <h4>Net pay: {{ $salary->net_pay }}</h4>
-                                             
-                                              @if(!$bank_detail)
+
+                                              @if($bank_detail)
                                               <h4 style="color: blue">Bank account Available</h4>
                                               @else
                                               <h4 style="color: red">Bank account Not Available</h4>
                                               @endif
-
-
 
                                             </div>
                                         </div>
@@ -112,22 +115,33 @@
         @include('vendor.sweetalert2.sweetalert2_js')
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <script>
-            if ($("#seller-add").length > 0) {
-                $("#seller-add").validate({
+            if ($("#make-payment").length > 0) {
+                $("#make-payment").validate({
                     rules: {
 
-                        employee_id: {
+                        payment_type: {
                             required: true,
                         },
+                        amount: {
+                            required: true,
+                        },
+                        remarks: {
+                            required: true,
+                        },
+
 
                     },
                     messages: {
 
-                        employee_id: {
-                            required: "Please select an employee",
+                        payment_type: {
+                            required: 'Please select a type',
                         },
-
-
+                        amount: {
+                            required: 'please enter an amount',
+                        },
+                        remarks: {
+                            required: 'please enter remarks',
+                        },
                     },
                 });
             }

@@ -139,7 +139,7 @@ $checkAdmin = Auth::guard("web")->user()->type == "admin" || Auth::guard("web")-
 
 
                         <li>
-                            <a class="slide-item" href="{{ route('salary') }}">All Salary</a>
+                            <a class="slide-item" href="{{ route('payment') }}">Payments</a>
                         </li>
                         {{-- <li>
                             <a class="slide-item" href="{{ route('add_payment') }}">Add Payment</a>

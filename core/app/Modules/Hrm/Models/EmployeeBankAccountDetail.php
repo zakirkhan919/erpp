@@ -35,7 +35,6 @@ class EmployeeBankAccountDetail extends Model
 
     public static function Bank_detailUpdate($request){
         $bank_detail = EmployeeBankAccountDetail::findOrFail($request->id);
-
         $bank_detail->employee_id = $request['employee_id'];
         $bank_detail->account_name = $request['account_name'];
         $bank_detail->account_no = $request['account_number'];
@@ -43,7 +42,7 @@ class EmployeeBankAccountDetail extends Model
         $bank_detail->branch = $request['branch'];
         $bank_detail->ifsc_code = $request['ifsc_code'];
         $bank_detail->pan_no = $request['pan_number'];
-
+        
         $bank_detail->save();
 
     }
