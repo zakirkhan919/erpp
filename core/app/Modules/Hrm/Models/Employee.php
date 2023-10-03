@@ -10,6 +10,7 @@ class Employee extends Model
     use HasFactory;
     protected $guarded = [];
 
+
     public static function Employeeadd($data)
     {
         // If the input field names in your HTML form are different from the column names in your database table,

@@ -132,12 +132,12 @@
                             name: 'date_of_birth'
                         },
                         {
-                            data: 'department_id',
-                            name: 'department_id'
+                            data: 'department_name',
+                            name: 'department_name'
                         },
                         {
-                            data: 'designation_id',
-                            name: 'designation_id'
+                            data: 'designation_name',
+                            name: 'designation_name'
                         },
 
 

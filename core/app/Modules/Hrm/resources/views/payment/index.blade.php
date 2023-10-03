@@ -34,9 +34,9 @@
                                                 <th>year</th>
                                                 <th>Net Pay</th>
                                                 <th>Payment Method</th>
-                                                <th>Bank Id</th>
+
                                                 <th>Bank Details</th>
-                                                <th>Salary Id</th>
+
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -69,8 +69,8 @@
                     }
                 },
                 columns: [{
-                        data: 'employee_id',
-                        name: 'employee_id'
+                        data: 'employee_name',
+                        name: 'employee_name'
                     },
                     //
                     {
@@ -99,23 +99,10 @@
 
                     },
                     {
-                        data: 'bank_id',
-                        name: 'bank_id'
-                    },
-
-                    {
                         data: 'bank_details',
                         name: 'bank_details',
 
                     },
-
-
-                    {
-                        data: 'salary_id',
-                        name: 'salary_id'
-                    },
-
-
                     {
                         data: 'action',
                         name: 'action',

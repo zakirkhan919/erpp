@@ -107,9 +107,18 @@ class EmployeeController extends Controller
         }
         try {
 
-            $list = Employee::orderBy('id', 'desc')->get();
+            $list = Employee::with('department', 'designation')
+                ->orderBy('id', 'desc')
+                ->get();
 
             return DataTables::of($list)
+
+            ->addColumn('department_name', function ($list) {
+                return $list->department->name;
+            })
+            ->addColumn('designation_name', function ($list) {
+                return $list->designation->name;
+            })
                 ->addColumn('action', function ($list) {
                     $access = \App\Modules\User\Models\RolePermission::where("id", \Auth::guard()->user()->role_id)->first();
                     $access = $access ? json_decode($access->permission) : [];
@@ -209,20 +218,20 @@ class EmployeeController extends Controller
 
 
     private function processPhoto($photo)
-{
-    $path = 'assets/uploads/employees/' . date("Y") . "/" . date("m") . "/";
-    if (!file_exists($path)) {
-        mkdir($path, 0777, true);
-        $new_file = fopen($path . '/index.html', 'w') or die('Cannot create file: [UC-1001]');
-        fclose($new_file);
+    {
+        $path = 'assets/uploads/employees/' . date("Y") . "/" . date("m") . "/";
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+            $new_file = fopen($path . '/index.html', 'w') or die('Cannot create file: [UC-1001]');
+            fclose($new_file);
+        }
+
+        $root_path = CommonFunction::getProjectRootDirectory(); // Replace with the actual way you get the root path
+        $photoName = time() . '.' . $photo->extension();
+        $photo->move($root_path . '/' . $path, $photoName);
+
+        return $path . $photoName;
     }
-
-    $root_path = CommonFunction::getProjectRootDirectory(); // Replace with the actual way you get the root path
-    $photoName = time() . '.' . $photo->extension();
-    $photo->move($root_path . '/' . $path, $photoName);
-
-    return $path . $photoName;
-}
 
     public function employeeDelete(Request $request)
     {

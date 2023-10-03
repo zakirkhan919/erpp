@@ -42,9 +42,14 @@ class EmployeeBankAccountDetail extends Model
         $bank_detail->branch = $request['branch'];
         $bank_detail->ifsc_code = $request['ifsc_code'];
         $bank_detail->pan_no = $request['pan_number'];
-        
+
         $bank_detail->save();
 
+    }
+
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class,'employee_id','id');
     }
 
 }

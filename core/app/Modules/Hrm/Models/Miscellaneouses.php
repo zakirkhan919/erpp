@@ -52,4 +52,9 @@ class Miscellaneouses extends Model
             $data->delete();
         }
     }
+
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class,'employee_id','id');
+    }
 }

@@ -82,8 +82,8 @@
                     }
                 },
                 columns: [{
-                        data: 'employee_id',
-                        name: 'employee_id'
+                        data: 'employee_name',
+                        name: 'employee_name'
                     },
                     //
                     {

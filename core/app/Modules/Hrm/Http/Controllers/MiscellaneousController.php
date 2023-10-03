@@ -60,9 +60,13 @@ class MiscellaneousController extends Controller
         }
         try {
 
-            $list = Miscellaneouses::orderBy('id', 'desc')->get();
+            $list = Miscellaneouses::with('employee')->orderBy('id', 'desc')->get();
 
             return DataTables::of($list)
+            ->addColumn('employee_name', function ($list) {
+                return $list->employee->name;
+            })
+
                 ->addColumn('action', function ($list) {
                     $access = \App\Modules\User\Models\RolePermission::where("id", \Auth::guard()->user()->role_id)->first();
                     $access = $access ? json_decode($access->permission) : [];

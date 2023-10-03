@@ -81,8 +81,8 @@
                         }
                     },
                     columns: [{
-                            data: 'employee_id',
-                            name: 'employee_id'
+                            data: 'employee_name',
+                            name: 'employee_name'
                         }, // Replace 'employee_name' with the actual column name for employee
                         {
                             data: 'type',
