@@ -14,7 +14,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/brand/favicon.ico" />
 
     <!-- TITLE -->
-    <title>Miazbhandar - Login</title>
+    <title>NeuronERP - Login</title>
 
     <!-- BOOTSTRAP CSS -->
     <link id="style" href="{{ asset('assets/admin/css/bootstrap.min.css') }}" rel="stylesheet" />
