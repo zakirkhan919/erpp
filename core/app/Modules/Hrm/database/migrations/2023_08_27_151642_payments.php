@@ -29,7 +29,7 @@ return new class extends Migration
 
             // Define foreign key relationship
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
-            $table->foreign('bank_id')->references('id')->on('banks')->onDelete('set null');
+            $table->foreign('bank_id')->references('id')->on('banks')->onDelete('cascade');
         });
     }
 

@@ -80,7 +80,6 @@ class SalaryController extends Controller
         $incentive = $employee->incentive;
         $insurance = $employee->insurance;
         $tax = $employee->tax;
-
 // Calculate provident fund
         $providentFundAmount = $providentFund ? $providentFund->provident_fund : 0;
 

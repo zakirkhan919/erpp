@@ -25,6 +25,7 @@ class EmployeeBankAccountDetailController extends Controller
     }
     public function submitBank_detail(Request $request){
 
+        // dd('okay');
         $request->validate([
             'employee_id' => 'required|exists:employees,id',
             'account_name' => 'required|string|max:255',
