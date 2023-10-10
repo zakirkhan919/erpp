@@ -45,7 +45,7 @@ class SalaryController extends Controller
         foreach ($employees as $employee) {
             $providentFund = Provident_fund::where('employee_id', $employee->id)->first();
             if (!$providentFund) {
-                $providentFund = $employee->provident_fund;
+                $providentFund = $employee;
             }
 
             $miscellaneous = Miscellaneouses::where('employee_id', $employee->id)->where('month', $monthWithoutLeadingZero)->where('year', $request->year)->get();

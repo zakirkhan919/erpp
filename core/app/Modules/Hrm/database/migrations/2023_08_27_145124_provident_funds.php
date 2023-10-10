@@ -19,7 +19,7 @@ return new class extends Migration
             $table->double('previous_provident_fund', 8, 2)->default(0.00);
             $table->integer('previous_month')->default(0);
             $table->double('provident_fund', 8, 2)->default(0.00);
-            $table->text('remarks')->default('0');
+            $table->text('remarks')->nullable();
             $table->tinyInteger('status')->default(1)->comment('1=>Active, 2=>Deactive');
             $table->timestamps();
 
