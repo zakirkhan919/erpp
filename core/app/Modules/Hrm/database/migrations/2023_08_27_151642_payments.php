@@ -16,10 +16,13 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('employee_id');
+            $table->unsignedBigInteger('salary_id');
             $table->integer('amount')->default(0);
             $table->double('advance', 8, 2)->default(0.00);
             $table->double('due', 8, 2)->default(0.00);
             $table->double('net_pay', 8, 2)->default(0.00);
+            $table->string('month')->nullable();
+            $table->string('year')->nullable();
             $table->string('type')->nullable();
             $table->text('remarks')->nullable();
             $table->unsignedBigInteger('bank_id')->nullable();
@@ -29,7 +32,7 @@ return new class extends Migration
 
             // Define foreign key relationship
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
-            $table->foreign('bank_id')->references('id')->on('banks')->onDelete('cascade');
+            //$table->foreign('bank_id')->references('id')->on('employee_bank_account_details')->onDelete('cascade');
         });
     }
 
