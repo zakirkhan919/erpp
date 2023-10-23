@@ -1,6 +1,6 @@
 @extends('admin.common.master')
 @section('title')
-    <title>ব্যবহারকারী</title>
+    <title>Users</title>
 @endsection
 @section('css')
 @endsection
@@ -16,11 +16,11 @@
 
                 <!-- PAGE-HEADER -->
                 <div class="page-header">
-                    <h1 class="page-title">ব্যবহারকারী </h1>
+                    <h1 class="page-title">Users </h1>
                     <div>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">হোম </a></li>
-                            <li class="breadcrumb-item active" aria-current="page">ব্যবহারকারী  </li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home </a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Users  </li>
                         </ol>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">ব্যবহারকারী  </h3>
+                                <h3 class="card-title">Users  </h3>
 
                             </div>
 
@@ -45,18 +45,18 @@
                                 </div>
                                 <a href="{{ route('add_user') }}" class="f-right @if(array_search("user/entry",$access) > -1 || $checkAdmin) @else d-none @endif">
                                     <button style="margin-bottom: 15px;"
-                                        class="btn btn-primary bg-success-gradient mt-3">নতুন ব্যবহারকারী </button>
+                                        class="btn btn-primary bg-success-gradient mt-3">New User </button>
                                 </a>
                                 <div id="tableView">
                                     <table id="list" class="table dt-responsive table-bordered table-striped nowrap">
                                         <thead>
                                         <tr>
-                                            <th>নম্বর</th>
-                                            <th>নাম</th>
-                                            <th>ইমেইল</th>
-                                            <th>ফোন</th>
-                                            <th>টাইপ</th>
-                                            <th>অবস্থা</th>
+                                            <th>Number</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th>Type</th>
+                                            <th>Status</th>
                                             <th></th>
                                         </tr>
                                         </thead>
@@ -118,20 +118,20 @@
        function deleteuser(id,e) {
            e.preventDefault();
            swal.fire({
-               title: "আপনী কি নিশ্চিত?",
-               text: "আপনি মুছে দিতে চান??!",
+               title: "Are You Sure?",
+               text: "Are You want to delete??!",
                icon: "warning",
                showCloseButton: true,
                // showDenyButton: true,
                showCancelButton: true,
-               confirmButtonText: `মুছন `,
-                cancelButtonText: `বাতিল  `,
+               confirmButtonText: `Delete `,
+                cancelButtonText: `Cencel  `,
                // dangerMode: true,
            }).then((result) => {
                if (result.value == true) {
                    swal.fire({
-                       title: 'মুছে ফেলা হয়েছে!',
-                       text: 'সফলভাবে মুছে ফেলা হয়েছে!',
+                       title: 'Deleted!',
+                       text: 'Successfully Deleted!',
                        icon: 'success'
                    }).then(function () {
                        $.ajax({

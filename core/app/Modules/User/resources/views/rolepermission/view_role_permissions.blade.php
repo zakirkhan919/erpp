@@ -1,6 +1,6 @@
 @extends('admin.common.master')
 @section('title')
-    <title>ভূমিকা অনুমতি</title>
+    <title>Role Permission</title>
 @endsection
 @section('css')
 @endsection
@@ -16,11 +16,11 @@
 
                 <!-- PAGE-HEADER -->
                 <div class="page-header">
-                    <h1 class="page-title">ভূমিকা অনুমতি </h1>
+                    <h1 class="page-title">Role Permission </h1>
                     <div>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">হোম </a></li>
-                            <li class="breadcrumb-item active" aria-current="page">ভূমিকা অনুমতি  </li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home </a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Role Permission  </li>
                         </ol>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">ভূমিকা অনুমতি  </h3>
+                                <h3 class="card-title">Role Permission  </h3>
 
                             </div>
 
@@ -45,15 +45,15 @@
                                 </div>
                                 <a href="{{ route('add_role_permission') }}" class="f-right @if(array_search("user/add_role_permission",$access) > -1 || $checkAdmin) @else d-none @endif">
                                     <button style="margin-bottom: 15px;"
-                                        class="btn btn-primary bg-success-gradient mt-3">নতুন ভুমিকা অনুমতি </button>
+                                        class="btn btn-primary bg-success-gradient mt-3">New Role Permission </button>
                                 </a>
                                 <div id="tableView">
                                     <table id="list" class="table dt-responsive table-bordered table-striped nowrap">
                                         <thead>
                                         <tr>
-                                            <th>নম্বর</th>
-                                            <th>ভূমিকা নাম</th>
-                                            <th>অনুমতি গুলো</th>
+                                            <th>Number</th>
+                                            <th>Role Name</th>
+                                            <th>Permissions</th>
                                             <th></th>
                                         </tr>
                                         </thead>
@@ -112,20 +112,20 @@
        function deleteuser(id,e) {
            e.preventDefault();
            swal.fire({
-               title: "আপনী কি নিশ্চিত?",
-               text: "আপনি মুছে দিতে চান??!",
+               title: "Are you sure?",
+               text: "Are you delete??!",
                icon: "warning",
                showCloseButton: true,
                // showDenyButton: true,
                showCancelButton: true,
-               confirmButtonText: `মুছন `,
-                cancelButtonText: `বাতিল  `,
+               confirmButtonText: `delete `,
+               cancelButtonText: `Cencel`,
                // dangerMode: true,
            }).then((result) => {
                if (result.value == true) {
                    swal.fire({
-                       title: 'মুছে ফেলা হয়েছে!',
-                       text: 'সফলভাবে মুছে ফেলা হয়েছে!',
+                       title: 'Deleted!',
+                       text: 'Succesfully deleted!',
                        icon: 'success'
                    }).then(function () {
                        $.ajax({
