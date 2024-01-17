@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6129fdee06d13e9c6befc8f746a631c0",
+    "content-hash": "37535f999f14cbb705142bd1d5ac8d6a",
     "packages": [
         {
             "name": "artem-schander/l5-modular",
@@ -2190,6 +2190,79 @@
             "time": "2023-08-05T12:09:49+00:00"
         },
         {
+            "name": "livewire/livewire",
+            "version": "v2.11.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/livewire/livewire.git",
+                "reference": "8667099d5889cab760d1d0083cdcebaa3d595733"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/8667099d5889cab760d1d0083cdcebaa3d595733",
+                "reference": "8667099d5889cab760d1d0083cdcebaa3d595733",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^7.0|^8.0|^9.0|^10.0",
+                "illuminate/support": "^7.0|^8.0|^9.0|^10.0",
+                "illuminate/validation": "^7.0|^8.0|^9.0|^10.0",
+                "league/mime-type-detection": "^1.9",
+                "php": "^7.2.5|^8.0",
+                "symfony/http-kernel": "^5.0|^6.0"
+            },
+            "require-dev": {
+                "calebporzio/sushi": "^2.1",
+                "laravel/framework": "^7.0|^8.0|^9.0|^10.0",
+                "mockery/mockery": "^1.3.1",
+                "orchestra/testbench": "^5.0|^6.0|^7.0|^8.0",
+                "orchestra/testbench-dusk": "^5.2|^6.0|^7.0|^8.0",
+                "phpunit/phpunit": "^8.4|^9.0",
+                "psy/psysh": "@stable"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Livewire\\LivewireServiceProvider"
+                    ],
+                    "aliases": {
+                        "Livewire": "Livewire\\Livewire"
+                    }
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Livewire\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Caleb Porzio",
+                    "email": "calebporzio@gmail.com"
+                }
+            ],
+            "description": "A front-end framework for Laravel.",
+            "support": {
+                "issues": "https://github.com/livewire/livewire/issues",
+                "source": "https://github.com/livewire/livewire/tree/v2.11.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/livewire",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-01-15T23:43:31+00:00"
+        },
+        {
             "name": "maatwebsite/excel",
             "version": "3.1.48",
             "source": {
@@ -2456,6 +2529,82 @@
                 "source": "https://github.com/MarkBaker/PHPMatrix/tree/3.0.1"
             },
             "time": "2022-12-02T22:17:43+00:00"
+        },
+        {
+            "name": "mediconesystems/livewire-datatables",
+            "version": "v0.10.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MedicOneSystems/livewire-datatables.git",
+                "reference": "f0cfe8bf42844263c1286a5b25f5d9cf652e4fa2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MedicOneSystems/livewire-datatables/zipball/f0cfe8bf42844263c1286a5b25f5d9cf652e4fa2",
+                "reference": "f0cfe8bf42844263c1286a5b25f5d9cf652e4fa2",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^7.0|^8.0|^9.0|^10.0",
+                "livewire/livewire": "^2.4.4",
+                "maatwebsite/excel": "^3.1",
+                "php": "^8.0",
+                "reedware/laravel-relation-joins": "^2.4|^3.0|dev-l10-compatibility"
+            },
+            "require-dev": {
+                "laravel/legacy-factories": "^1.0.4",
+                "orchestra/testbench": "^4.0|5.0|6.0|^7.0|^8.0",
+                "phpunit/phpunit": "^8.0|9.0|^9.5.10"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Mediconesystems\\LivewireDatatables\\LivewireDatatablesServiceProvider"
+                    ],
+                    "aliases": {
+                        "LivewireDatatables": "Mediconesystems\\LivewireDatatables\\LivewireDatatablesFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Mediconesystems\\LivewireDatatables\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Salmon",
+                    "email": "mark.salmon@mediconesystems.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Shane Burrell",
+                    "email": "shane@shaneburrell.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Herbert Maschke",
+                    "email": "thyseus@pm.me",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Advanced datatables using Laravel, Livewire, Tailwind CSS and Alpine JS",
+            "homepage": "https://github.com/mediconesystems/livewire-datatables",
+            "keywords": [
+                "laravel",
+                "livewire",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/MedicOneSystems/livewire-datatables/issues",
+                "source": "https://github.com/MedicOneSystems/livewire-datatables/tree/v0.10.1"
+            },
+            "time": "2023-03-26T08:33:44+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -3909,6 +4058,113 @@
                 }
             ],
             "time": "2023-04-15T23:01:58+00:00"
+        },
+        {
+            "name": "reedware/laravel-relation-joins",
+            "version": "v3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tylernathanreed/laravel-relation-joins.git",
+                "reference": "943620791dbf991dda06963967b0aaa28445768c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tylernathanreed/laravel-relation-joins/zipball/943620791dbf991dda06963967b0aaa28445768c",
+                "reference": "943620791dbf991dda06963967b0aaa28445768c",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^7.30.4|^8.23|^9.0",
+                "illuminate/support": "^7.30.4|^8.23|^9.0",
+                "php": ">=7.2.5"
+            },
+            "require-dev": {
+                "illuminate/container": "^7.30.4|^8.23|^9.0",
+                "mockery/mockery": "^1.4.3",
+                "php-coveralls/php-coveralls": "^2.4",
+                "phpunit/phpunit": "^8.5|^9.5",
+                "squizlabs/php_codesniffer": "^3.6"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Reedware\\LaravelRelationJoins\\LaravelRelationJoinServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Reedware\\LaravelRelationJoins\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tyler Reed",
+                    "email": "tylernathanreed@gmail.com"
+                }
+            ],
+            "description": "Adds the ability to join on a relationship by name.",
+            "keywords": [
+                "eloquent",
+                "join",
+                "laravel",
+                "query",
+                "relation"
+            ],
+            "support": {
+                "issues": "https://github.com/tylernathanreed/laravel-relation-joins/issues",
+                "source": "https://github.com/tylernathanreed/laravel-relation-joins/tree/v3.0.0"
+            },
+            "time": "2022-02-09T15:28:12+00:00"
+        },
+        {
+            "name": "sirajcse/laravel-unique-id-generator",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SirajCse/laravel-unique-id-generator.git",
+                "reference": "222b93866cc9cf68a1f695c4cb9eab3115392dcf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SirajCse/laravel-unique-id-generator/zipball/222b93866cc9cf68a1f695c4cb9eab3115392dcf",
+                "reference": "222b93866cc9cf68a1f695c4cb9eab3115392dcf",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "sirajcse\\UniqueIdGenerator\\UniqueIdGeneratorServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "sirajcse\\UniqueIdGenerator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Md. Siraj-Ud-Doulla",
+                    "email": "sirajuddoulla@gmail.com"
+                }
+            ],
+            "description": "Generate custom Unique ID or Code (With Pretfix or Suffix Or Both Or Only Unique Id) Or reset your ID after change of Pretfix or Suffix Or Both  in laravel framework",
+            "support": {
+                "issues": "https://github.com/SirajCse/laravel-unique-id-generator/issues",
+                "source": "https://github.com/SirajCse/laravel-unique-id-generator/tree/v1.0.0"
+            },
+            "time": "2021-12-26T03:16:43+00:00"
         },
         {
             "name": "symfony/console",

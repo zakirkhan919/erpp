@@ -31,133 +31,159 @@ $checkAdmin = Auth::guard("web")->user()->type == "admin" || Auth::guard("web")-
                     <a class="side-menu__item @if(Request::is('/')) active @endif" data-bs-toggle="slide" href="{{ route('home') }}"><i
                             class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Dashboard</span></a>
                 </li>
-                <li class="slide">
-                    <a class="side-menu__item @if(Request::is('/seller')) active @endif" data-bs-toggle="slide" href="{{ route('seller') }}"><i
-                            class="side-menu__icon fa fa-tag"></i><span class="side-menu__label">Seller</span></a>
-                </li>
-                <li class="slide">
-                    <a class="side-menu__item @if(Request::is('/product')) active @endif" data-bs-toggle="slide" href="{{ route('product') }}"><i
-                            class="side-menu__icon fa fa-product-hunt"></i><span class="side-menu__label">Product</span></a>
-                </li>
-                <li class="slide">
-                    {{-- <i class="fa-solid fa-cart-shopping"></i> --}}
-                    {{-- <i class="fa-solid fa-shop"></i> --}}
-                    <a class="side-menu__item @if(Request::is('/purchase')) active @endif" data-bs-toggle="slide" href="{{ route('purchase') }}"><i
-                            class="side-menu__icon fa fa-check"></i><span class="side-menu__label">Purchase</span></a>
-                </li>
-                <li class="slide">
-                    <a class="side-menu__item @if(Request::is('/customer')) active @endif" data-bs-toggle="slide" href="{{ route('customer') }}"><i
-                            class="side-menu__icon fa fa-bolt"></i><span class="side-menu__label">Customer</span></a>
-                </li>
-                <li class="slide">
-                    <a class="side-menu__item @if(Request::is('/sell')) active @endif" data-bs-toggle="slide" href="{{ route('sell') }}"><i
-                            class="side-menu__icon fa fa-sellsy"></i><span class="side-menu__label">Sell</span></a>
-                </li>
-
-                <li class="slide">
-                    <a class="side-menu__item @if(Request::is('/accounts')) active @endif" data-bs-toggle="slide" href="{{ route('accounts') }}"><i
-                            class="side-menu__icon fa fa-sellsy"></i><span class="side-menu__label">Accounts</span></a>
-                </li>
-                <li class="slide">
-                    <a class="side-menu__item @if(Request::is('/holiday')) active @endif" data-bs-toggle="slide" href="{{ route('holiday') }}"><i
-                            class="side-menu__icon fa fa-plane"></i><span class="side-menu__label">Holiday</span></a>
-                </li>
-
 
                 <li class="slide">
                     <a class="side-menu__item @if(Request::is('/')) active @endif" data-bs-toggle="slide" href="#">
                         <i class="side-menu__icon fa fa-users"></i>
-                        <span class="side-menu__label">Employee</span>
+                        <span class="side-menu__label">Inventory</span>
                         <i class="fe fe-chevron-down dropdown-arrow"></i>
                     </a>
                     <ul class="slide-menu">
 
-                        <li>
-                            <a class="slide-item" href="{{ route('department') }}">Department</a>
+                        <li class="slide">
+                            <a class="side-menu__item @if(Request::is('/seller')) active @endif" data-bs-toggle="slide" href="{{ route('seller') }}"><i
+                                    class="side-menu__icon fa fa-tag"></i><span class="side-menu__label">Seller</span></a>
                         </li>
-                        <li>
-                            <a class="slide-item" href="{{ route('designation') }}">Designation</a>
+                        <li class="slide">
+                            <a class="side-menu__item @if(Request::is('/product')) active @endif" data-bs-toggle="slide" href="{{ route('product') }}"><i
+                                    class="side-menu__icon fa fa-product-hunt"></i><span class="side-menu__label">Product</span></a>
                         </li>
-                        <li>
-                            <a class="slide-item" href="{{ route('employee') }}">Employee</a>
+                        <li class="slide">
+                            {{-- <i class="fa-solid fa-cart-shopping"></i> --}}
+                            {{-- <i class="fa-solid fa-shop"></i> --}}
+                            <a class="side-menu__item @if(Request::is('/purchase')) active @endif" data-bs-toggle="slide" href="{{ route('purchase') }}"><i
+                                    class="side-menu__icon fa fa-check"></i><span class="side-menu__label">Purchase</span></a>
+                        </li>
+                        <li class="slide">
+                            <a class="side-menu__item @if(Request::is('/customer')) active @endif" data-bs-toggle="slide" href="{{ route('customer') }}"><i
+                                    class="side-menu__icon fa fa-bolt"></i><span class="side-menu__label">Customer</span></a>
+                        </li>
+                        <li class="slide">
+                            <a class="side-menu__item @if(Request::is('/sell')) active @endif" data-bs-toggle="slide" href="{{ route('sell') }}"><i
+                                    class="side-menu__icon fa fa-sellsy"></i><span class="side-menu__label">Sell</span></a>
                         </li>
 
-                        <li>
-                            <a class="slide-item" href="{{ route('bank_detail') }}">Bank Detail</a>
+                        <li class="slide">
+                            <a class="side-menu__item @if(Request::is('/accounts')) active @endif" data-bs-toggle="slide" href="{{ route('accounts') }}"><i
+                                    class="side-menu__icon fa fa-sellsy"></i><span class="side-menu__label">Accounts</span></a>
                         </li>
                     </ul>
-                </li>
-                <li class="slide">
-                    <a class="side-menu__item @if(Request::is('/')) active @endif" data-bs-toggle="slide" href="#">
-                        <i class="side-menu__icon fa fa-calendar"></i>
-                        <span class="side-menu__label">Roaster</span>
-                        <i class="fe fe-chevron-down dropdown-arrow"></i>
-                    </a>
 
-                    <ul class="slide-menu">
-                        <li>
-                            <a href="{{ route('roaster') }}" class="slide-item @if(Request::is('/roaster')) active @endif">Roaster</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('roaster_swap') }}" class="slide-item @if(Request::is('/roaster-swap')) active @endif">Roaster Swap</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('roaster_report') }}" class="slide-item @if(Request::is('/roaster-report')) active @endif">Roaster Report</a>
-                        </li>
-                    </ul>
                 </li>
 
                 <li class="slide">
                     <a class="side-menu__item @if(Request::is('/')) active @endif" data-bs-toggle="slide" href="#">
-                        <i class="side-menu__icon fe fe-slack"></i>
-                        <span class="side-menu__label">Attendance</span>
-                        <i class="fe fe-chevron-down dropdown-arrow"></i>
-                    </a>
-
-                    <ul class="slide-menu">
-                        <li>
-                            <a href="{{ route('attendance') }}" class="slide-item @if(Request::is('/attendance')) active @endif">Attendance</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('view_attendance') }}" class="slide-item @if(Request::is('/view-attendance')) active @endif">View Attendance</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="slide">
-                    <a class="side-menu__item @if(Request::is('/')) active @endif" data-bs-toggle="slide" href="#">
-                        <i class="side-menu__icon fa fa-paypal"></i>
-                        <span class="side-menu__label">Salary</span>
+                        <i class="side-menu__icon fa fa-users"></i>
+                        <span class="side-menu__label">HRM</span>
                         <i class="fe fe-chevron-down dropdown-arrow"></i>
                     </a>
                     <ul class="slide-menu">
 
-                        <li>
-                            <a class="slide-item" href="{{ route('miscellaneous') }}">Miscellaneous</a>
-                        </li>
-                        <li>
-                            <a class="slide-item" href="{{ route('provident_fund') }}">Provident Fund</a>
+                        <li class="slide">
+                            <a class="side-menu__item @if(Request::is('/holiday')) active @endif" data-bs-toggle="slide" href="{{ route('holiday') }}"><i
+                                    class="side-menu__icon fa fa-plane"></i><span class="side-menu__label">Holiday</span></a>
                         </li>
 
 
-                        <li>
-                            <a class="slide-item" href="{{ route('add_salary') }}">Process Salary</a>
+                        <li class="slide">
+                            <a class="side-menu__item @if(Request::is('/')) active @endif" data-bs-toggle="slide" href="#">
+                                <i class="side-menu__icon fa fa-users"></i>
+                                <span class="side-menu__label">Employee</span>
+                                <i class="fe fe-chevron-down dropdown-arrow"></i>
+                            </a>
+                            <ul class="slide-menu">
+
+                                <li>
+                                    <a class="slide-item" href="{{ route('department') }}">Department</a>
+                                </li>
+                                <li>
+                                    <a class="slide-item" href="{{ route('designation') }}">Designation</a>
+                                </li>
+                                <li>
+                                    <a class="slide-item" href="{{ route('employee') }}">Employee</a>
+                                </li>
+
+                                <li>
+                                    <a class="slide-item" href="{{ route('bank_detail') }}">Bank Detail</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="slide">
+                            <a class="side-menu__item @if(Request::is('/')) active @endif" data-bs-toggle="slide" href="#">
+                                <i class="side-menu__icon fa fa-calendar"></i>
+                                <span class="side-menu__label">Roaster</span>
+                                <i class="fe fe-chevron-down dropdown-arrow"></i>
+                            </a>
+
+                            <ul class="slide-menu">
+                                <li>
+                                    <a href="{{ route('roaster') }}" class="slide-item @if(Request::is('/roaster')) active @endif">Roaster</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('roaster_swap') }}" class="slide-item @if(Request::is('/roaster-swap')) active @endif">Roaster Swap</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('roaster_report') }}" class="slide-item @if(Request::is('/roaster-report')) active @endif">Roaster Report</a>
+                                </li>
+                            </ul>
                         </li>
 
+                        <li class="slide">
+                            <a class="side-menu__item @if(Request::is('/')) active @endif" data-bs-toggle="slide" href="#">
+                                <i class="side-menu__icon fe fe-slack"></i>
+                                <span class="side-menu__label">Attendance</span>
+                                <i class="fe fe-chevron-down dropdown-arrow"></i>
+                            </a>
 
-                        <li>
-                            <a class="slide-item" href="{{ route('payment') }}">Payments</a>
+                            <ul class="slide-menu">
+                                <li>
+                                    <a href="{{ route('attendance') }}" class="slide-item @if(Request::is('/attendance')) active @endif">Attendance</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('view_attendance') }}" class="slide-item @if(Request::is('/view-attendance')) active @endif">View Attendance</a>
+                                </li>
+                            </ul>
                         </li>
-                        {{-- <li>
-                            <a class="slide-item" href="{{ route('add_payment') }}">Add Payment</a>
-                        </li> --}}
+
+                        <li class="slide">
+                            <a class="side-menu__item @if(Request::is('/')) active @endif" data-bs-toggle="slide" href="#">
+                                <i class="side-menu__icon fa fa-paypal"></i>
+                                <span class="side-menu__label">Salary</span>
+                                <i class="fe fe-chevron-down dropdown-arrow"></i>
+                            </a>
+                            <ul class="slide-menu">
+
+                                <li>
+                                    <a class="slide-item" href="{{ route('miscellaneous') }}">Miscellaneous</a>
+                                </li>
+                                <li>
+                                    <a class="slide-item" href="{{ route('provident_fund') }}">Provident Fund</a>
+                                </li>
+
+
+                                <li>
+                                    <a class="slide-item" href="{{ route('add_salary') }}">Process Salary</a>
+                                </li>
+
+
+                                <li>
+                                    <a class="slide-item" href="{{ route('payment') }}">Payments</a>
+                                </li>
+                                {{-- <li>
+                                    <a class="slide-item" href="{{ route('add_payment') }}">Add Payment</a>
+                                </li> --}}
 
 
 
+
+
+                            </ul>
+                        </li>
 
 
                     </ul>
                 </li>
+
 
                 <li class="slide">
                     <a class="side-menu__item @if(Request::is('/')) active @endif" data-bs-toggle="slide" href="#">
@@ -221,7 +247,7 @@ $checkAdmin = Auth::guard("web")->user()->type == "admin" || Auth::guard("web")-
                     </ul>
                 </li>
 
-                <li class="slide @if(array_search("sales",$access) > -1 ||
+                {{-- <li class="slide @if(array_search("sales",$access) > -1 ||
 
                     $checkAdmin) @else d-none @endif @if(Request::is('sales') || Request::is('seller')) is-expended @endif">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)"><i class="side-menu__icon fa fa-ship"></i><span class="side-menu__label">Sales</span><i class="angle fe fe-chevron-right"></i></a>
@@ -237,7 +263,7 @@ $checkAdmin = Auth::guard("web")->user()->type == "admin" || Auth::guard("web")-
                         <li class="@if(array_search("customer",$access) > -1 || $checkAdmin == true) @else d-none @endif"><a href="{{ route('customer') }}" class="slide-item @if(Request::is('customer') || Request::is('add-customer')) active @endif"> Customer </a></li>
                         <li class="@if(array_search("sell",$access) > -1 || $checkAdmin == true) @else d-none @endif"><a href="{{ route('sell') }}" class="slide-item @if(Request::is('sell') || Request::is('add-sell')) active @endif"> Sell </a></li>
                     </ul>
-                </li>
+                </li> --}}
 
 
             <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191"
