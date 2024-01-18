@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Member;
+namespace App\Modules\Finance\Http\Livewire\Member;
 
 use App\Models\District;
 use App\Models\Member;

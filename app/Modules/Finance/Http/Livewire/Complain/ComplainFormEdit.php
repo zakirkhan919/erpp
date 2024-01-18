@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Complain;
+namespace App\Modules\Finance\Http\Livewire\Complain;
 
 use App\Models\Complain;
 use App\Models\Member;

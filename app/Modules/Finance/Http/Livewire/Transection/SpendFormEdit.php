@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Transection;
+namespace App\Modules\Finance\Http\Livewire\Transection;
 
 use App\Models\SpendAmount;
 use Livewire\Component;
@@ -58,6 +58,6 @@ class SpendFormEdit extends Component
 
     public function render()
     {
-        return view('livewire.transection.spend-form-edit');
+        return view('Finance::livewire.transection.spend-form-edit');
     }
 }

@@ -33,7 +33,7 @@
                                 <h3 class="card-title">নগদ গ্রহন পরিবর্তন </h3>
                             </div>
                             <div class="card-body">
-                                <livewire:transection.earn-form-edit :id="$id">
+                                <livewire:finance::transection.earn-form-edit :id="$id" />
                             </div>
                         </div>
                     </div>

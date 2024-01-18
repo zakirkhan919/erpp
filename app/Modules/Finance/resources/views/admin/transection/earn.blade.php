@@ -1,6 +1,7 @@
 @extends('admin.common.master')
 @section('title')
-    <title>নগদ গ্রহন</title>
+    <title>Cash receipt
+    </title>
 @endsection
 @section('css')
 @include('vendor.datatable.datatable_css')
@@ -18,11 +19,13 @@
 
                 <!-- PAGE-HEADER -->
                 <div class="page-header">
-                    <h1 class="page-title">নগদ গ্রহন</h1>
+                    <h1 class="page-title">Cash receipt
+                    </h1>
                     <div>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">হোম </a></li>
-                            <li class="breadcrumb-item active" aria-current="page">নগদ গ্রহন </li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home </a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Cash receipt
+                            </li>
                         </ol>
                     </div>
                 </div>
@@ -33,7 +36,8 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">নগদ গ্রহন এর তালিকা </h3>
+                                <h3 class="card-title">List of Cash receipt
+                                </h3>
 
                             </div>
 
@@ -47,16 +51,17 @@
                                 </div>
                                 <a href="{{ route('add.credit.transection') }}" class="f-right @if(array_search("amount/credit/add",$access) > -1 || $checkAdmin) @else d-none @endif">
                                     <button style="margin-bottom: 15px;"
-                                        class="btn btn-primary bg-success-gradient mt-3">নতুন নগদ গ্রহন যোগ করুন</button>
+                                        class="btn btn-primary bg-success-gradient mt-3">Add New Cash receipt
+                                    </button>
                                 </a>
                                 <div class="table-responsive @if(array_search("amount/credit",$access) > -1 || $checkAdmin) @else d-none @endif">
                                     <table id="list" class="table dt-responsive table-bordered table-striped nowrap" id="basic-datatable">
                                         <thead>
                                             <tr>
-                                                <th class="wd-15p border-bottom-0">নম্বর </th>
-                                                <th class="wd-15p border-bottom-0">বিবরন </th>
-                                                <th class="wd-15p border-bottom-0">টাকার পরিমান </th>
-                                                <th class="wd-15p border-bottom-0">তারিখ </th>
+                                                <th class="wd-15p border-bottom-0">No </th>
+                                                <th class="wd-15p border-bottom-0">Description </th>
+                                                <th class="wd-15p border-bottom-0">Amount of Money </th>
+                                                <th class="wd-15p border-bottom-0">Date </th>
                                                 {{-- <th class="wd-25p border-bottom-0">অবস্থা </th> --}}
                                                 <th class="wd-10 border-bottom-0"></th>
                                             </tr>
@@ -110,9 +115,7 @@
                    {data: 'status', name: 'status'},
                    {data: 'action', name: 'action', orderable: false, searchable: false},
                ],
-               "language": {
-                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Bangla.json"
-            },
+
                "aaSorting": []
            });
        });
@@ -120,20 +123,20 @@
        function deleteCreditAmount(id,e) {
            e.preventDefault();
            swal.fire({
-               title: "আপনী কি নিশ্চিত?",
-               text: "আপনি মুছে দিতে চান??!",
+               title: "Are you sure?",
+               text: "Do you want to delete it??!",
                icon: "warning",
                showCloseButton: true,
                // showDenyButton: true,
                showCancelButton: true,
-               confirmButtonText: `মুছন `,
-               cancelButtonText: `বাতিল  `,
+               confirmButtonText: `Delete `,
+               cancelButtonText: `Cancel  `,
                // dangerMode: true,
            }).then((result) => {
                if (result.value == true) {
                    swal.fire({
-                       title: 'মুছে ফেলা হয়েছে!',
-                       text: 'সফলভাবে মুছে ফেলা হয়েছে!',
+                       title: 'Deleted',
+                       text: 'Deleted successfully',
                        icon: 'success'
                    }).then(function () {
                     location.reload();
@@ -148,7 +151,7 @@
                        })
                    })
                } else if (result.value == false) {
-                   swal.fire("বাতিল", "নিরাপদ :)", "error");
+                   swal.fire("Cancel", "Save :)", "error");
                }
            })
        }

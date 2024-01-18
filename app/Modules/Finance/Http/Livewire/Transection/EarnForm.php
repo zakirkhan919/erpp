@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Transection;
+namespace App\Modules\Finance\Http\Livewire\Transection;
 
 use App\Models\CreditAmount;
 use Livewire\Component;
@@ -48,6 +48,6 @@ class EarnForm extends Component
 
     public function render()
     {
-        return view('livewire.transection.earn-form');
+        return view('Finance::livewire.transection.earn-form');
     }
 }

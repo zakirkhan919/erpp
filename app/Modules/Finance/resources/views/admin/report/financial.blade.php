@@ -1,6 +1,7 @@
 @extends('admin.common.master')
 @section('title')
-    <title>আর্থিক</title>
+    <title>Financial
+    </title>
 @endsection
 @section('css')
 @endsection
@@ -15,11 +16,13 @@
 
                 <!-- PAGE-HEADER -->
                 <div class="page-header">
-                    <h1 class="page-title">আর্থিক তথ্য</h1>
+                    <h1 class="page-title">Financial information
+                    </h1>
                     <div>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">হোম </a></li>
-                            <li class="breadcrumb-item active" aria-current="page">আর্থিক তথ্য </li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home </a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Financial information
+                            </li>
                         </ol>
                     </div>
                 </div>
@@ -30,7 +33,8 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">আর্থিক তালিকা </h3>
+                                <h3 class="card-title">financial list
+                                </h3>
 
                             </div>
 
@@ -47,29 +51,29 @@
                                     <div class='row'>
                                         <div class="col-md-3">
                                             <div class="form-group m-2">
-                                                <label for="from_date">তারিখ হইতে</label>
+                                                <label for="from_date">from date</label>
                                                 <input type="date" name="from_date" id="from_date" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group m-2">
-                                                <label for="to_date">তারিখ শেষ</label>
+                                                <label for="to_date">To date</label>
                                                 <input type="date" name="to_date" id="to_date"  class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md--3">
                                             <div class="form-group m-2">
-                                                <label for="transection">লেনদেন</label>
+                                                <label for="transection">transaction</label>
                                                 <select name="transection" id="transection" class="form-control">
-                                                    <option value="1">নগদ গ্রহন</option>
-                                                    <option value="2">নগদ খরচ</option>
+                                                    <option value="1">Credit earn</option>
+                                                    <option value="2">Credit cost</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-md--3">
                                             <div class="form-group m-2">
                                                 <label for="">#</label>
-                                                <button type="submit" id="submit" class="form-control btn btn-primary">সংযক্তি </button>
+                                                <button type="submit" id="submit" class="form-control btn btn-primary">Submit </button>
                                             </div>
                                         </div>
                                     </div>
@@ -77,7 +81,7 @@
                                 <div id="tableView">
 
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -109,20 +113,20 @@
                         },
                     to_date: {
                         required: true,
-                        },  
+                        },
                     transection: {
                         required: true,
-                    },   
+                    },
                 },
                 messages: {
                     from_date: {
-                        required: "ফিল্ডটি পুরন করতে হবে!",
+                        required: "This field is required!",
                     },
                     to_date: {
-                        required: "ফিল্ডটি পুরন করতে হবে!",
-                    },   
+                        required: "This field is required!",
+                    },
                     transection: {
-                        required: "ফিল্ডটি পুরন করতে হবে!",
+                        required: "This field is required!",
                     },
                 },
                 submitHandler: function(form) {
@@ -138,10 +142,10 @@
                 type: "POST",
                 data: $('#submitForm').serialize(),
                 success: function( response ) {
-                    $('#submit').html('সংযক্তি');
+                    $('#submit').html('submit');
                     $('#tableView').html(response.html);
                     $("#submit"). attr("disabled", false);
-                    document.getElementById("contactUsForm").reset(); 
+                    document.getElementById("contactUsForm").reset();
                 }
             });
             }

@@ -33,7 +33,7 @@
                                 <h3 class="card-title">নগদ খরচ পরিবর্তন </h3>
                             </div>
                             <div class="card-body">
-                                <livewire:transection.spend-form-edit :id="$id">
+                                <livewire:finance::transection.spend-form-edit :id="$id" />
                             </div>
                         </div>
                     </div>

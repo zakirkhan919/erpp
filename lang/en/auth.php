@@ -16,8 +16,8 @@ return [
     // 'failed' => 'These credentials do not match our records.',
     // 'password' => 'The provided password is incorrect.',
     // 'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
-    'failed' => 'এই তথ্যগুলো আমাদের রেকর্ডের সাথে মেলে না।',
-    'password' => 'এই পাসওয়ার্ডটি ভুল।',
-    'throttle' => 'অনেকগুলি লগইন প্রচেষ্টা। অনুগ্রহ করে :সেকেন্ড সেকেন্ডের মধ্যে আবার চেষ্টা করুন।',
+    'failed' => 'These Credentials does not match our Data',
+    'password' => 'Wrong Password',
+    'throttle' => 'Too many attampts. Please try :seconds later',
 
 ];

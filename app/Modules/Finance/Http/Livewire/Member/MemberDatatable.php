@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Member;
+namespace App\Modules\Finance\Http\Livewire\Member;
 
 use App\Models\Member;
 use Livewire\Component;
@@ -25,12 +25,12 @@ class MemberDatatable extends LivewireDatatable
             NumberColumn::name('id')
                 ->label('নাম্বার')
                 ->sortBy('id'),
-  
+
             Column::name('name')
                 ->label('নাম'),
             Column::name('village')
                 ->label('গ্রাম'),
-            
+
         ];
     }
 }

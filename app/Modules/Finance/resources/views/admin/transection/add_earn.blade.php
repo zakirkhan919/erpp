@@ -1,6 +1,7 @@
 @extends('admin.common.master')
 @section('title')
-    <title>নগদ গ্রহন</title>
+    <title>Cash receipt
+    </title>
 @endsection
 @section('header-resource')
     @livewireStyles
@@ -15,11 +16,13 @@
 
                 <!-- PAGE-HEADER -->
                 <div class="page-header">
-                    <h1 class="page-title">নগদ গ্রহন যোগ</h1>
+                    <h1 class="page-title">List of Cash receipt
+                    </h1>
                     <div>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">হোম </a></li>
-                            <li class="breadcrumb-item active" aria-current="page">নগদ গ্রহন যোগ করুন</li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home </a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Cash receipt
+                            </li>
                         </ol>
                     </div>
                 </div>
@@ -30,10 +33,11 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">নগদ গ্রহন যোগ </h3>
+                                <h3 class="card-title">Add New Cash receipt
+                                </h3>
                             </div>
                             <div class="card-body">
-                                @livewire('transection.earn-form')
+                                @livewire('finance::transection.earn-form')
                             </div>
                         </div>
                     </div>

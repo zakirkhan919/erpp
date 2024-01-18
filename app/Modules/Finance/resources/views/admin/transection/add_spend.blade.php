@@ -1,6 +1,7 @@
 @extends('admin.common.master')
 @section('title')
-    <title>নগদ খরচ</title>
+    <title>Cash costs
+    </title>
 @endsection
 @section('header-resource')
     @livewireStyles
@@ -15,11 +16,13 @@
 
                 <!-- PAGE-HEADER -->
                 <div class="page-header">
-                    <h1 class="page-title">নগদ খরচ যোগ</h1>
+                    <h1 class="page-title">List of cash expenses
+                    </h1>
                     <div>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">হোম </a></li>
-                            <li class="breadcrumb-item active" aria-current="page">নগদ খরচ যোগ করুন</li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home </a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Cash costs
+                            </li>
                         </ol>
                     </div>
                 </div>
@@ -30,10 +33,11 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">নগদ খরচ যোগ </h3>
+                                <h3 class="card-title">Add New Cash costs
+                                </h3>
                             </div>
                             <div class="card-body">
-                                @livewire('transection.spend-form')
+                                @livewire('finance::transection.spend-form')
                             </div>
                         </div>
                     </div>
