@@ -1,6 +1,6 @@
 @extends('admin.common.master')
 @section('title')
-    <title>ব্যবহারকারী</title>
+    <title>User</title>
 @endsection
 @include('User::user.user_form_css')
 
@@ -15,11 +15,11 @@
 
                 <!-- PAGE-HEADER -->
                 <div class="page-header">
-                    <h1 class="page-title">ব্যবহারকারী </h1>
+                    <h1 class="page-title">User </h1>
                     <div>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">হোম </a></li>
-                            <li class="breadcrumb-item active" aria-current="page">ব্যবহারকারী  </li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home </a></li>
+                            <li class="breadcrumb-item active" aria-current="page">User  </li>
                         </ol>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">ব্যবহারকারী  </h3>
+                                <h3 class="card-title">User  </h3>
 
                             </div>
 
@@ -42,7 +42,7 @@
                                         </div>
                                     @endif
                                 </div>
-                                
+
                                 <form method="POST" action="{{route('save_user')}}"  id="frmCheckout" enctype="multipart/form-data" role="form">
                                     @csrf
                                     @include('User::user.user_form')

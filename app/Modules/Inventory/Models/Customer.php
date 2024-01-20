@@ -11,6 +11,11 @@ class Customer extends Model
 
     protected $guarded = [];
 
+    public function sales()
+    {
+        return $this->hasMany(Sell::class, 'customer_id', 'id');
+    }
+
     public static function Customeradd($request)
     {
         Customer::create([

@@ -51,7 +51,7 @@
                                             <div class="form-group">
                                                 <label class="form-label"> Customer Name</label>
                                                 <select class="form-control select2-show-search form-select"
-                                                    data-placeholder="Choose one" name="custormer_id" id="custormer_id">
+                                                    data-placeholder="Choose one" name="customer_id" id="customer_id">
                                                     <option label="Choose one"></option>
                                                     @foreach ($customers as $customer)
                                                         <option value="{{ $customer->id }}">{{ $customer->name }}</option>

@@ -31,8 +31,7 @@
                             <div class="card-header">
                                 <h3 class="card-title">Seller information Add</h3>
                             </div>
-                            <form action="{{ route('submit-seller') }}" method="post" id="seller-add"
-                                name="seller-add">
+                            <form action="{{ route('submit-seller') }}" method="post" id="seller-add" name="seller-add">
                                 @csrf
                                 <div class="card-body">
                                     <div class="row">

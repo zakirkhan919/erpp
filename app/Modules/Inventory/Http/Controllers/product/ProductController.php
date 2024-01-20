@@ -89,24 +89,24 @@ class ProductController extends Controller
                 //         </button>';
 
                     if ($checkAdmin) {
-                        $btn .= '<a href="' . route('seller-edit', ['id' => encrypt($list->id)]) . '"
+                        $btn .= '<a href="' . route('product-edit', ['id' => encrypt($list->id)]) . '"
                         <button id="bEdit" type="button" class="btn btn-sm btn-primary">
                         <span class="fe fe-edit"> </span>
                         </button></a>
-                        <button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deleteSeller(this.id,event)">
+                        <button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deleteProduct(this.id,event)">
                             <span class="fe fe-trash-2"> </span>
                         </button>';
                     } else {
 
-                        if (array_search("seller-edit/*", $access) > -1) {
-                            $btn .= '<a href="' . route('seller-edit', ['id' => encrypt($list->id)]) . '"
+                        if (array_search("product-edit/*", $access) > -1) {
+                            $btn .= '<a href="' . route('product-edit', ['id' => encrypt($list->id)]) . '"
                             <button id="bEdit" type="button" class="btn btn-sm btn-primary">
                             <span class="fe fe-edit"> </span>
                             </button></a>';
                         }
 
-                        if (array_search("seller-delete", $access) > -1) {
-                            $btn .= '<button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deleteCustomer(this.id,event)">
+                        if (array_search("product-delete", $access) > -1) {
+                            $btn .= '<button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deleteProduct(this.id,event)">
                             <span class="fe fe-trash-2"> </span>
                             </button>';
                         }

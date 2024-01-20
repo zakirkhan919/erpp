@@ -11,6 +11,16 @@ class Purchase extends Model
 
     protected $guarded = [];
 
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id', 'id');
+    }
+
+    public function seller(){
+        return $this->belongsTo(Seller::class, 'seller_id', 'id');
+
+    }
+
     public static function Purchaseadd($request)
     {
         Purchase::create([

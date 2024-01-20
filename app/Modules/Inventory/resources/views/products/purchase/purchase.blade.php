@@ -82,12 +82,12 @@
                             name: 'purchase_date'
                         },
                         {
-                            data: 'product_id',
-                            name: 'product_id'
+                            data: 'product_name',
+                            name: 'product_name'
                         },
                         {
-                            data: 'seller_id',
-                            name: 'seller_id'
+                            data: 'seller_name',
+                            name: 'seller_name'
                         },
                         {
                             data: 'quantity',

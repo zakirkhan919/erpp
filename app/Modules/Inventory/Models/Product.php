@@ -11,6 +11,17 @@ class Product extends Model
 
     protected $guarded = [];
 
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class, 'product_id', 'id');
+    }
+
+    public function sales()
+    {
+        return $this->hasMany(Sell::class, 'product_id', 'id');
+    }
+
+
     public static function Productadd($request)
     {
         Product::create([

@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('sells', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('custormer_id');
+            $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('seller_id');
             $table->unsignedBigInteger('product_id');
             $table->string('selling_date');
             $table->integer('selling_quantity');
             $table->timestamps();
 
-            $table->foreign('custormer_id')->references('id')->on('customers')->onDelete('cascade');
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->foreign('seller_id')->references('id')->on('sellers')->onDelete('cascade');
         });
     }

@@ -1,6 +1,6 @@
 @extends('admin.common.master')
 @section('title')
-    <title>নতুন ভূমিকা পরিবর্তন</title>
+    <title>New Role Edit</title>
 @endsection
 @section('css')
 @include('User::user.user_form_css')
@@ -17,11 +17,11 @@
 
                 <!-- PAGE-HEADER -->
                 <div class="page-header">
-                    <h1 class="page-title">পরিবর্তন ভূমিকা অনুমতি </h1>
+                    <h1 class="page-title">Edit Role Permission </h1>
                     <div>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">হোম </a></li>
-                            <li class="breadcrumb-item active" aria-current="page">পরিবর্তন ভূমিকা অনুমতি  </li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home </a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Edit Role Permission  </li>
                         </ol>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">পরিবর্তন ভূমিকা অনুমতি  </h3>
+                                <h3 class="card-title">Edit Role Permission  </h3>
 
                             </div>
 
@@ -44,7 +44,7 @@
                                         </div>
                                     @endif
                                 </div>
-                                
+
                                 <form method="POST" action="{{route('update_role_permission')}}"  id="frmCheckout" enctype="multipart/form-data" role="form">
                                     @csrf
                                     <input type="hidden" value="{{ \App\Libraries\Encryption::encodeId($permission->id) }}" name="permission_id">

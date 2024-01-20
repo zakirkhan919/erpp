@@ -1,14 +1,14 @@
 <div class="table-responsive">
-    <button class="btn btn-primary" style="float: right;" onclick="printDiv('printableArea')"><i class="fa fa-print" aria-hidden="true"></i> প্রিন্ট</button>
+    <button class="btn btn-primary" style="float: right;" onclick="printDiv('printableArea')"><i class="fa fa-print" aria-hidden="true"></i> Print</button>
     <div id="printableArea">
         <table id="list" class="table dt-responsive table-bordered table-striped nowrap" id="basic-datatable">
-                                        
+
             <thead>
                 <tr>
-                    <th class="wd-15p border-bottom-0">নম্বর </th>
-                    <th class="wd-15p border-bottom-0">বিবরণ </th>
-                    <th class="wd-15p border-bottom-0">টাকার পরিমান </th>
-                    <th class="wd-15p border-bottom-0">তারিখ </th>
+                    <th class="wd-15p border-bottom-0">No </th>
+                    <th class="wd-15p border-bottom-0">Description </th>
+                    <th class="wd-15p border-bottom-0">Amount of Money</th>
+                    <th class="wd-15p border-bottom-0">Date </th>
                 </tr>
             </thead>
             <tbody>
@@ -20,11 +20,11 @@
                         <td>{{ en_to_bn($d->date) }}</td>
                     </tr>
                 @endforeach
-                
+
             </tbody>
         </table>
-    </div>                                
-    
+    </div>
+
 </div>
 
 <script>
@@ -35,7 +35,7 @@
      document.body.innerHTML = printContents;
 
      window.print();
-    
+
      document.body.innerHTML = originalContents;
      location.reload();
 }

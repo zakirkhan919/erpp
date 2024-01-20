@@ -1,6 +1,6 @@
 @extends('admin.common.master')
 @section('title')
-    <title>নগদ গ্রহন পরিবর্তন</title>
+    <title>Edit Credit Earn</title>
 @endsection
 @section('header-resource')
     @livewireStyles
@@ -15,11 +15,11 @@
 
                 <!-- PAGE-HEADER -->
                 <div class="page-header">
-                    <h1 class="page-title">নগদ গ্রহন পরিবর্তন</h1>
+                    <h1 class="page-title">Edit Credit Earn</h1>
                     <div>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">হোম </a></li>
-                            <li class="breadcrumb-item active" aria-current="page">নগদ গ্রহন পরিবর্তন করুন</li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home </a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Edit Credit Earn</li>
                         </ol>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">নগদ গ্রহন পরিবর্তন </h3>
+                                <h3 class="card-title">Edit Credit Earn </h3>
                             </div>
                             <div class="card-body">
                                 <livewire:finance::transection.earn-form-edit :id="$id" />

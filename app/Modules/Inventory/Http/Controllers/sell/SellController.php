@@ -36,8 +36,8 @@ class SellController extends Controller
         $customers = Customer::orderBy('id', 'desc')->select('id', 'name')->get();
         $products = Product::orderBy('id', 'desc')->select('id', 'name')->get();
 
-        $data = Sell::where('id', decrypt($id))->first();
-        return view('Inventory::products.purchase.edit-purchase', compact('products', 'sellers','customers','data'));
+        $data = Sell::with(['product', 'seller', 'customer'])->where('id', decrypt($id))->first();
+        return view('Inventory::sales.sell.edit-sell', compact('products', 'sellers','customers','data'));
     }
 
     public function submitsell(Request $request)
@@ -45,7 +45,7 @@ class SellController extends Controller
 
         $request->validate(
             [
-                'custormer_id' => 'required|exists:customers,id',
+                'customer_id' => 'required|exists:customers,id',
                 'seller_id' => 'required|exists:sellers,id',
                 'product_id' => 'required|exists:products,id',
                 'selling_date' => 'required',
@@ -61,7 +61,7 @@ class SellController extends Controller
 
         $request->validate(
             [
-                'custormer_id' => 'required|exists:customers,id',
+                'customer_id' => 'required|exists:customers,id',
                 'seller_id' => 'required|exists:sellers,id',
                 'product_id' => 'required|exists:products,id',
                 'selling_date' => 'required',
@@ -79,43 +79,46 @@ class SellController extends Controller
             return 'Sorry! this is a request without proper way.';
         }
         try {
-            $list = Sell::orderBy('id', 'desc')->get();
+
+            $list = Sell::with(['product', 'seller', 'customer'])->orderBy('id', 'desc')->get();
 
             return DataTables::of($list)
+
+            ->addColumn('product_name', function ($list) {
+                return $list->product->name;
+            })
+            ->addColumn('seller_name', function ($list) {
+                return $list->seller->name;
+            })
+            ->addColumn('customer_name', function ($list) {
+                return $list->customer->name;
+            })
                 ->addColumn('action', function ($list) {
                     $access = \App\Modules\User\Models\RolePermission::where("id", \Auth::guard()->user()->role_id)->first();
                     $access = $access ? json_decode($access->permission) : [];
                     $checkAdmin = Auth::guard("web")->user()->type == "admin" || Auth::guard("web")->user()->type == "superadmin" ? true : false;
                     $btn = '';
 
-                    $btn .= '<a href="' . route('sell-edit', ['id' => encrypt($list->id)]) . '"
+
+                    if ($checkAdmin) {
+                        $btn .= '<a href="' . route('sell-edit', ['id' => encrypt($list->id)]) . '"
                         <button id="bEdit" type="button" class="btn btn-sm btn-primary">
                         <span class="fe fe-edit"> </span>
                         </button></a>
                         <button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deleteSell(this.id,event)">
                             <span class="fe fe-trash-2"> </span>
                         </button>';
-
-
-                    if ($checkAdmin) {
-                        $btn .= '<a href="' . route('customer-edit', ['id' => encrypt($list->id)]) . '"
-                        <button id="bEdit" type="button" class="btn btn-sm btn-primary">
-                        <span class="fe fe-edit"> </span>
-                        </button></a>
-                        <button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deleteCustomer(this.id,event)">
-                            <span class="fe fe-trash-2"> </span>
-                        </button>';
                     } else {
 
-                        if (array_search("customer-edit/*", $access) > -1) {
-                            $btn .= '<a href="' . route('customer-edit', ['id' => encrypt($list->id)]) . '"
+                        if (array_search("sell-edit/*", $access) > -1) {
+                            $btn .= '<a href="' . route('sell-edit', ['id' => encrypt($list->id)]) . '"
                             <button id="bEdit" type="button" class="btn btn-sm btn-primary">
                             <span class="fe fe-edit"> </span>
                             </button></a>';
                         }
 
-                        if (array_search("customer-delete", $access) > -1) {
-                            $btn .= '<button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deleteCustomer(this.id,event)">
+                        if (array_search("sell-delete", $access) > -1) {
+                            $btn .= '<button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deleteSell(this.id,event)">
                             <span class="fe fe-trash-2"> </span>
                             </button>';
                         }
@@ -130,6 +133,7 @@ class SellController extends Controller
             Session::flash('error', CommonFunction::showErrorPublic($e->getMessage()) . '[UC-1001]');
             return Redirect::back();
         }
+
     }
 
     public function deleteSell(Request $request)

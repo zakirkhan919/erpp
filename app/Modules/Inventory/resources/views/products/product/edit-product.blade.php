@@ -45,7 +45,8 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        
+
+
                                         <div class="col-sm-6 col-md-6">
                                             <div class="form-group">
                                                 <label class="form-label">Price <span class="text-red">*</span></label>
@@ -67,7 +68,7 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        
+
 
 
                                     </div>
@@ -125,6 +126,6 @@
                 })
             }
 
-           
+
         </script>
     @endsection

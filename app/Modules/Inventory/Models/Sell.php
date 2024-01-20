@@ -11,10 +11,23 @@ class Sell extends Model
 
     protected $guarded = [];
 
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id', 'id');
+    }
+    public function seller()
+    {
+        return $this->belongsTo(Seller::class, 'seller_id', 'id');
+    }
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'customer_id', 'id');
+    }
+
     public static function Selladd($request)
     {
         Sell::create([
-            "custormer_id" => $request->custormer_id,
+            "customer_id" => $request->customer_id,
             "seller_id" => $request->seller_id,
             "product_id" => $request->product_id,
             'selling_date' => $request->selling_date,
@@ -26,7 +39,7 @@ class Sell extends Model
     {
         $data = Sell::find($request->id);
 
-        $data->custormer_id = $request->custormer_id;
+        $data->customer_id = $request->customer_id;
         $data->seller_id = $request->seller_id;
         $data->product_id = $request->product_id;
         $data->selling_date = $request->selling_date;

@@ -77,9 +77,15 @@ class PurchaseController extends Controller
         }
         try {
 
-            $list = Purchase::orderBy('id', 'desc')->get();
+            $list = Purchase::with(['product', 'seller'])->orderBy('id', 'desc')->get();
 
             return DataTables::of($list)
+            ->addColumn('product_name', function ($list) {
+                return $list->product->name;
+            })
+            ->addColumn('seller_name', function ($list) {
+                return $list->seller->name;
+            })
                 ->addColumn('action', function ($list) {
                     $access = \App\Modules\User\Models\RolePermission::where("id", \Auth::guard()->user()->role_id)->first();
                     $access = $access ? json_decode($access->permission) : [];
@@ -95,24 +101,24 @@ class PurchaseController extends Controller
                     // </button>';
 
                     if ($checkAdmin) {
-                        $btn .= '<a href="' . route('seller-edit', ['id' => encrypt($list->id)]) . '"
+                        $btn .= '<a href="' . route('purchase-edit', ['id' => encrypt($list->id)]) . '"
                         <button id="bEdit" type="button" class="btn btn-sm btn-primary">
                         <span class="fe fe-edit"> </span>
                         </button></a>
-                        <button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deleteSeller(this.id,event)">
+                        <button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deletePurchase(this.id,event)">
                             <span class="fe fe-trash-2"> </span>
                         </button>';
                     } else {
 
-                        if (array_search("seller-edit/*", $access) > -1) {
-                            $btn .= '<a href="' . route('seller-edit', ['id' => encrypt($list->id)]) . '"
+                        if (array_search("purchase-edit/*", $access) > -1) {
+                            $btn .= '<a href="' . route('purchase-edit', ['id' => encrypt($list->id)]) . '"
                             <button id="bEdit" type="button" class="btn btn-sm btn-primary">
                             <span class="fe fe-edit"> </span>
                             </button></a>';
                         }
 
-                        if (array_search("seller-delete", $access) > -1) {
-                            $btn .= '<button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deleteCustomer(this.id,event)">
+                        if (array_search("purchase-delete", $access) > -1) {
+                            $btn .= '<button type="button" class="btn  btn-sm btn-danger"  id="' . encrypt($list->id) . '" onClick="deletePurchase(this.id,event)">
                             <span class="fe fe-trash-2"> </span>
                             </button>';
                         }

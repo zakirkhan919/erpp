@@ -44,6 +44,8 @@
                                                     @foreach ($products as $product)
                                                     <option value="{{ $product->id }}">{{ $product->name }}</option>
                                                     @endforeach
+                                                </select>
+
 
                                             </div>
                                         </div>
@@ -69,6 +71,7 @@
                                                     @foreach ($sellers as $seller)
                                                     <option value="{{ $seller->id }}">{{ $seller->name }}</option>
                                                     @endforeach
+                                                </select>
                                             </div>
                                         </div>
 
@@ -106,8 +109,8 @@
     @include('vendor.sweetalert2.sweetalert2_js')
     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
         <script>
-            if ($("#seller-add").length > 0) {
-                $("#seller-add").validate({
+            if ($("#purchase-edit").length > 0) {
+                $("#purchase-edit").validate({
                     rules: {
                         name: {
                             required: true,

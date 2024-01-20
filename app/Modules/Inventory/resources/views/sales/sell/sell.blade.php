@@ -78,16 +78,16 @@
                         }
                     },
                     columns: [{
-                            data: 'custormer_id',
-                            name: 'custormer_id'
+                            data: 'customer_name',
+                            name: 'customer_name'
                         },
                         {
-                            data: 'seller_id',
-                            name: 'seller_id'
+                            data: 'seller_name',
+                            name: 'seller_name'
                         },
                         {
-                            data: 'product_id',
-                            name: 'product_id'
+                            data: 'product_name',
+                            name: 'product_name'
                         },
                         {
                             data: 'selling_date',

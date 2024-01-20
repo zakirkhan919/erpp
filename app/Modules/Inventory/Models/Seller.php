@@ -11,6 +11,15 @@ class Seller extends Model
 
     protected $guarded = [];
 
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class, 'seller_id', 'id');
+    }
+    public function sales()
+    {
+        return $this->hasMany(Sell::class, 'seller_id', 'id');
+    }
+
     public static function Selleradd($request)
     {
         Seller::create([
